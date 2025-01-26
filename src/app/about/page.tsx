@@ -1,6 +1,6 @@
-import { Navbar } from "@/components/navbar"
-import { Footer } from "@/components/footer"
-import { AboutContent } from "@/components/about-content"
+import {Navbar} from "@/components/navbar";
+import {Footer} from "@/components/footer";
+import {AboutContent} from "@/components/about-content";
 
 export default function AboutPage() {
   return (
@@ -11,6 +11,5 @@ export default function AboutPage() {
       </main>
       <Footer />
     </div>
-  )
+  );
 }
-

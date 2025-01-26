@@ -1,20 +1,21 @@
-import { notFound } from "next/navigation"
-import { Navbar } from "@/components/navbar"
-import { Footer } from "@/components/footer"
-import { ProjectContent } from "@/components/project-content"
-import { projects } from "@/lib/placeholder-project"
+import {notFound} from "next/navigation";
+
+import {Navbar} from "@/components/navbar";
+import {Footer} from "@/components/footer";
+import {ProjectContent} from "@/components/project-content";
+import {projects} from "@/lib/placeholder-project";
 
 interface ProjectPageProps {
   params: {
-    id: string
-  }
+    id: string;
+  };
 }
 
-export default function ProjectPage({ params }: ProjectPageProps) {
-  const project = projects.find((p) => p.id === params.id)
+export default function ProjectPage({params}: ProjectPageProps) {
+  const project = projects.find((p) => p.id === params.id);
 
   if (!project) {
-    notFound()
+    notFound();
   }
 
   return (
@@ -25,6 +26,5 @@ export default function ProjectPage({ params }: ProjectPageProps) {
       </main>
       <Footer />
     </div>
-  )
+  );
 }
-

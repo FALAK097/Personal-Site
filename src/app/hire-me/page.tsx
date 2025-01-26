@@ -1,8 +1,9 @@
-import { Navbar } from "@/components/navbar"
-import { Footer } from "@/components/footer"
-import { ContactForm } from "@/components/contact-form"
-import { Button } from "@/components/ui/button"
-import { FileText } from "lucide-react"
+import {FileText} from "lucide-react";
+
+import {ContactForm} from "@/components/contact-form";
+import {Footer} from "@/components/footer";
+import {Navbar} from "@/components/navbar";
+import {Button} from "@/components/ui/button";
 
 export default function HireMePage() {
   return (
@@ -13,11 +14,11 @@ export default function HireMePage() {
           <div className="space-y-4">
             <h1 className="text-4xl font-bold">Hire Me</h1>
             <p className="text-lg text-muted-foreground">
-              I'm always interested in hearing about new opportunities. Feel free to reach out if you'd like to work
-              together.
+              I&apos;m always interested in hearing about new opportunities. Feel free to reach out
+              if you&apos;d like to work together.
             </p>
-            <Button variant="outline" size="lg" asChild>
-              <a href="/resume.pdf" target="_blank" rel="noopener noreferrer">
+            <Button asChild size="lg" variant="outline">
+              <a href="/resume.pdf" rel="noopener noreferrer" target="_blank">
                 <FileText className="mr-2 h-5 w-5" />
                 View Resume
               </a>
@@ -30,7 +31,7 @@ export default function HireMePage() {
             <div className="space-y-6">
               <div>
                 <h3 className="text-lg font-semibold mb-2">Email</h3>
-                <a href="mailto:hello@falakgala.com" className="text-primary hover:underline">
+                <a className="text-primary hover:underline" href="mailto:hello@falakgala.com">
                   hello@falakgala.com
                 </a>
               </div>
@@ -42,7 +43,9 @@ export default function HireMePage() {
 
               <div>
                 <h3 className="text-lg font-semibold mb-2">Availability</h3>
-                <p className="text-muted-foreground">Open to full-time opportunities and interesting projects</p>
+                <p className="text-muted-foreground">
+                  Open to full-time opportunities and interesting projects
+                </p>
               </div>
             </div>
           </div>
@@ -50,6 +53,5 @@ export default function HireMePage() {
       </main>
       <Footer />
     </div>
-  )
+  );
 }
-

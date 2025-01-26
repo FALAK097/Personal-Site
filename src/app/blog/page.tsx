@@ -1,7 +1,7 @@
-import { Navbar } from "@/components/navbar"
-import { Footer } from "@/components/footer"
-import { BlogList } from "@/components/blog-list"
-import { posts } from "@/lib/placeholder-data"
+import {Navbar} from "@/components/navbar";
+import {Footer} from "@/components/footer";
+import {BlogList} from "@/components/blog-list";
+import {posts} from "@/lib/placeholder-data";
 
 export default function BlogPage() {
   return (
@@ -13,7 +13,7 @@ export default function BlogPage() {
             <h1 className="text-4xl font-bold mb-4">Blog</h1>
             <p className="text-lg text-muted-foreground">
               This is where I write. Subscribe to my{" "}
-              <a href="/newsletter" className="text-blue-400 hover:underline">
+              <a className="text-blue-400 hover:underline" href="/newsletter">
                 newsletter
               </a>{" "}
               to get future posts straight to your inbox.
@@ -24,6 +24,5 @@ export default function BlogPage() {
       </main>
       <Footer />
     </div>
-  )
+  );
 }
-

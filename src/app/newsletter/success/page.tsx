@@ -1,6 +1,7 @@
-import { Navbar } from "@/components/navbar"
-import { Footer } from "@/components/footer"
-import Link from "next/link"
+import Link from "next/link";
+
+import {Navbar} from "@/components/navbar";
+import {Footer} from "@/components/footer";
 
 export default function NewsletterSuccessPage() {
   return (
@@ -9,9 +10,11 @@ export default function NewsletterSuccessPage() {
       <main className="flex-1 container mx-auto px-4 py-8">
         <div className="max-w-4xl mx-auto space-y-4">
           <h1 className="text-4xl font-bold">Subscribed!</h1>
-          <p className="text-lg text-muted-foreground">You should receive a confirmation email shortly! 📬 😊</p>
+          <p className="text-lg text-muted-foreground">
+            You should receive a confirmation email shortly! 📬 😊
+          </p>
           <div className="pt-4">
-            <Link href="/" className="text-primary hover:underline">
+            <Link className="text-primary hover:underline" href="/">
               « Home
             </Link>
           </div>
@@ -19,6 +22,5 @@ export default function NewsletterSuccessPage() {
       </main>
       <Footer />
     </div>
-  )
+  );
 }
-

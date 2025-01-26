@@ -1,6 +1,6 @@
-import { format } from "date-fns";
-import { defineDocumentType, makeSource } from "contentlayer/source-files"
-import readingTime from "reading-time"
+import {format} from "date-fns";
+import {defineDocumentType, makeSource} from "contentlayer/source-files";
+import readingTime from "reading-time";
 
 export const Post = defineDocumentType(() => ({
   name: "Post",
@@ -38,10 +38,9 @@ export const Post = defineDocumentType(() => ({
       resolve: (post) => format(new Date(post.date), "MMMM dd, yyyy"),
     },
   },
-}))
+}));
 
 export default makeSource({
   contentDirPath: "content",
   documentTypes: [Post],
-})
-
+});

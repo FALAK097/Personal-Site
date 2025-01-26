@@ -1,5 +1,5 @@
-import { Navbar } from "@/components/navbar"
-import { Footer } from "@/components/footer"
+import {Navbar} from "@/components/navbar";
+import {Footer} from "@/components/footer";
 
 export default function NewsletterPage() {
   return (
@@ -10,28 +10,28 @@ export default function NewsletterPage() {
           <div>
             <h1 className="text-4xl font-bold mb-4">Keep in Touch</h1>
             <p className="text-lg text-muted-foreground">
-              If you&apos;d like to receive blog post updates straight to your inbox, feel free to subscribe to my
-              newsletter 📬
+              If you&apos;d like to receive blog post updates straight to your inbox, feel free to
+              subscribe to my newsletter 📬
             </p>
           </div>
           <div className="max-w-xl">
             <form className="space-y-4">
               <div>
-                <label htmlFor="email" className="block text-sm font-medium mb-2">
+                <label className="block text-sm font-medium mb-2" htmlFor="email">
                   Email Address
                 </label>
                 <input
-                  type="email"
+                  required
+                  className="w-full px-3 py-2 border rounded-md bg-background"
                   id="email"
                   name="email"
                   placeholder="me@example.com"
-                  className="w-full px-3 py-2 border rounded-md bg-background"
-                  required
+                  type="email"
                 />
               </div>
               <button
-                type="submit"
                 className="w-full px-4 py-2 bg-primary text-primary-foreground rounded-md hover:bg-primary/90"
+                type="submit"
               >
                 Subscribe
               </button>
@@ -41,6 +41,5 @@ export default function NewsletterPage() {
       </main>
       <Footer />
     </div>
-  )
+  );
 }
-

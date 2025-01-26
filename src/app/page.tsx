@@ -1,7 +1,7 @@
-import { Navbar } from "@/components/navbar"
-import { Profile } from "@/components/profile"
-import { Newsletter } from "@/components/newsletter"
-import { Footer } from "@/components/footer"
+import {Navbar} from "@/components/navbar";
+import {Profile} from "@/components/profile";
+import {Newsletter} from "@/components/newsletter";
+import {Footer} from "@/components/footer";
 
 export default function Home() {
   return (
@@ -15,6 +15,5 @@ export default function Home() {
       </main>
       <Footer />
     </div>
-  )
+  );
 }
-

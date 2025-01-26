@@ -1,11 +1,11 @@
 export type Post = {
-  title: string
-  date: string
-  category: string
-  description: string
-  readingTime: { minutes: number }
-  url: string
-}
+  title: string;
+  date: string;
+  category: string;
+  description: string;
+  readingTime: {minutes: number};
+  url: string;
+};
 
 export const posts: Post[] = [
   {
@@ -14,16 +14,16 @@ export const posts: Post[] = [
     category: "Thinking",
     description:
       "Exploring the nuances of binary thinking and its impact on decision making in software development and life.",
-    readingTime: { minutes: 3 },
+    readingTime: {minutes: 3},
     url: "/blog/black-and-white-thinking",
   },
   {
     title: "Notes on A Man Without a Country",
     date: "2024-08-10",
     category: "Reading",
-    description: "Reflections on Kurt Vonnegut's collection of essays and thoughts on modern society.",
-    readingTime: { minutes: 3 },
+    description:
+      "Reflections on Kurt Vonnegut's collection of essays and thoughts on modern society.",
+    readingTime: {minutes: 3},
     url: "/blog/man-without-country",
   },
-]
-
+];

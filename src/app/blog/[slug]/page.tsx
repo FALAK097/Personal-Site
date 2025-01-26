@@ -1,20 +1,21 @@
-import { notFound } from "next/navigation"
-import { format } from "date-fns"
-import { Navbar } from "@/components/navbar"
-import { Footer } from "@/components/footer"
-import { posts } from "@/lib/placeholder-data"
+import {notFound} from "next/navigation";
+import {format} from "date-fns";
+
+import {Navbar} from "@/components/navbar";
+import {Footer} from "@/components/footer";
+import {posts} from "@/lib/placeholder-data";
 
 interface PostPageProps {
   params: {
-    slug: string
-  }
+    slug: string;
+  };
 }
 
-export default function PostPage({ params }: PostPageProps) {
-  const post = posts.find((post) => post.url === `/blog/${params.slug}`)
+export default function PostPage({params}: PostPageProps) {
+  const post = posts.find((post) => post.url === `/blog/${params.slug}`);
 
   if (!post) {
-    notFound()
+    notFound();
   }
 
   return (
@@ -36,13 +37,12 @@ export default function PostPage({ params }: PostPageProps) {
           <p className="lead">{post.description}</p>
 
           <p>
-            This is a placeholder for the full blog post content. Once Contentlayer is properly set up, this will be
-            replaced with the actual MDX content.
+            This is a placeholder for the full blog post content. Once Contentlayer is properly set
+            up, this will be replaced with the actual MDX content.
           </p>
         </article>
       </main>
       <Footer />
     </div>
-  )
+  );
 }
-

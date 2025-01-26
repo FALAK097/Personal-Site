@@ -1,13 +1,13 @@
 export type Project = {
-  id: string
-  title: string
-  description: string
-  tags: string[]
-  githubUrl: string
-  deployedUrl: string
-  imageUrl: string
-  content: string
-}
+  id: string;
+  title: string;
+  description: string;
+  tags: string[];
+  githubUrl: string;
+  deployedUrl: string;
+  imageUrl: string;
+  content: string;
+};
 
 export const projects: Project[] = [
   {
@@ -112,5 +112,4 @@ One of the biggest challenges was ensuring voter anonymity while also maintainin
 This project opened my eyes to the potential of blockchain technology beyond cryptocurrencies and sparked my interest in exploring more decentralized applications.
     `,
   },
-]
-
+];

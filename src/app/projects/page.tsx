@@ -1,7 +1,7 @@
-import { Navbar } from "@/components/navbar"
-import { Footer } from "@/components/footer"
-import { ProjectList } from "@/components/project-list"
-import { projects } from "@/lib/placeholder-project"
+import {Footer} from "@/components/footer";
+import {Navbar} from "@/components/navbar";
+import {ProjectList} from "@/components/project-list";
+import {projects} from "@/lib/placeholder-project";
 
 export default function ProjectsPage() {
   return (
@@ -12,8 +12,8 @@ export default function ProjectsPage() {
           <div>
             <h1 className="text-4xl font-bold mb-4">Projects</h1>
             <p className="text-lg text-muted-foreground">
-              Here are some of the projects I've worked on. Each one has taught me something new and helped me grow as a
-              developer.
+              Here are some of the projects I&apos;ve worked on. Each one has taught me something
+              new and helped me grow as a developer.
             </p>
           </div>
           <ProjectList projects={projects} />
@@ -21,6 +21,5 @@ export default function ProjectsPage() {
       </main>
       <Footer />
     </div>
-  )
+  );
 }
-
