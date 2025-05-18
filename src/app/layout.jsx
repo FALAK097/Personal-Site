@@ -1,9 +1,9 @@
-import { Inter } from "next/font/google";
-
+import { GeistSans } from "geist/font/sans";
 import { ThemeProvider } from "@/components/theme-provider";
-import "@/styles/globals.css";
+import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
-const inter = Inter({ subsets: ["latin"] });
+import "@/styles/globals.css";
 
 export const metadata = {
   title: "Personal Portfolio",
@@ -12,20 +12,22 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html suppressHydrationWarning lang="en">
-      <body suppressHydrationWarning className={inter.className}>
+    <html suppressHydrationWarning lang="en" className={GeistSans.className}>
+      <body suppressHydrationWarning>
         <ThemeProvider
           disableTransitionOnChange
           attribute="class"
           defaultTheme="dark"
           enableSystem={false}
         >
-          <div className="min-h-screen bg-background p-4">
+          <div className="min-h-screen p-4 bg-background">
             <div className="rounded-lg border-2 border-border min-h-[calc(100vh-2rem)]">
               {children}
             </div>
           </div>
         </ThemeProvider>
+        <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );

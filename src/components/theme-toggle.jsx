@@ -1,21 +1,52 @@
 "use client";
 
-import {Moon, Sun} from "lucide-react";
-import {useTheme} from "next-themes";
-
-import {Button} from "@/components/ui/button";
+import { useState } from "react";
+import { Moon, Sun } from "lucide-react";
+import { useTheme } from "next-themes";
+import { Button } from "@/components/ui/button";
 
 export function ThemeToggle() {
-  const {theme, setTheme} = useTheme();
+  const { theme, setTheme } = useTheme();
+  const [isTransitioning, setIsTransitioning] = useState(false);
+
+  const handleToggle = () => {
+    if (isTransitioning) return;
+
+    setIsTransitioning(true);
+
+    const overlay = document.createElement("div");
+    overlay.className =
+      "fixed inset-0 z-50 transition-opacity duration-500 ease-in-out opacity-0 pointer-events-none bg-background";
+    document.body.appendChild(overlay);
+
+    requestAnimationFrame(() => {
+      overlay.classList.add("opacity-100");
+    });
+
+    setTimeout(() => {
+      setTheme(theme === "light" ? "dark" : "light");
+    }, 250);
+
+    setTimeout(() => {
+      overlay.classList.remove("opacity-100");
+      overlay.classList.add("opacity-0");
+    }, 500);
+
+    setTimeout(() => {
+      document.body.removeChild(overlay);
+      setIsTransitioning(false);
+    }, 800);
+  };
 
   return (
     <Button
       size="icon"
       variant="ghost"
-      onClick={() => setTheme(theme === "light" ? "dark" : "light")}
+      onClick={handleToggle}
+      disabled={isTransitioning}
     >
-      <Sun className="h-5 w-5 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
-      <Moon className="absolute h-5 w-5 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
+      <Sun className="w-5 h-5 transition-all scale-100 rotate-0 dark:-rotate-90 dark:scale-0" />
+      <Moon className="absolute w-5 h-5 transition-all scale-0 rotate-90 dark:rotate-0 dark:scale-100" />
       <span className="sr-only">Toggle theme</span>
     </Button>
   );
