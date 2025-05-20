@@ -1,9 +1,9 @@
-import {FileText} from "lucide-react";
+import { FileText } from "lucide-react";
 
-import {ContactForm} from "@/components/contact-form";
-import {Footer} from "@/components/footer";
-import {Navbar} from "@/components/navbar";
-import {Button} from "@/components/ui/button";
+import { ContactForm } from "@/components/contact-form";
+import { Footer } from "@/components/footer";
+import { Navbar } from "@/components/navbar";
+import { Button } from "@/components/ui/button";
 
 export default function HireMePage() {
   return (
@@ -14,8 +14,9 @@ export default function HireMePage() {
           <div className="space-y-4">
             <h1 className="text-4xl font-bold">Hire Me</h1>
             <p className="text-lg text-muted-foreground">
-              I&apos;m always interested in hearing about new opportunities. Feel free to reach out
-              if you&apos;d like to work together.
+              I&apos;m always interested in hearing about new opportunities.
+              Feel free to reach out if you&apos;d like to work together or
+              simply discuss ideas.
             </p>
             <Button asChild size="lg" variant="outline">
               <a href="/resume.pdf" rel="noopener noreferrer" target="_blank">
@@ -31,8 +32,11 @@ export default function HireMePage() {
             <div className="space-y-6">
               <div>
                 <h3 className="text-lg font-semibold mb-2">Email</h3>
-                <a className="text-primary hover:underline" href="mailto:hello@falakgala.com">
-                  hello@falakgala.com
+                <a
+                  className="text-primary hover:underline"
+                  href="mailto:falakgala09@gmail.com"
+                >
+                  falakgala09@gmail.com
                 </a>
               </div>
 

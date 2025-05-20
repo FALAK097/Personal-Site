@@ -1,98 +1,115 @@
-/* eslint-disable no-unused-vars */
 "use client";
 
-import React, {useState} from "react";
+import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { z } from "zod";
 
-import {Button} from "@/components/ui/button";
-import {Input} from "@/components/ui/input";
-import {Textarea} from "@/components/ui/textarea";
-import {useToast} from "@/hooks/use-toast";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Button } from "@/components/ui/button";
+import { useToast } from "@/hooks/use-toast";
+import { sendContactEmail } from "@/actions/send-email";
+
+const formSchema = z.object({
+  name: z.string().min(1),
+  email: z.string().email(),
+  subject: z.string().min(1),
+  message: z.string().min(1),
+});
 
 export function ContactForm() {
-  const [isLoading, setIsLoading] = useState(false);
-  const {toast} = useToast();
+  const [loading, setLoading] = useState(false);
+  const { toast } = useToast();
 
-  async function onSubmit(event) {
-    event.preventDefault();
-    setIsLoading(true);
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm({
+    resolver: zodResolver(formSchema),
+  });
 
-    const formData = new FormData(event.currentTarget);
-    const data = {
-      name: formData.get("name"),
-      email: formData.get("email"),
-      subject: formData.get("subject"),
-      message: formData.get("message"),
-    };
+  const onSubmit = async (data) => {
+    setLoading(true);
 
-    try {
-      // Add your form submission logic here
-      console.log(data);
+    const formData = new FormData();
+    Object.entries(data).forEach(([key, value]) => formData.append(key, value));
+
+    const response = await sendContactEmail(formData);
+
+    if (response.success) {
       toast({
         title: "Message sent!",
-        description: "Thanks for reaching out. I'll get back to you soon.",
+        description: "I'll get back to you soon.",
       });
-      event.currentTarget.reset();
-    } catch (_) {
+      reset();
+    } else {
       toast({
         title: "Error",
-        description: "Something went wrong. Please try again.",
+        description: response.error,
         variant: "destructive",
       });
-    } finally {
-      setIsLoading(false);
     }
-  }
+
+    setLoading(false);
+  };
 
   return (
-    <form className="space-y-6" onSubmit={onSubmit}>
+    <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
       <div className="grid gap-6 sm:grid-cols-2">
-        <div className="space-y-2">
-          <label className="text-sm font-medium" htmlFor="name">
-            Name
-          </label>
-          <Input required disabled={isLoading} id="name" name="name" placeholder="Your name" />
-        </div>
-        <div className="space-y-2">
-          <label className="text-sm font-medium" htmlFor="email">
-            Email
-          </label>
+        <div>
+          <label htmlFor="name">Name</label>
           <Input
-            required
-            disabled={isLoading}
-            id="email"
-            name="email"
-            placeholder="Your email"
-            type="email"
+            id="name"
+            {...register("name")}
+            disabled={loading}
+            placeholder="Enter your name"
           />
+          {errors.name && (
+            <p className="text-sm text-purple-500">{errors.name.message}</p>
+          )}
+        </div>
+        <div>
+          <label htmlFor="email">Email</label>
+          <Input
+            id="email"
+            {...register("email")}
+            disabled={loading}
+            placeholder="Enter your email"
+          />
+          {errors.email && (
+            <p className="text-sm text-purple-500">{errors.email.message}</p>
+          )}
         </div>
       </div>
-      <div className="space-y-2">
-        <label className="text-sm font-medium" htmlFor="subject">
-          Subject
-        </label>
+      <div>
+        <label htmlFor="subject">Subject</label>
         <Input
-          required
-          disabled={isLoading}
           id="subject"
-          name="subject"
-          placeholder="What is this regarding?"
+          {...register("subject")}
+          disabled={loading}
+          placeholder="Enter the subject"
         />
+        {errors.subject && (
+          <p className="text-sm text-purple-500">{errors.subject.message}</p>
+        )}
       </div>
-      <div className="space-y-2">
-        <label className="text-sm font-medium" htmlFor="message">
-          Message
-        </label>
+      <div>
+        <label htmlFor="message">Message</label>
         <Textarea
-          required
-          className="min-h-[150px]"
-          disabled={isLoading}
           id="message"
-          name="message"
-          placeholder="Your message"
+          {...register("message")}
+          disabled={loading}
+          placeholder="Enter your message"
         />
+        {errors.message && (
+          <p className="text-sm text-purple-500">{errors.message.message}</p>
+        )}
       </div>
-      <Button className="w-full" disabled={isLoading} type="submit">
-        {isLoading ? "Sending..." : "Send Message"}
+      <Button type="submit" disabled={loading} className="w-full">
+        {loading ? "Sending..." : "Send Message"}
       </Button>
     </form>
   );

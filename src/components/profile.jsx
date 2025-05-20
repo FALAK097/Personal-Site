@@ -42,9 +42,8 @@ export function Profile() {
           </div>
 
           <p className="text-base leading-relaxed break-words sm:text-lg md:text-xl text-foreground/90">
-            A Software Engineer at a startup, whipping up clever solutions and
-            wrestling with tricky challenges—because who doesn’t love a good
-            tech puzzle?
+            A Full Stack Developer whipping up clever solutions and wrestling
+            with tricky challenges—because who doesn’t love a good tech puzzle?
           </p>
 
           <p className="text-sm leading-relaxed break-words sm:text-base md:text-lg text-foreground/70">
