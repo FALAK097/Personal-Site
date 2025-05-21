@@ -55,7 +55,7 @@ export function Navbar() {
               </Link>
             ))}
           </div>
-          <ThemeToggle />{" "}
+          <ThemeToggle />
           <button
             className="md:hidden text-foreground"
             onClick={() => setIsOpen(!isOpen)}

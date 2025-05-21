@@ -4,10 +4,10 @@
 [X] - Make Projects Card responsive
 [X] - Move the theme toggle outside nav for mobile view
 [X] - Add animated icons
+[X] - Add blog setup
 [] - Improve the UI of the project and add Good mockups
 [] - Improve the about us section
 [] - Add proper skills with their logo
-[] - Add blog with fumadocs setup and remove custom blog code and time to read, search, date posted and tags (rename it to learnings)
 [] - Add a favicon and profile pic
 [] - Replace the <https://falak-gala.vercel.app> with new portfolio
 [] - Add a wavy or some background to add some effects
@@ -28,3 +28,5 @@
 [] - Show a indication if I am online or offline based on my activity on vscode or github
 [] - Show recent blog post on Home
 [] - Add a football and some artifacts on Home page hanging around
+[] - Add animated icon for copy, tick, external link
+[] - Add TOC, and share option

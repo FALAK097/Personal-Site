@@ -1,7 +1,7 @@
-@import url('https://fonts.googleapis.com/css2?family=Doto:wght@100..900&display=swap')
+@import url("https://fonts.googleapis.com/css2?family=Doto:wght@100..900&display=swap")
 layer(base);
 
-@import 'tailwindcss';
+@import "tailwindcss";
 
 @custom-variant dark (&:is(.dark *));
 
@@ -45,14 +45,6 @@ layer(base);
   --radius-sm: calc(var(--radius) - 4px);
 }
 
-/*
-  The default border color has changed to `currentcolor` in Tailwind CSS v4,
-  so we've added these compatibility styles to make sure everything still
-  looks the same as it did with Tailwind CSS v3.
-
-  If we ever want to remove these styles, we need to add an explicit border
-  color utility to any element that depends on these defaults.
-*/
 @layer base {
   *,
   ::after,
@@ -126,66 +118,6 @@ layer(base);
   }
   body {
     @apply bg-background text-foreground;
-  }
-  .markdown-body {
-    font-size: 1.125rem;
-    line-height: 1.75rem;
-    color: var(--color-gray-800);
-    background: transparent;
-    max-width: 100%;
-    word-break: break-word;
-    margin-bottom: 2rem;
-  }
-  .markdown-body h1,
-  .markdown-body h2,
-  .markdown-body h3 {
-    font-weight: 700;
-    color: #2563eb;
-    margin-top: 2rem;
-    margin-bottom: 1rem;
-  }
-  .markdown-body pre {
-    background: #1e293b;
-    color: #f1f5f9;
-    border-radius: 0.5rem;
-    padding: 1rem;
-    overflow-x: auto;
-    margin: 1.5rem 0;
-  }
-  .markdown-body code {
-    background: #f3f4f6;
-    color: #db2777;
-    border-radius: 0.25rem;
-    padding: 0.125rem 0.375rem;
-    font-size: 0.95em;
-  }
-  .markdown-body blockquote {
-    border-left: 4px solid #93c5fd;
-    padding-left: 1rem;
-    font-style: italic;
-    color: #64748b;
-    background: #eff6ff;
-    margin: 1.5rem 0;
-  }
-  .markdown-body a {
-    color: #3b82f6;
-    text-decoration: underline;
-    transition: color 0.2s;
-  }
-  .markdown-body a:hover {
-    color: #1d4ed8;
-  }
-  .markdown-body ul,
-  .markdown-body ol {
-    padding-left: 1.5rem;
-    margin: 1rem 0;
-  }
-  .markdown-body img {
-    border-radius: 0.5rem;
-    box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.08);
-    margin: 1.5rem 0;
-    max-width: 100%;
-    height: auto;
   }
 }
 

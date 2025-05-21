@@ -1,10 +1,44 @@
-import { useMDXComponent } from "next-contentlayer/hooks";
-import Image from "next/image";
+import { MDXRemote } from "next-mdx-remote";
 import * as React from "react";
+import { CopyIcon, CheckIcon, ExternalLink } from "lucide-react";
 
 import { Callout } from "@/components/callout";
 import { MdxCard } from "@/components/mdx-card";
 import { cn } from "@/lib/utils";
+
+function Pre({ children, ...props }) {
+  const ref = React.useRef(null);
+  const [copied, setCopied] = React.useState(false);
+
+  const onCopy = () => {
+    if (ref.current) {
+      const code = ref.current.textContent;
+      navigator.clipboard.writeText(code);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    }
+  };
+
+  return (
+    <div className="relative" {...props}>
+      <pre ref={ref}>
+        <div className="relative">
+          <button
+            onClick={onCopy}
+            className="absolute right-4 top-4 z-20 h-8 w-8 rounded-md border cursor-pointer bg-zinc-700/50 p-1.5 text-zinc-100 hover:bg-zinc-700/70"
+          >
+            {copied ? (
+              <CheckIcon className="h-full w-full text-emerald-400" />
+            ) : (
+              <CopyIcon className="h-full w-full" />
+            )}
+          </button>
+          <div className="grid p-4">{children}</div>
+        </div>
+      </pre>
+    </div>
+  );
+}
 
 const components = {
   h1: ({ className, ...props }) => (
@@ -61,17 +95,27 @@ const components = {
       {...props}
     />
   ),
-  a: ({ className, ...props }) => (
-    <a
-      className={cn("font-medium underline underline-offset-4", className)}
-      {...props}
-    />
-  ),
+  a: ({ className, children, href, ...props }) => {
+    const isExternal = href?.startsWith("http");
+    return (
+      <a
+        className={cn(
+          "font-medium underline underline-offset-4 transition-colors hover:text-purple-500",
+          isExternal && "inline-flex items-center gap-1",
+          className
+        )}
+        href={href}
+        target={isExternal ? "_blank" : undefined}
+        rel={isExternal ? "noopener noreferrer" : undefined}
+        {...props}
+      >
+        {children}
+        {isExternal && <ExternalLink className="h-3 w-3 inline-block" />}
+      </a>
+    );
+  },
   p: ({ className, ...props }) => (
-    <p
-      className={cn("leading-7 not-first:mt-6", className)}
-      {...props}
-    />
+    <p className={cn("leading-7 not-first:mt-6", className)} {...props} />
   ),
   ul: ({ className, ...props }) => (
     <ul className={cn("my-6 ml-6 list-disc", className)} {...props} />
@@ -125,35 +169,16 @@ const components = {
       {...props}
     />
   ),
-  pre: ({ className, ...props }) => (
-    <pre
-      className={cn(
-        "mb-4 mt-6 overflow-x-auto rounded-lg border bg-black py-4",
-        className
-      )}
-      {...props}
-    />
-  ),
-  code: ({ className, ...props }) => (
-    <code
-      className={cn(
-        "relative rounded border px-[0.3rem] py-[0.2rem] font-mono text-sm",
-        className
-      )}
-      {...props}
-    />
-  ),
+  pre: Pre,
   Image,
   Callout,
   Card: MdxCard,
 };
 
-export function MdxContent({ code }) {
-  const Component = useMDXComponent(code);
-
+export function MdxContent({ source }) {
   return (
     <div className="mdx">
-      <Component components={components} />
+      <MDXRemote {...source} components={components} />
     </div>
   );
 }
