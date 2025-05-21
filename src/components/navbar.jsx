@@ -35,32 +35,34 @@ export function Navbar() {
         >
           Falak
         </Link>
-        <div className="items-center hidden gap-6 md:flex">
-          {links.map(({ href, label }, index) => (
-            <Link
-              key={href}
-              href={href}
-              className={cn(
-                "relative text-sm text-foreground/60 hover:text-foreground transition-colors",
-                "after:absolute after:left-0 after:right-0 after:-bottom-1",
-                "after:h-[2px] after:bg-[#a855f7]",
-                "after:scale-x-0 hover:after:scale-x-100",
-                "after:transition-transform after:duration-300",
-                pathname === href && "text-foreground after:scale-x-100",
-                mounted && `animate-fade-in animate-delay-${index * 100}`
-              )}
-            >
-              {label}
-            </Link>
-          ))}
-          <ThemeToggle />
+        <div className="flex items-center gap-4">
+          <div className="items-center hidden gap-6 md:flex">
+            {links.map(({ href, label }, index) => (
+              <Link
+                key={href}
+                href={href}
+                className={cn(
+                  "relative text-sm text-foreground/60 hover:text-foreground transition-colors",
+                  "after:absolute after:left-0 after:right-0 after:-bottom-1",
+                  "after:h-[2px] after:bg-[#a855f7]",
+                  "after:scale-x-0 hover:after:scale-x-100",
+                  "after:transition-transform after:duration-300",
+                  pathname === href && "text-foreground after:scale-x-100",
+                  mounted && `animate-fade-in animate-delay-${index * 100}`
+                )}
+              >
+                {label}
+              </Link>
+            ))}
+          </div>
+          <ThemeToggle />{" "}
+          <button
+            className="md:hidden text-foreground"
+            onClick={() => setIsOpen(!isOpen)}
+          >
+            {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+          </button>
         </div>
-        <button
-          className="md:hidden text-foreground"
-          onClick={() => setIsOpen(!isOpen)}
-        >
-          {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-        </button>
       </nav>
 
       {isOpen && (
@@ -78,9 +80,6 @@ export function Navbar() {
               {label}
             </Link>
           ))}
-          <div className="mt-2">
-            <ThemeToggle />
-          </div>
         </div>
       )}
     </header>

@@ -1,7 +1,7 @@
-import {Code2, Layout, Server, Terminal, Workflow} from "lucide-react";
+import { Code2, Layout, Server, Terminal, Workflow } from "lucide-react";
 
-import {Badge} from "@/components/ui/badge";
-import {Card, CardContent, CardHeader, CardTitle} from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 export function AboutContent() {
   const skills = {
@@ -26,12 +26,13 @@ export function AboutContent() {
   return (
     <div className="space-y-8 max-w-4xl mx-auto">
       <section className="space-y-4">
-        <h1 className="text-3xl font-bold">About Me</h1>
+        <h1 className="text-3xl font-semibold">About Me</h1>
         <div className="prose dark:prose-invert max-w-none">
           <p className="text-lg text-muted-foreground">
-            I&apos;m a software engineer passionate about building products that make a difference.
-            With a focus on web technologies and user experience, I strive to create efficient,
-            scalable, and maintainable solutions to complex problems.
+            I&apos;m a software engineer passionate about building products that
+            make a difference. With a focus on web technologies and user
+            experience, I strive to create efficient, scalable, and maintainable
+            solutions to complex problems.
           </p>
         </div>
       </section>
@@ -43,18 +44,26 @@ export function AboutContent() {
           </CardHeader>
           <CardContent className="space-y-4">
             <div>
-              <h3 className="font-semibold">Bachelor of Technology in Computer Science</h3>
-              <p className="text-sm text-muted-foreground">University Name • 2018-2022</p>
+              <h3 className="font-semibold">
+                Bachelor of Technology in Computer Science
+              </h3>
+              <p className="text-sm text-muted-foreground">
+                University Name • 2018-2022
+              </p>
               <p className="text-sm mt-2">
-                Focused on core computer science concepts, data structures, and algorithms.
-                Participated in various hackathons and coding competitions.
+                Focused on core computer science concepts, data structures, and
+                algorithms. Participated in various hackathons and coding
+                competitions.
               </p>
             </div>
             <div>
               <h3 className="font-semibold">Full Stack Development Bootcamp</h3>
-              <p className="text-sm text-muted-foreground">Tech Academy • 2022</p>
+              <p className="text-sm text-muted-foreground">
+                Tech Academy • 2022
+              </p>
               <p className="text-sm mt-2">
-                Intensive program covering modern web development technologies and best practices.
+                Intensive program covering modern web development technologies
+                and best practices.
               </p>
             </div>
           </CardContent>
@@ -67,7 +76,9 @@ export function AboutContent() {
           <CardContent className="space-y-4">
             <div>
               <h3 className="font-semibold">Software Engineer</h3>
-              <p className="text-sm text-muted-foreground">Current Company • 2022-Present</p>
+              <p className="text-sm text-muted-foreground">
+                Current Company • 2022-Present
+              </p>
               <ul className="text-sm mt-2 list-disc list-inside space-y-1">
                 <li>Developing and maintaining full-stack web applications</li>
                 <li>Implementing new features and optimizing performance</li>
@@ -76,7 +87,9 @@ export function AboutContent() {
             </div>
             <div>
               <h3 className="font-semibold">Software Developer Intern</h3>
-              <p className="text-sm text-muted-foreground">Previous Company • 2021</p>
+              <p className="text-sm text-muted-foreground">
+                Previous Company • 2021
+              </p>
               <ul className="text-sm mt-2 list-disc list-inside space-y-1">
                 <li>Assisted in developing frontend components</li>
                 <li>Participated in code reviews and team meetings</li>
@@ -96,7 +109,7 @@ export function AboutContent() {
         </CardHeader>
         <CardContent>
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
-            {Object.entries(skills).map(([category, {icon, items}]) => (
+            {Object.entries(skills).map(([category, { icon, items }]) => (
               <div key={category}>
                 <h3 className="font-semibold mb-3 flex items-center gap-2">
                   {icon}
@@ -122,9 +135,9 @@ export function AboutContent() {
             <CardContent className="pt-6">
               <h3 className="font-semibold mb-2">Open Source Contributions</h3>
               <p className="text-sm text-muted-foreground">
-                Actively contributing to various open-source projects, focusing on improving
-                documentation and fixing bugs. Regular participant in Hacktoberfest and other
-                community events.
+                Actively contributing to various open-source projects, focusing
+                on improving documentation and fixing bugs. Regular participant
+                in Hacktoberfest and other community events.
               </p>
             </CardContent>
           </Card>
@@ -132,8 +145,9 @@ export function AboutContent() {
             <CardContent className="pt-6">
               <h3 className="font-semibold mb-2">Personal Projects</h3>
               <p className="text-sm text-muted-foreground">
-                Building and maintaining several side projects to experiment with new technologies
-                and improve my skills. Check out my projects page for more details.
+                Building and maintaining several side projects to experiment
+                with new technologies and improve my skills. Check out my
+                projects page for more details.
               </p>
             </CardContent>
           </Card>

@@ -108,7 +108,12 @@ export function ContactForm() {
           <p className="text-sm text-purple-500">{errors.message.message}</p>
         )}
       </div>
-      <Button type="submit" disabled={loading} className="w-full">
+      <Button
+        type="submit"
+        variant="outline"
+        disabled={loading}
+        className="hover:bg-transparent hover:border-purple-400"
+      >
         {loading ? "Sending..." : "Send Message"}
       </Button>
     </form>

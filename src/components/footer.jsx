@@ -1,7 +1,10 @@
 "use client";
 
-import { Github, Linkedin, Mail, Twitter } from "lucide-react";
 import { useEffect, useState } from "react";
+import { AtSignIcon } from "./icons/at-sign";
+import { TwitterIcon } from "./icons/twitter";
+import { GithubIcon } from "./icons/github";
+import { LinkedinIcon } from "./icons/linkedin";
 
 function generateVisitorId() {
   if (typeof window === "undefined") return null;
@@ -57,7 +60,7 @@ export function Footer() {
               className="transition-colors text-foreground/60 hover:text-foreground"
               href="mailto:falakgala09@gmail.com"
             >
-              <Mail className="w-4 h-4 sm:w-5 sm:h-5" />
+              <AtSignIcon />
               <span className="sr-only">Email</span>
             </a>
             <a
@@ -66,7 +69,7 @@ export function Footer() {
               rel="noopener noreferrer"
               target="_blank"
             >
-              <Twitter className="w-4 h-4 sm:w-5 sm:h-5" />
+              <TwitterIcon />
               <span className="sr-only">Twitter</span>
             </a>
             <a
@@ -75,7 +78,7 @@ export function Footer() {
               rel="noopener noreferrer"
               target="_blank"
             >
-              <Github className="w-4 h-4 sm:w-5 sm:h-5" />
+              <GithubIcon />
               <span className="sr-only">GitHub</span>
             </a>
             <a
@@ -84,7 +87,7 @@ export function Footer() {
               rel="noopener noreferrer"
               target="_blank"
             >
-              <Linkedin className="w-4 h-4 sm:w-5 sm:h-5" />
+              <LinkedinIcon />
               <span className="sr-only">LinkedIn</span>
             </a>
           </div>

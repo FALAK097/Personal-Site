@@ -16,7 +16,7 @@ export const GitHubCalendarChart = () => {
         blockSize={12}
         blockMargin={4}
         fontSize={14}
-        showWeekdayLabels
+        showWeekdayLabels={false}
         theme={{
           dark: ["hsl(0, 0%, 20%)", "#9B7EDE", "#a855f7", "#ff66ff", "#6B4EAA"],
         }}

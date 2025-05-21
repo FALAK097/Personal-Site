@@ -1,12 +1,13 @@
 "use client";
 
-import { Github, Globe } from "lucide-react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
+import { GithubIcon } from "./icons/github";
+import { LinkIcon } from "./icons/link";
 
 export function ProjectList({ projects }) {
   return (
@@ -68,7 +69,7 @@ export function ProjectList({ projects }) {
                   target="_blank"
                   aria-label={`View ${project.title} on GitHub`}
                 >
-                  <Github className="h-4 w-4" />
+                  <GithubIcon className="h-4 w-4" />
                   GitHub
                 </a>
               </Button>
@@ -83,7 +84,7 @@ export function ProjectList({ projects }) {
                   target="_blank"
                   aria-label={`View live demo of ${project.title}`}
                 >
-                  <Globe className="h-4 w-4" />
+                  <LinkIcon className="h-4 w-4" />
                   Live Demo
                 </a>
               </Button>

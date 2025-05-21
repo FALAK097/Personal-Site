@@ -17,7 +17,7 @@ export function Profile() {
     <div className="flex flex-col items-center max-w-5xl gap-6 px-4 mx-auto mb-12">
       <div className="flex flex-col items-center w-full gap-6 md:flex-row">
         <div
-          className={`relative w-24 h-24 sm:w-32 sm:h-32 md:w-48 md:h-48 rounded-full border-2 border-border overflow-hidden transform transition-all duration-1000 ease-out ${
+          className={`relative w-24 h-24 sm:w-32 sm:h-32 md:w-48 md:h-48 rounded-full border-2 border-purple-500 overflow-hidden transform transition-all duration-1000 ease-out ${
             isVisible ? "opacity-100 scale-100" : "opacity-0 scale-95"
           }`}
         >
@@ -26,7 +26,7 @@ export function Profile() {
             priority
             alt="Profile picture"
             className="object-cover"
-            src="/placeholder.svg"
+            src="/profile.png"
           />
         </div>
 
@@ -65,32 +65,42 @@ export function Profile() {
           </p>
 
           <div className="flex flex-col items-center gap-3 mt-4">
-            <div className="flex flex-wrap items-center justify-center gap-3">
-              <Button variant="outline" className="group" asChild>
+            <div className="flex flex-col items-center gap-3 sm:flex-row sm:items-center sm:justify-center sm:gap-3">
+              <Button
+                variant="outline"
+                className="hover:bg-transparent hover:border-purple-400"
+                asChild
+              >
                 <Link href="/hireme">
-                  <span className="w-4 h-4 bg-green-500 rounded-full sm:w-5 sm:h-5 opacity-60 me-2" />
+                  <span className="w-4 h-4 bg-purple-500 rounded-full sm:w-5 sm:h-5 opacity-60 me-2" />
                   Available for Hire
                 </Link>
               </Button>
-              <span className="text-gray-400">OR</span>
-              <div className="relative group">
-                <Button variant="outline" className="group" asChild>
-                  <Link href="mailto:falakgala09@gmail.com">
-                    <MailIcon
-                      className="-ms-1 opacity-60"
-                      size={16}
-                      aria-hidden="true"
-                    />
-                    Email Me
-                    <ArrowRightIcon
-                      className="-me-1 opacity-60 transition-transform group-hover:translate-x-0.5"
-                      size={16}
-                      aria-hidden="true"
-                    />
-                  </Link>
-                </Button>
-                <div className="absolute hidden px-2 py-1 mb-2 text-xs text-white transform -translate-x-1/2 bg-gray-800 rounded-lg shadow-lg sm:text-sm left-1/2 bottom-full group-hover:block">
-                  falakgala09@gmail.com
+              <div className="flex items-center gap-3">
+                <span className="text-gray-400">OR</span>
+                <div className="relative group">
+                  <Button
+                    variant="outline"
+                    className="hover:bg-transparent hover:border-purple-400"
+                    asChild
+                  >
+                    <Link href="mailto:falakgala09@gmail.com">
+                      <MailIcon
+                        className="-ms-1 opacity-60"
+                        size={16}
+                        aria-hidden="true"
+                      />
+                      Email Me
+                      <ArrowRightIcon
+                        className="-me-1 opacity-60 transition-transform group-hover:translate-x-0.5"
+                        size={16}
+                        aria-hidden="true"
+                      />
+                    </Link>
+                  </Button>
+                  <div className="absolute hidden px-2 py-1 mt-2 text-xs text-purple-500 transform -translate-x-1/2 bg-background rounded-lg shadow-lg sm:text-sm left-1/2 top-full group-hover:block">
+                    falakgala09@gmail.com
+                  </div>
                 </div>
               </div>
             </div>
