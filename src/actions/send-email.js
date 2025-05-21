@@ -17,7 +17,7 @@ const formSchema = z.object({
 });
 
 const RATE_LIMIT_WINDOW_SECONDS = 60;
-const RATE_LIMIT_MAX = 1;
+const RATE_LIMIT_MAX = 3;
 
 export async function sendContactEmail(formData) {
   const data = Object.fromEntries(formData.entries());

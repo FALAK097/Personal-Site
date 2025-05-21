@@ -5,6 +5,7 @@ import { AtSignIcon } from "./icons/at-sign";
 import { TwitterIcon } from "./icons/twitter";
 import { GithubIcon } from "./icons/github";
 import { LinkedinIcon } from "./icons/linkedin";
+import { uniqueVisitors } from "@/actions/unique-visitors";
 
 function generateVisitorId() {
   if (typeof window === "undefined") return null;
@@ -18,7 +19,7 @@ function generateVisitorId() {
 }
 
 export function Footer() {
-  const [uniqueVisitors, setUniqueVisitors] = useState(null);
+  const [uniqueVisitorsCount, setUniqueVisitorsCount] = useState(null);
 
   useEffect(() => {
     const visitorId = generateVisitorId();
@@ -26,10 +27,11 @@ export function Footer() {
 
     const fetchUniqueVisitors = async () => {
       try {
-        const res = await fetch(`/api/views?visitorId=${visitorId}`);
-        const data = await res.json();
-        if (data?.uniqueVisitors) {
-          setUniqueVisitors(data.uniqueVisitors);
+        const result = await uniqueVisitors(visitorId);
+        if (result?.uniqueVisitors) {
+          setUniqueVisitorsCount(result.uniqueVisitors);
+        } else if (result?.error) {
+          console.error("Server action error:", result.error);
         }
       } catch (error) {
         console.error("Failed to fetch unique visitors", error);
@@ -91,10 +93,9 @@ export function Footer() {
               <span className="sr-only">LinkedIn</span>
             </a>
           </div>
-
           <div className="text-xs text-foreground/60 sm:text-sm">
-            {uniqueVisitors !== null
-              ? uniqueVisitors.toLocaleString() + " Unique Visitors"
+            {uniqueVisitorsCount !== null
+              ? uniqueVisitorsCount.toLocaleString() + " Unique Visitors"
               : "Loading visitors..."}
           </div>
         </div>

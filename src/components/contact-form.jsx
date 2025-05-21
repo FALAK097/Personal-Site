@@ -12,10 +12,14 @@ import { useToast } from "@/hooks/use-toast";
 import { sendContactEmail } from "@/actions/send-email";
 
 const formSchema = z.object({
-  name: z.string().min(1),
-  email: z.string().email(),
-  subject: z.string().min(1),
-  message: z.string().min(1),
+  name: z.string().min(1, { message: "Please enter your name." }),
+  email: z.string().email({ message: "Please enter a valid email address." }),
+  subject: z.string().min(10, {
+    message: "Subject must be at least 10 characters long.",
+  }),
+  message: z.string().min(32, {
+    message: "Message must be at least 32 characters long.",
+  }),
 });
 
 export function ContactForm() {
@@ -47,8 +51,8 @@ export function ContactForm() {
       reset();
     } else {
       toast({
-        title: "Error",
-        description: response.error,
+        title: "Not so fast!",
+        description: response.error || "Something went wrong. Try again later.",
         variant: "destructive",
       });
     }
