@@ -25,8 +25,8 @@ export function ProjectList({ projects }) {
             role="article"
             aria-labelledby={`project-title-${project.id}`}
           >
-            <CardContent className="flex-grow p-5">
-              <div className="relative mb-4 aspect-[16/9] overflow-hidden rounded-lg">
+            <CardContent className="grow p-5">
+              <div className="relative mb-4 aspect-video overflow-hidden rounded-lg">
                 <Image
                   fill
                   alt={project.title}
@@ -50,7 +50,7 @@ export function ProjectList({ projects }) {
                   <Badge
                     key={tag}
                     variant="secondary"
-                    className="text-xs sm:text-sm bg-gradient-to-r from-purple-100 to-purple-200 dark:from-purple-900 dark:to-purple-800 text-purple-800 dark:text-purple-100"
+                    className="text-xs sm:text-sm bg-linear-to-r from-purple-100 to-purple-200 dark:from-purple-900 dark:to-purple-800 text-purple-800 dark:text-purple-100"
                   >
                     {tag}
                   </Badge>

@@ -30,7 +30,7 @@ export default function HireMePage() {
             </Button>
           </div>
 
-          <div className="grid gap-8 md:grid-cols-[2fr,1fr]">
+          <div className="grid gap-8 md:grid-cols-[2fr_1fr]">
             <ContactForm />
 
             <div className="space-y-6">

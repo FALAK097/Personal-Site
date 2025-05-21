@@ -69,7 +69,7 @@ const components = {
   ),
   p: ({ className, ...props }) => (
     <p
-      className={cn("leading-7 [&:not(:first-child)]:mt-6", className)}
+      className={cn("leading-7 not-first:mt-6", className)}
       {...props}
     />
   ),
@@ -85,7 +85,7 @@ const components = {
   blockquote: ({ className, ...props }) => (
     <blockquote
       className={cn(
-        "mt-6 border-l-2 pl-6 italic [&>*]:text-muted-foreground",
+        "mt-6 border-l-2 pl-6 italic *:text-muted-foreground",
         className
       )}
       {...props}

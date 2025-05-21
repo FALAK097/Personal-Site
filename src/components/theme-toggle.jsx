@@ -45,6 +45,8 @@ export function ThemeToggle() {
       variant="ghost"
       onClick={handleToggle}
       disabled={isTransitioning}
+      className="cursor-pointer hover:bg-transparent"
+      aria-label="Toggle theme"
     >
       <SunIcon className="w-5 h-5 transition-all scale-100 rotate-0 dark:-rotate-90 dark:scale-0" />
       <MoonIcon className="absolute w-5 h-5 transition-all scale-0 rotate-90 dark:rotate-0 dark:scale-100" />
