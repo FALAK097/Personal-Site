@@ -1,0 +1,154 @@
+---
+title: "Building a Unique Visitors Counter with Upstash Redis and Next.js Server Actions"
+date: "2025-05-21"
+category: "Development"
+description: "Learn how to implement a privacy-friendly unique visitors counter using Upstash Redis and Next.js Server Actions - perfect for personal websites and blogs."
+---
+
+# Building a Unique Visitors Counter with Upstash Redis and Next.js Server Actions
+
+Have you ever wondered how many unique visitors your website gets? In this post, I'll walk you through how I built a privacy-friendly unique visitors counter for my personal website using Upstash Redis and Next.js Server Actions.
+
+## The Architecture
+
+The system consists of three main components:
+1. A Redis Set to store unique visitor IDs
+2. A Server Action to handle the counting logic
+3. A client-side component to display the count
+
+## Prerequisites
+
+- A Next.js project
+- An Upstash Redis database
+- Environment variables for Upstash configuration
+
+## Setting Up Upstash Redis
+
+First, create an account at [Upstash](https://upstash.com/) and create a new Redis database. You'll need two environment variables:
+
+```env
+UPSTASH_REDIS_REST_URL=your-redis-url
+UPSTASH_REDIS_REST_TOKEN=your-redis-token
+```
+
+## Implementing the Server Action
+
+The server action handles the core logic of tracking unique visitors. Here's how it works:
+
+```javascript
+const UNIQUE_VISITORS_KEY = "site:unique_visitors";
+const UNIQUE_VISITORS_COUNT_KEY = "site:unique_visitors_count";
+const CACHE_TTL_SECONDS = 60;
+
+export async function uniqueVisitors(visitorId) {
+  // Validate the visitor ID
+  const validated = UniqueVisitorSchema.safeParse({ visitorId });
+  if (!validated.success) {
+    return { error: validated.error.issues[0].message };
+  }
+
+  // Check cache first
+  const cachedCount = await redis.get(UNIQUE_VISITORS_COUNT_KEY);
+  if (cachedCount !== null) {
+    return { uniqueVisitors: Number(cachedCount) };
+  }
+
+  // Add new visitor if not exists
+  const isMember = await redis.sismember(UNIQUE_VISITORS_KEY, visitorId);
+  if (!isMember) {
+    await redis.sadd(UNIQUE_VISITORS_KEY, visitorId);
+  }
+
+  // Get total count
+  const count = await redis.scard(UNIQUE_VISITORS_KEY);
+  
+  // Cache the result
+  await redis.set(UNIQUE_VISITORS_COUNT_KEY, count, {
+    ex: CACHE_TTL_SECONDS,
+  });
+
+  return { uniqueVisitors: count };
+}
+```
+
+## Client-Side Implementation
+
+On the client side, we need to:
+1. Generate a unique visitor ID
+2. Call the server action
+3. Display the count
+
+Here's the essential part:
+
+```javascript
+function generateVisitorId() {
+  const localStorageKey = "visitorId";
+  let id = localStorage.getItem(localStorageKey);
+  if (!id) {
+    id = crypto.randomUUID();
+    localStorage.setItem(localStorageKey, id);
+  }
+  return id;
+}
+
+// In your component:
+useEffect(() => {
+  const visitorId = generateVisitorId();
+  const fetchUniqueVisitors = async () => {
+    const result = await uniqueVisitors(visitorId);
+    if (result?.uniqueVisitors) {
+      setUniqueVisitorsCount(result.uniqueVisitors);
+    }
+  };
+  fetchUniqueVisitors();
+}, []);
+```
+
+## Performance Considerations
+
+The system includes several optimizations:
+1. **Caching**: Results are cached for 60 seconds to reduce Redis operations
+2. **Client-side ID Storage**: Visitor IDs are stored in localStorage to prevent duplicate counting
+3. **Efficient Data Structure**: Using Redis Sets ensures each visitor is counted only once
+
+## Privacy Considerations
+
+This implementation is privacy-friendly because:
+- We generate random UUIDs instead of using personal identifiers
+- No personal information is stored
+- The visitor ID is only used for counting purposes
+
+## Setting It Up Yourself
+
+1. Install dependencies:
+```bash
+npm install @upstash/redis zod
+```
+
+2. Create the server action file:
+```javascript
+// app/actions/unique-visitors.js
+import { Redis } from "@upstash/redis";
+import { z } from "zod";
+
+// Copy the server action code from above
+```
+
+3. Implement the client-side component:
+```javascript
+// components/visitor-counter.jsx
+"use client";
+// Copy the client-side implementation
+```
+
+4. Add your Upstash credentials to `.env.local`:
+```env
+UPSTASH_REDIS_REST_URL=your-url
+UPSTASH_REDIS_REST_TOKEN=your-token
+```
+
+## Conclusion
+
+This solution provides a simple yet effective way to track unique visitors while maintaining good performance and respecting user privacy. The combination of Upstash Redis and Next.js Server Actions makes it particularly elegant and easy to maintain.
+
+The complete code for this implementation is available in my website's GitHub repository. Feel free to adapt it for your own projects!

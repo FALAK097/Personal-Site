@@ -2,18 +2,8 @@
 
 import { useState } from "react";
 import { format } from "date-fns";
-import { Book, Camera, Code, Music, Pencil } from "lucide-react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
-
-const categoryIcons = {
-  Photography: Camera,
-  Reading: Book,
-  Coding: Code,
-  Music: Music,
-  Writing: Pencil,
-  Thinking: Pencil,
-};
 
 export function BlogList({ posts }) {
   const categories = [
@@ -51,7 +41,6 @@ export function BlogList({ posts }) {
         >
           <div className="space-y-8">
             {filtered.map((post) => {
-              const Icon = categoryIcons[post.category] || Pencil;
               return (
                 <article key={post.slug} className="group">
                   <Link
@@ -59,7 +48,6 @@ export function BlogList({ posts }) {
                     href={`/blog/${post.slug}`}
                   >
                     <div className="flex items-center gap-2">
-                      <Icon className="w-5 h-5" />
                       <h2 className="text-2xl font-semibold transition-colors group-hover:text-purple-400">
                         {post.title}
                       </h2>
@@ -69,7 +57,7 @@ export function BlogList({ posts }) {
                         {format(new Date(post.date), "MMM dd, yyyy")}
                       </time>
                       <span>•</span>
-                      <span>{Math.ceil(post.readingTime.minutes)} min</span>
+                      <span>{post.readingTime} min</span>
                       <span>•</span>
                       <span>{post.category}</span>
                     </div>
