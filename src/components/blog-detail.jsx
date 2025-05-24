@@ -2,9 +2,8 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { MdxContent } from "@/components/mdx-content";
 
-export default function BlogDetail({ post, source, prevPost, nextPost }) {
+export default function BlogDetail({ post, children, prevPost, nextPost }) {
   return (
     <div className="flex-1 w-full max-w-4xl px-4 py-12 mx-auto">
       <motion.article
@@ -22,9 +21,7 @@ export default function BlogDetail({ post, source, prevPost, nextPost }) {
           <span>•</span>
           <span>{post.category}</span>
         </div>
-        <div className="prose prose-purple dark:prose-invert max-w-none">
-          <MdxContent source={source} />
-        </div>
+        {children}
       </motion.article>
 
       <nav className="mt-16 pt-8 border-t flex justify-between items-center">

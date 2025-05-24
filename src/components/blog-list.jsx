@@ -21,7 +21,7 @@ export function BlogList({ posts }) {
           <button
             key={cat}
             onClick={() => setSelected(cat)}
-            className={`px-4 py-1 rounded-full border transition-colors duration-200 ${
+            className={`px-4 py-1 rounded-full border cursor-pointer transition-colors duration-200 ${
               selected === cat
                 ? "bg-purple-500 text-white"
                 : "bg-white text-purple-500 border-purple-500"
