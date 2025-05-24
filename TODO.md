@@ -30,3 +30,4 @@
 [] - Add a football and some artifacts on Home page hanging around
 [] - Add animated icon for copy, tick, external link
 [] - Add TOC, and share option
+[] - Show country, and hello based on user's location
