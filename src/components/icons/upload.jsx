@@ -4,21 +4,20 @@ import { motion, useAnimation } from "motion/react";
 import { forwardRef, useCallback, useImperativeHandle, useRef } from "react";
 import { cn } from "@/lib/utils";
 
-const svgVariants = {
-  normal: {
-    rotate: 0,
-  },
+const arrowVariants = {
+  normal: { y: 0 },
   animate: {
-    rotate: [0, -10, 10, -5, 5, 0],
+    y: -2,
+    transition: {
+      type: "spring",
+      stiffness: 200,
+      damping: 10,
+      mass: 1,
+    },
   },
 };
 
-const svgTransition = {
-  duration: 1.2,
-  ease: "easeInOut",
-};
-
-const MoonIcon = forwardRef(
+const UploadIcon = forwardRef(
   ({ onMouseEnter, onMouseLeave, className, size = 18, ...props }, ref) => {
     const controls = useAnimation();
     const isControlledRef = useRef(false);
@@ -53,6 +52,7 @@ const MoonIcon = forwardRef(
       },
       [controls, onMouseLeave]
     );
+
     return (
       <div
         className={cn(className)}
@@ -60,7 +60,7 @@ const MoonIcon = forwardRef(
         onMouseLeave={handleMouseLeave}
         {...props}
       >
-        <motion.svg
+        <svg
           xmlns="http://www.w3.org/2000/svg"
           width={size}
           height={size}
@@ -70,17 +70,18 @@ const MoonIcon = forwardRef(
           strokeWidth="2"
           strokeLinecap="round"
           strokeLinejoin="round"
-          variants={svgVariants}
-          animate={controls}
-          transition={svgTransition}
         >
-          <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z" />
-        </motion.svg>
+          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+          <motion.g variants={arrowVariants} animate={controls}>
+            <polyline points="17 8 12 3 7 8" />
+            <line x1="12" x2="12" y1="3" y2="15" />
+          </motion.g>
+        </svg>
       </div>
     );
   }
 );
 
-MoonIcon.displayName = "MoonIcon";
+UploadIcon.displayName = "UploadIcon";
 
-export { MoonIcon };
+export { UploadIcon };

@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { uniqueVisitors } from "@/actions/unique-visitors";
 import { SocialLinks } from "@/components/social-links";
+import { HeartIcon } from "@/components/icons";
 
 function generateVisitorId() {
   if (typeof window === "undefined") return null;
@@ -40,9 +41,10 @@ export function Footer() {
 
   return (
     <footer className="border-t border-border">
-      <div className="container flex flex-col items-center justify-between h-auto px-4 py-4 mx-auto sm:flex-row sm:h-16 sm:py-0">
-        <p className="mb-4 text-xs text-center text-foreground/60 sm:mb-0 sm:text-sm">
-          Made with ❤️ by{" "}
+      <div className="container flex flex-row items-center justify-between h-16 px-4 mx-auto">
+        <div className="flex items-center gap-1 text-sm text-foreground/60">
+          Made with{" "}
+          <HeartIcon className="inline-flex w-4 h-4 text-red-500" /> by{" "}
           <a
             href="https://github.com/Falak097"
             target="_blank"
@@ -51,11 +53,11 @@ export function Footer() {
           >
             Falak Gala
           </a>
-        </p>
+        </div>
 
-        <div className="flex flex-col items-center gap-4 sm:flex-row sm:gap-8">
+        <div className="flex items-center gap-8">
           <SocialLinks />
-          <div className="text-xs text-foreground/60 sm:text-sm">
+          <div className="text-sm text-foreground/60">
             {uniqueVisitorsCount !== null
               ? uniqueVisitorsCount.toLocaleString() + " Unique Visitors"
               : "Loading visitors..."}

@@ -16,7 +16,7 @@ const pathVariants = {
 };
 
 const XIcon = forwardRef(
-  ({ onMouseEnter, onMouseLeave, className, size = 28, ...props }, ref) => {
+  ({ onMouseEnter, onMouseLeave, className, size = 18, ...props }, ref) => {
     const controls = useAnimation();
     const isControlledRef = useRef(false);
 

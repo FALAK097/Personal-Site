@@ -4,21 +4,28 @@ import { motion, useAnimation } from "motion/react";
 import { forwardRef, useCallback, useImperativeHandle, useRef } from "react";
 import { cn } from "@/lib/utils";
 
-const svgVariants = {
-  normal: {
-    rotate: 0,
-  },
+const pathVariants = {
+  normal: { d: "m12 19-7-7 7-7", translateX: 0 },
   animate: {
-    rotate: [0, -10, 10, -5, 5, 0],
+    d: "m12 19-7-7 7-7",
+    translateX: [0, 3, 0],
+    transition: {
+      duration: 0.4,
+    },
   },
 };
 
-const svgTransition = {
-  duration: 1.2,
-  ease: "easeInOut",
+const secondPathVariants = {
+  normal: { d: "M19 12H5" },
+  animate: {
+    d: ["M19 12H5", "M19 12H10", "M19 12H5"],
+    transition: {
+      duration: 0.4,
+    },
+  },
 };
 
-const MoonIcon = forwardRef(
+const ArrowLeftIcon = forwardRef(
   ({ onMouseEnter, onMouseLeave, className, size = 18, ...props }, ref) => {
     const controls = useAnimation();
     const isControlledRef = useRef(false);
@@ -53,6 +60,7 @@ const MoonIcon = forwardRef(
       },
       [controls, onMouseLeave]
     );
+
     return (
       <div
         className={cn(className)}
@@ -60,7 +68,7 @@ const MoonIcon = forwardRef(
         onMouseLeave={handleMouseLeave}
         {...props}
       >
-        <motion.svg
+        <svg
           xmlns="http://www.w3.org/2000/svg"
           width={size}
           height={size}
@@ -70,17 +78,23 @@ const MoonIcon = forwardRef(
           strokeWidth="2"
           strokeLinecap="round"
           strokeLinejoin="round"
-          variants={svgVariants}
-          animate={controls}
-          transition={svgTransition}
         >
-          <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z" />
-        </motion.svg>
+          <motion.path
+            d="m12 19-7-7 7-7"
+            variants={pathVariants}
+            animate={controls}
+          />
+          <motion.path
+            d="M19 12H5"
+            variants={secondPathVariants}
+            animate={controls}
+          />
+        </svg>
       </div>
     );
   }
 );
 
-MoonIcon.displayName = "MoonIcon";
+ArrowLeftIcon.displayName = "ArrowLeftIcon";
 
-export { MoonIcon };
+export { ArrowLeftIcon };

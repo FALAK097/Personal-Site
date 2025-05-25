@@ -1,0 +1,181 @@
+---
+title: "How I Built a Modern Portfolio Blog with Next.js 15 and MDX"
+date: "2024-01-20"
+description: "A detailed walkthrough of how I created my portfolio's blog system using Next.js 15, MDX, and Framer Motion - complete with dark mode, code highlighting, and animations."
+---
+
+When building my portfolio, I wanted a blog that wasn't just functional but also showcased my technical abilities. Here's how I created a modern, fast, and feature-rich blog system that seamlessly integrates with my portfolio.
+
+## Tech Stack Overview
+
+Here are the key dependencies I'm using (versions from my actual implementation):
+
+```json
+{
+  "dependencies": {
+    "next": "15.3.2",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "gray-matter": "^4.0.3",
+    "next-mdx-remote-client": "^2.1.2",
+    "reading-time": "^1.5.0",
+    "rehype-pretty-code": "^0.14.1",
+    "framer-motion": "^12.9.4",
+    "next-themes": "^0.4.4",
+    "@tailwindcss/typography": "^0.5.16"
+  }
+}
+```
+
+## Why These Choices?
+
+- **Next.js 15**: Latest version with improved performance and enhanced App Router
+- **MDX**: Write blog posts with JSX components inline
+- **Framer Motion**: Smooth animations for better UX
+- **next-themes**: Seamless dark mode integration
+- **TailwindCSS Typography**: Beautiful prose styling
+
+## Project Structure
+
+```
+src/
+  ├── app/
+  │   └── blog/
+  │       └── [slug]/
+  │           └── page.jsx
+  ├── components/
+  │   └── blog-detail.jsx
+  ├── content/
+  │   └── blog/
+  │       └── *.mdx
+  └── lib/
+      └── mdx.js
+```
+
+## Setting Up MDX Processing
+
+The `mdx.js` file handles reading and processing MDX files:
+
+```javascript
+// Key features:
+// 1. Reads MDX files from the content directory
+// 2. Parses frontmatter using gray-matter
+// 3. Calculates reading time
+// 4. Sorts posts by date
+
+import fs from "fs";
+import path from "path";
+import matter from "gray-matter";
+import readingTime from "reading-time";
+
+const POSTS_PATH = path.join(process.cwd(), "src/content/blog");
+
+// See implementation in your mdx.js file
+```
+
+## Dynamic Routing
+
+In `app/blog/[slug]/page.jsx`, we set up dynamic routing for blog posts:
+
+```javascript
+// Key features:
+// 1. Static path generation for all posts
+// 2. MDX rendering with syntax highlighting
+// 3. Previous/Next post navigation
+
+export async function generateStaticParams() {
+  const posts = await getAllPosts();
+  return posts.map((post) => ({
+    slug: post.slug,
+  }));
+}
+```
+
+## Blog Detail Component
+
+The `blog-detail.jsx` component handles the presentation:
+
+```jsx
+// Key features:
+// 1. Smooth animations with Framer Motion
+// 2. Share functionality with Web Share API
+// 3. Responsive design
+// 4. Dark mode support
+```
+
+## Writing Blog Posts
+
+Create `.mdx` files in `src/content/blog/` with frontmatter:
+
+```mdx
+---
+title: "Your Blog Post Title"
+date: "2024-01-20"
+description: "A brief description of your post"
+---
+
+Your content here with **Markdown** support!
+```
+
+## Features Implemented
+
+1. **MDX Support**: Write posts in Markdown with JSX components
+2. **Syntax Highlighting**: Using `rehype-pretty-code`
+3. **Reading Time**: Automatic calculation for each post
+4. **Share Functionality**: Native Web Share API with clipboard fallback
+5. **Animations**: Smooth transitions using Framer Motion
+6. **Previous/Next Navigation**: Easy post navigation
+7. **Responsive Design**: Mobile-friendly layout
+
+## Best Practices
+
+1. **File Organization**
+   - Keep MDX files in a dedicated content directory
+   - Separate components for reusability
+   - Centralize MDX processing logic
+
+2. **Performance**
+   - Static site generation for better performance
+   - Optimized image loading
+   - Minimal client-side JavaScript
+
+3. **Accessibility**
+   - Semantic HTML structure
+   - Keyboard navigation support
+   - ARIA labels where needed
+
+## Portfolio Integration
+
+I integrated the blog seamlessly with my portfolio by:
+
+1. **Consistent Design Language**
+   - Using shared components (Navbar, Footer)
+   - Maintaining theme consistency across pages
+   - Unified animation patterns
+
+2. **Performance Optimization**
+   - Static Site Generation for blog posts
+   - Optimized fonts using `geist`
+   - Analytics with `@vercel/analytics` and `@vercel/speed-insights`
+
+## Styling and Theming
+
+```jsx
+// Example of how I handle dark mode and typography
+<div className="flex-1 w-full max-w-4xl px-4 py-12 mx-auto prose dark:prose-invert">
+  // Blog content here
+</div>
+```
+
+## Deployment and Analytics
+
+I deployed my portfolio blog on Vercel and added:
+- Speed Insights for performance monitoring
+- Analytics for visitor tracking
+- Automatic preview deployments for new blog posts
+
+## Conclusion
+
+This blog system has become an integral part of my portfolio, showcasing both my writing and technical implementation skills. Feel free to check out the code and adapt it for your needs!
+
+[View the live demo](your-portfolio-url) | [GitHub Repository](your-repo-url)

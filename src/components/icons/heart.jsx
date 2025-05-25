@@ -4,21 +4,7 @@ import { motion, useAnimation } from "motion/react";
 import { forwardRef, useCallback, useImperativeHandle, useRef } from "react";
 import { cn } from "@/lib/utils";
 
-const svgVariants = {
-  normal: {
-    rotate: 0,
-  },
-  animate: {
-    rotate: [0, -10, 10, -5, 5, 0],
-  },
-};
-
-const svgTransition = {
-  duration: 1.2,
-  ease: "easeInOut",
-};
-
-const MoonIcon = forwardRef(
+const HeartIcon = forwardRef(
   ({ onMouseEnter, onMouseLeave, className, size = 18, ...props }, ref) => {
     const controls = useAnimation();
     const isControlledRef = useRef(false);
@@ -53,6 +39,7 @@ const MoonIcon = forwardRef(
       },
       [controls, onMouseLeave]
     );
+
     return (
       <div
         className={cn(className)}
@@ -70,17 +57,23 @@ const MoonIcon = forwardRef(
           strokeWidth="2"
           strokeLinecap="round"
           strokeLinejoin="round"
-          variants={svgVariants}
           animate={controls}
-          transition={svgTransition}
+          variants={{
+            normal: { scale: 1 },
+            animate: { scale: [1, 1.08, 1] },
+          }}
+          transition={{
+            duration: 0.45,
+            repeat: 2,
+          }}
         >
-          <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z" />
+          <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z" />
         </motion.svg>
       </div>
     );
   }
 );
 
-MoonIcon.displayName = "MoonIcon";
+HeartIcon.displayName = "HeartIcon";
 
-export { MoonIcon };
+export { HeartIcon };

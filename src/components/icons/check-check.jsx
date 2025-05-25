@@ -4,21 +4,29 @@ import { motion, useAnimation } from "motion/react";
 import { forwardRef, useCallback, useImperativeHandle, useRef } from "react";
 import { cn } from "@/lib/utils";
 
-const svgVariants = {
+const pathVariants = {
   normal: {
-    rotate: 0,
+    opacity: 1,
+    pathLength: 1,
+    scale: 1,
+    transition: {
+      duration: 0.3,
+      opacity: { duration: 0.1 },
+    },
   },
-  animate: {
-    rotate: [0, -10, 10, -5, 5, 0],
-  },
+  animate: (custom) => ({
+    opacity: [0, 1],
+    pathLength: [0, 1],
+    scale: [0.5, 1],
+    transition: {
+      duration: 0.4,
+      opacity: { duration: 0.1 },
+      delay: 0.1 * custom,
+    },
+  }),
 };
 
-const svgTransition = {
-  duration: 1.2,
-  ease: "easeInOut",
-};
-
-const MoonIcon = forwardRef(
+const CheckCheckIcon = forwardRef(
   ({ onMouseEnter, onMouseLeave, className, size = 18, ...props }, ref) => {
     const controls = useAnimation();
     const isControlledRef = useRef(false);
@@ -53,6 +61,7 @@ const MoonIcon = forwardRef(
       },
       [controls, onMouseLeave]
     );
+
     return (
       <div
         className={cn(className)}
@@ -60,7 +69,7 @@ const MoonIcon = forwardRef(
         onMouseLeave={handleMouseLeave}
         {...props}
       >
-        <motion.svg
+        <svg
           xmlns="http://www.w3.org/2000/svg"
           width={size}
           height={size}
@@ -70,17 +79,27 @@ const MoonIcon = forwardRef(
           strokeWidth="2"
           strokeLinecap="round"
           strokeLinejoin="round"
-          variants={svgVariants}
-          animate={controls}
-          transition={svgTransition}
         >
-          <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z" />
-        </motion.svg>
+          <motion.path
+            variants={pathVariants}
+            initial="normal"
+            animate={controls}
+            d="M2 12 7 17L18 6"
+            custom={0}
+          />
+          <motion.path
+            variants={pathVariants}
+            initial="normal"
+            animate={controls}
+            d="M13 16L14.5 17.5L22 10"
+            custom={1}
+          />
+        </svg>
       </div>
     );
   }
 );
 
-MoonIcon.displayName = "MoonIcon";
+CheckCheckIcon.displayName = "CheckCheckIcon";
 
-export { MoonIcon };
+export { CheckCheckIcon };

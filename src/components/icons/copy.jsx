@@ -4,21 +4,14 @@ import { motion, useAnimation } from "motion/react";
 import { forwardRef, useCallback, useImperativeHandle, useRef } from "react";
 import { cn } from "@/lib/utils";
 
-const svgVariants = {
-  normal: {
-    rotate: 0,
-  },
-  animate: {
-    rotate: [0, -10, 10, -5, 5, 0],
-  },
+const defaultTransition = {
+  type: "spring",
+  stiffness: 160,
+  damping: 17,
+  mass: 1,
 };
 
-const svgTransition = {
-  duration: 1.2,
-  ease: "easeInOut",
-};
-
-const MoonIcon = forwardRef(
+const CopyIcon = forwardRef(
   ({ onMouseEnter, onMouseLeave, className, size = 18, ...props }, ref) => {
     const controls = useAnimation();
     const isControlledRef = useRef(false);
@@ -60,7 +53,7 @@ const MoonIcon = forwardRef(
         onMouseLeave={handleMouseLeave}
         {...props}
       >
-        <motion.svg
+        <svg
           xmlns="http://www.w3.org/2000/svg"
           width={size}
           height={size}
@@ -70,17 +63,36 @@ const MoonIcon = forwardRef(
           strokeWidth="2"
           strokeLinecap="round"
           strokeLinejoin="round"
-          variants={svgVariants}
-          animate={controls}
-          transition={svgTransition}
         >
-          <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z" />
-        </motion.svg>
+          <motion.rect
+            width="14"
+            height="14"
+            x="8"
+            y="8"
+            rx="2"
+            ry="2"
+            variants={{
+              normal: { translateY: 0, translateX: 0 },
+              animate: { translateY: -3, translateX: -3 },
+            }}
+            animate={controls}
+            transition={defaultTransition}
+          />
+          <motion.path
+            d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"
+            variants={{
+              normal: { x: 0, y: 0 },
+              animate: { x: 3, y: 3 },
+            }}
+            transition={defaultTransition}
+            animate={controls}
+          />
+        </svg>
       </div>
     );
   }
 );
 
-MoonIcon.displayName = "MoonIcon";
+CopyIcon.displayName = "CopyIcon";
 
-export { MoonIcon };
+export { CopyIcon };

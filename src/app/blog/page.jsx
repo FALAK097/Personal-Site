@@ -14,8 +14,7 @@ export default async function BlogPage() {
           <div>
             <h1 className="text-xl font-semibold mb-4">Blog</h1>
             <p className="text-md text-muted-foreground">
-              Welcome to my blog where I share my thoughts, experiences, and
-              insights.
+              Welcome to my blog where I share my thoughts and learnings.
             </p>
           </div>
           <BlogList posts={posts} />
