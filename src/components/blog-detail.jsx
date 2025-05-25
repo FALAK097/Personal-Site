@@ -40,9 +40,7 @@ export default function BlogDetail({ post, children, prevPost, nextPost }) {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
       >
-        <h1 className="mb-2 text-2xl md:text-4xl font-bold text-foreground">
-          {post.title}
-        </h1>
+        <h1 className="mb-2 text-lg font-bold text-foreground">{post.title}</h1>
         <div className="flex flex-wrap gap-2 mb-8 text-sm text-muted-foreground border-b pb-4">
           <span>
             {new Date(post.date).toLocaleDateString("en-US", {

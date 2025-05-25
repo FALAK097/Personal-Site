@@ -4,6 +4,7 @@ import rehypePrettyCode from "rehype-pretty-code";
 import { notFound } from "next/navigation";
 import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
+import { MdxCodeBlock } from "@/components/mdx-code-block";
 import BlogDetail from "@/components/blog-detail";
 
 export async function generateStaticParams() {
@@ -26,9 +27,7 @@ export default async function BlogPost({ params: rawParams }) {
         [
           rehypePrettyCode,
           {
-            theme: "tokyo-night",
-            keepBackground: false,
-            defaultLang: "plaintext",
+            theme: "catppuccin-mocha",
           },
         ],
       ],
@@ -44,7 +43,13 @@ export default async function BlogPost({ params: rawParams }) {
     <div className="flex flex-col min-h-screen bg-background">
       <Navbar />
       <BlogDetail post={post} prevPost={prevPost} nextPost={nextPost}>
-        <MDXRemote source={post.content} options={options} />
+        <MDXRemote
+          source={post.content}
+          options={options}
+          components={{
+            pre: MdxCodeBlock,
+          }}
+        />
       </BlogDetail>
       <Footer />
     </div>

@@ -5,6 +5,8 @@
 [X] - Move the theme toggle outside nav for mobile view
 [X] - Add animated icons
 [X] - Add blog setup
+[X] - Add share option
+[X] - Add animated icon for copy, tick, external link
 
 ## Overall
 
@@ -25,8 +27,11 @@
 
 ## Blogs Section
 
-[] - Add animated icon for copy, tick, external link
-[] - Add TOC, and share option
+[] - Add TOC
+[] - Handle rendering of multiple blogs on blog-list
+[] - Handle `` to highlight text
+[] - Add file name for code blocks
+[] - Handle Link to be opened in new tab
 
 ## Projects Section
 

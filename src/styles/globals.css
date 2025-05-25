@@ -188,12 +188,3 @@ layer(base);
 ::-moz-selection {
   color: #a855f7;
 }
-
-@layer base {
-  * {
-    @apply border-border outline-ring/50;
-  }
-  body {
-    @apply bg-background text-foreground;
-  }
-}

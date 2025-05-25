@@ -41,10 +41,10 @@ export function Footer() {
 
   return (
     <footer className="border-t border-border">
-      <div className="container flex flex-row items-center justify-between h-16 px-4 mx-auto">
-        <div className="flex items-center gap-1 text-sm text-foreground/60">
-          Made with{" "}
-          <HeartIcon className="inline-flex w-4 h-4 text-red-500" /> by{" "}
+      <div className="container mx-auto px-4 py-4 flex flex-col md:flex-row items-center justify-between gap-4 md:gap-0">
+        <div className="text-sm text-foreground/60 flex items-center gap-1">
+          Made with <HeartIcon className="inline-flex w-4 h-4 text-red-500" />{" "}
+          by{" "}
           <a
             href="https://github.com/Falak097"
             target="_blank"
@@ -55,11 +55,11 @@ export function Footer() {
           </a>
         </div>
 
-        <div className="flex items-center gap-8">
+        <div className="flex flex-col md:flex-row items-center gap-2 md:gap-8">
           <SocialLinks />
           <div className="text-sm text-foreground/60">
             {uniqueVisitorsCount !== null
-              ? uniqueVisitorsCount.toLocaleString() + " Unique Visitors"
+              ? `${uniqueVisitorsCount.toLocaleString()} Unique Visitors`
               : "Loading visitors..."}
           </div>
         </div>

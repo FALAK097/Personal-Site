@@ -34,7 +34,7 @@ export function BlogList({ posts }) {
                       <span>•</span>
                       <span>{post.readingTime} min</span>
                     </div>
-                    <p className="text-muted-foreground line-clamp-2">
+                    <p className="text-muted-foreground text-sm line-clamp-2">
                       {post.description}
                     </p>
                   </Link>

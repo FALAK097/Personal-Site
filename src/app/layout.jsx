@@ -18,8 +18,7 @@ export default function RootLayout({ children }) {
         <ThemeProvider
           disableTransitionOnChange
           attribute="class"
-          defaultTheme="dark"
-          enableSystem={false}
+          enableSystem={true}
         >
           <div className="min-h-screen p-4 bg-background">
             <div className="rounded-lg border-2 border-border min-h-[calc(100vh-2rem)]">
