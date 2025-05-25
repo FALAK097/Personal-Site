@@ -1,11 +1,10 @@
-import { serialize } from "next-mdx-remote-client/serialize";
 import { getPostBySlug, getAllPosts } from "@/lib/mdx";
+import { MDXRemote } from "next-mdx-remote-client/rsc";
 import rehypePrettyCode from "rehype-pretty-code";
 import { notFound } from "next/navigation";
 import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
 import BlogDetail from "@/components/blog-detail";
-import { MdxContent } from "@/components/mdx-content";
 
 export async function generateStaticParams() {
   const posts = await getAllPosts();
@@ -21,7 +20,7 @@ export default async function BlogPost({ params: rawParams }) {
 
   if (!post) return notFound();
 
-  const mdxSource = await serialize(post.content, {
+  const options = {
     mdxOptions: {
       rehypePlugins: [
         [
@@ -34,7 +33,7 @@ export default async function BlogPost({ params: rawParams }) {
         ],
       ],
     },
-  });
+  };
 
   const posts = await getAllPosts();
   const currentIndex = posts.findIndex((p) => p.slug === slug);
@@ -44,24 +43,9 @@ export default async function BlogPost({ params: rawParams }) {
   return (
     <div className="flex flex-col min-h-screen bg-background">
       <Navbar />
-      {/* <BlogDetail post={post} prevPost={prevPost} nextPost={nextPost}>
-        <MdxContent source={mdxSource} />
-      </BlogDetail> */}
-      {/* not found */}
-      <main className="flex-1 flex items-center justify-center">
-        <div className="text-center p-8">
-          <h1 className="text-3xl md:text-5xl font-bold mb-4">
-            Blog Post Not Found
-          </h1>
-          <p className="text-lg text-muted-foreground mb-6">
-            The blog post you are looking for does not exist or has been
-            removed.
-          </p>
-          <p className="text-sm text-muted-foreground">
-            Please check the URL or return to the homepage.
-          </p>
-        </div>
-      </main>
+      <BlogDetail post={post} prevPost={prevPost} nextPost={nextPost}>
+        <MDXRemote source={post.content} options={options} />
+      </BlogDetail>
       <Footer />
     </div>
   );

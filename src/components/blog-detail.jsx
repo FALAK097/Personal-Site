@@ -5,7 +5,7 @@ import Link from "next/link";
 
 export default function BlogDetail({ post, children, prevPost, nextPost }) {
   return (
-    <div className="flex-1 w-full max-w-4xl px-4 py-12 mx-auto">
+    <div className="flex-1 w-full max-w-4xl px-4 py-12 mx-auto prose dark:prose-invert">
       <motion.article
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
@@ -15,11 +15,15 @@ export default function BlogDetail({ post, children, prevPost, nextPost }) {
           {post.title}
         </h1>
         <div className="flex flex-wrap gap-2 mb-8 text-sm text-muted-foreground border-b pb-4">
-          <span>{new Date(post.date).toLocaleDateString()}</span>
+          <span>
+            {new Date(post.date).toLocaleDateString("en-US", {
+              month: "long",
+              day: "numeric",
+              year: "numeric",
+            })}
+          </span>
           <span>•</span>
           <span>{post.readingTime} min read</span>
-          <span>•</span>
-          <span>{post.category}</span>
         </div>
         {children}
       </motion.article>

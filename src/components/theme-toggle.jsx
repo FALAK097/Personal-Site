@@ -3,8 +3,7 @@
 import { useState } from "react";
 import { useTheme } from "next-themes";
 import { Button } from "@/components/ui/button";
-import { SunIcon } from "./icons/sun";
-import { MoonIcon } from "./icons/moon";
+import { MoonIcon, SunIcon } from "@/components/icons";
 
 export function ThemeToggle() {
   const { theme, setTheme } = useTheme();
@@ -45,7 +44,7 @@ export function ThemeToggle() {
       variant="ghost"
       onClick={handleToggle}
       disabled={isTransitioning}
-      className="cursor-pointer hover:bg-transparent mt-1"
+      className="cursor-pointer hover:bg-transparent mt-1 text-muted-foreground"
       aria-label="Toggle theme"
     >
       <SunIcon className="w-5 h-5 transition-all scale-100 rotate-0 dark:-rotate-90 dark:scale-0" />

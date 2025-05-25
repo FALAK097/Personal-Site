@@ -1,11 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { AtSignIcon } from "./icons/at-sign";
-import { TwitterIcon } from "./icons/twitter";
-import { GithubIcon } from "./icons/github";
-import { LinkedinIcon } from "./icons/linkedin";
 import { uniqueVisitors } from "@/actions/unique-visitors";
+import { SocialLinks } from "@/components/social-links";
 
 function generateVisitorId() {
   if (typeof window === "undefined") return null;
@@ -57,42 +54,7 @@ export function Footer() {
         </p>
 
         <div className="flex flex-col items-center gap-4 sm:flex-row sm:gap-8">
-          <div className="flex items-center gap-4">
-            <a
-              className="transition-colors text-foreground/60 hover:text-foreground"
-              href="mailto:falakgala09@gmail.com"
-            >
-              <AtSignIcon />
-              <span className="sr-only">Email</span>
-            </a>
-            <a
-              className="transition-colors text-foreground/60 hover:text-foreground"
-              href="https://x.com/FalakGala097"
-              rel="noopener noreferrer"
-              target="_blank"
-            >
-              <TwitterIcon />
-              <span className="sr-only">Twitter</span>
-            </a>
-            <a
-              className="transition-colors text-foreground/60 hover:text-foreground"
-              href="https://github.com/Falak097"
-              rel="noopener noreferrer"
-              target="_blank"
-            >
-              <GithubIcon />
-              <span className="sr-only">GitHub</span>
-            </a>
-            <a
-              className="transition-colors text-foreground/60 hover:text-foreground"
-              href="https://linkedin.com/in/falak-gala"
-              rel="noopener noreferrer"
-              target="_blank"
-            >
-              <LinkedinIcon />
-              <span className="sr-only">LinkedIn</span>
-            </a>
-          </div>
+          <SocialLinks />
           <div className="text-xs text-foreground/60 sm:text-sm">
             {uniqueVisitorsCount !== null
               ? uniqueVisitorsCount.toLocaleString() + " Unique Visitors"

@@ -11,8 +11,8 @@ export default function HireMePage() {
       <main className="flex-1 container mx-auto px-4 py-8">
         <div className="max-w-4xl mx-auto space-y-12">
           <div className="space-y-4">
-            <h1 className="text-4xl font-semibold">Hire Me</h1>
-            <p className="text-lg text-muted-foreground">
+            <h1 className="text-xl font-semibold">Hire Me</h1>
+            <p className="text-md text-muted-foreground">
               I&apos;m always interested in hearing about new opportunities.
               Feel free to reach out if you&apos;d like to work together or
               simply discuss ideas.

@@ -6,8 +6,7 @@ import { motion } from "framer-motion";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
-import { GithubIcon } from "./icons/github";
-import { LinkIcon } from "./icons/link";
+import { GithubIcon, LinkIcon } from "@/components/icons";
 
 export function ProjectList({ projects }) {
   return (

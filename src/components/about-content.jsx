@@ -25,18 +25,6 @@ export function AboutContent() {
 
   return (
     <div className="space-y-8 max-w-4xl mx-auto">
-      <section className="space-y-4">
-        <h1 className="text-3xl font-semibold">About Me</h1>
-        <div className="prose dark:prose-invert max-w-none">
-          <p className="text-lg text-muted-foreground">
-            I&apos;m a software engineer passionate about building products that
-            make a difference. With a focus on web technologies and user
-            experience, I strive to create efficient, scalable, and maintainable
-            solutions to complex problems.
-          </p>
-        </div>
-      </section>
-
       <section className="grid gap-6 md:grid-cols-2">
         <Card>
           <CardHeader>

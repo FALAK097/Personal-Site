@@ -2,6 +2,7 @@
 layer(base);
 
 @import "tailwindcss";
+@plugin "@tailwindcss/typography";
 
 @custom-variant dark (&:is(.dark *));
 
