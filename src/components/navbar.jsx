@@ -3,10 +3,11 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import { Menu, X } from "lucide-react";
+import { Menu } from "lucide-react";
 
 import { cn } from "@/lib/utils";
 import { ThemeToggle } from "@/components/theme-toggle";
+import { XIcon } from "./icons";
 
 export function Navbar() {
   const pathname = usePathname();
@@ -57,10 +58,14 @@ export function Navbar() {
           </div>
           <ThemeToggle />
           <button
-            className="md:hidden text-foreground"
+            className="md:hidden text-muted-foreground cursor-pointer"
             onClick={() => setIsOpen(!isOpen)}
           >
-            {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            {isOpen ? (
+              <XIcon className="w-6 h-6" />
+            ) : (
+              <Menu className="w-6 h-6" />
+            )}
           </button>
         </div>
       </nav>

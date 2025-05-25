@@ -1,17 +1,17 @@
 "use client";
 
-import {Mail, X} from "lucide-react";
-import {useTheme} from "next-themes";
-import {useState} from "react";
+import { useTheme } from "next-themes";
+import { useState } from "react";
 
-import {Button} from "@/components/ui/button";
-import {Input} from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { AtSignIcon, XIcon } from "./icons";
 
-export function Newsletter({className = ""}) {
+export function Newsletter({ className = "" }) {
   const [email, setEmail] = useState("");
   const [isVisible, setIsVisible] = useState(true);
   const [isSubscribed, setIsSubscribed] = useState(false);
-  const {theme} = useTheme();
+  const { theme } = useTheme();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -25,7 +25,9 @@ export function Newsletter({className = ""}) {
   if (isSubscribed) {
     return (
       <div
-        className={`relative rounded-lg p-6 ${theme === "dark" ? "bg-primary/10" : "bg-primary/5"} ${className}`}
+        className={`relative rounded-lg p-6 ${
+          theme === "dark" ? "bg-primary/10" : "bg-primary/5"
+        } ${className}`}
       >
         <Button
           className="absolute right-2 top-2"
@@ -33,7 +35,7 @@ export function Newsletter({className = ""}) {
           variant="ghost"
           onClick={() => setIsVisible(false)}
         >
-          <X className="h-4 w-4" />
+          <XIcon className="h-4 w-4" />
           <span className="sr-only">Close</span>
         </Button>
 
@@ -49,7 +51,9 @@ export function Newsletter({className = ""}) {
 
   return (
     <div
-      className={`relative rounded-lg p-6 ${theme === "dark" ? "bg-primary/10" : "bg-primary/5"} ${className}`}
+      className={`relative rounded-lg p-6 ${
+        theme === "dark" ? "bg-primary/10" : "bg-primary/5"
+      } ${className}`}
     >
       <Button
         className="absolute right-2 top-2"
@@ -57,7 +61,7 @@ export function Newsletter({className = ""}) {
         variant="ghost"
         onClick={() => setIsVisible(false)}
       >
-        <X className="h-4 w-4" />
+        <XIcon className="h-4 w-4" />
         <span className="sr-only">Close</span>
       </Button>
 
@@ -65,7 +69,7 @@ export function Newsletter({className = ""}) {
         <h2 className="text-xl font-semibold">
           Subscribe for musings on indie dev, software, and life
         </h2>
-        <Mail className="w-6 h-6" />
+        <AtSignIcon className="w-6 h-6" />
       </div>
 
       <form className="flex flex-col sm:flex-row gap-2" onSubmit={handleSubmit}>

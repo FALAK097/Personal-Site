@@ -6,3 +6,6 @@ export { MoonIcon } from "./moon";
 export { SunIcon } from "./sun";
 export { TrendingUpIcon } from "./trending-up";
 export { TwitterIcon } from "./twitter";
+export { ArrowRightIcon } from "./arrow-right";
+export { MenuIcon } from "./menu";
+export { XIcon } from "./x";

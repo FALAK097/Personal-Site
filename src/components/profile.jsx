@@ -3,8 +3,8 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRightIcon, MailIcon } from "lucide-react";
 import { Button } from "./ui/button";
+import { ArrowRightIcon, AtSignIcon } from "./icons";
 
 export function Profile() {
   const [isVisible, setIsVisible] = useState(false);
@@ -85,7 +85,7 @@ export function Profile() {
                     asChild
                   >
                     <Link href="mailto:falakgala09@gmail.com">
-                      <MailIcon
+                      <AtSignIcon
                         className="-ms-1 opacity-60"
                         size={16}
                         aria-hidden="true"
