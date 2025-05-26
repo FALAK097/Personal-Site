@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "next/link";
+import { useTransitionRouter } from "next-view-transitions";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { Menu } from "lucide-react";
@@ -8,8 +8,10 @@ import { Menu } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { XIcon } from "./icons";
+import { slideInOut } from "@/lib/animation";
 
 export function Navbar() {
+  const router = useTransitionRouter();
   const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
@@ -28,18 +30,30 @@ export function Navbar() {
   return (
     <header className="sticky top-0 z-50 border-b border-border bg-background/80 backdrop-blur-lg">
       <nav className="container flex items-center justify-between h-16 px-4 mx-auto">
-        <Link
+        <a
+          onClick={(e) => {
+            e.preventDefault();
+            router.push("/", {
+              onTransitionReady: slideInOut,
+            });
+          }}
           href="/"
           className={cn(
             "text-xl font-semibold tracking-tight text-primary hover:scale-105 transition-transform doto-font"
           )}
         >
           Falak
-        </Link>
+        </a>
         <div className="flex items-center gap-4">
           <div className="items-center hidden gap-6 md:flex">
             {links.map(({ href, label }, index) => (
-              <Link
+              <a
+                onClick={(e) => {
+                  e.preventDefault();
+                  router.push(href, {
+                    onTransitionReady: slideInOut,
+                  });
+                }}
                 key={href}
                 href={href}
                 className={cn(
@@ -53,7 +67,7 @@ export function Navbar() {
                 )}
               >
                 {label}
-              </Link>
+              </a>
             ))}
           </div>
           <ThemeToggle />
@@ -73,17 +87,23 @@ export function Navbar() {
       {isOpen && (
         <div className="flex flex-col gap-3 px-4 pb-4 md:hidden animate-slide-down">
           {links.map(({ href, label }) => (
-            <Link
+            <a
+              onClick={(e) => {
+                e.preventDefault();
+                setIsOpen(false);
+                router.push(href, {
+                  onTransitionReady: slideInOut,
+                });
+              }}
               key={href}
               href={href}
-              onClick={() => setIsOpen(false)}
               className={cn(
                 "text-foreground/80 text-base font-medium hover:text-foreground transition-colors",
                 pathname === href && "text-foreground font-semibold"
               )}
             >
               {label}
-            </Link>
+            </a>
           ))}
         </div>
       )}

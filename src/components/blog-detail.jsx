@@ -1,39 +1,37 @@
 "use client";
 
 import { motion } from "framer-motion";
-import Link from "next/link";
-import { useState } from "react";
 import { ArrowLeftIcon, ArrowRightIcon, UploadIcon } from "@/components/icons";
 import { Button } from "./ui/button";
+import { useTransitionRouter } from "next-view-transitions";
+import { slideInOut } from "@/lib/animation";
 
 export default function BlogDetail({ post, children, prevPost, nextPost }) {
-  const [shared, setShared] = useState(false);
+  const router = useTransitionRouter();
 
   const handleShare = async () => {
-    if (navigator.share) {
-      try {
-        await navigator.share({
-          title: post.title,
-          text: post.description,
-          url: window.location.href,
-        });
-        setShared(true);
-        setTimeout(() => setShared(false), 2000);
-      } catch (err) {
-        console.error("Error sharing:", err);
-      }
-    }
+    await navigator.share({
+      title: post.title,
+      text: post.description,
+      url: window.location.href,
+    });
   };
 
   return (
     <div className="flex-1 w-full max-w-4xl px-4 py-12 mx-auto prose dark:prose-invert">
       <div className="mb-8">
-        <Link
+        <a
+          onClick={(e) => {
+            e.preventDefault();
+            router.push("/blog", {
+              onTransitionReady: slideInOut,
+            });
+          }}
           href="/blog"
           className="flex items-center gap-2 text-muted-foreground hover:text-purple-400 transition-colors"
         >
           <ArrowLeftIcon /> Back to Blog
-        </Link>
+        </a>
       </div>
       <motion.article
         initial={{ opacity: 0, y: 30 }}
@@ -72,22 +70,34 @@ export default function BlogDetail({ post, children, prevPost, nextPost }) {
       </div>
       <nav className="mt-8 pt-8 flex justify-between items-center">
         {prevPost && (
-          <Link
+          <a
+            onClick={(e) => {
+              e.preventDefault();
+              router.push(`/blog/${prevPost.slug}`, {
+                onTransitionReady: slideInOut,
+              });
+            }}
             href={`/blog/${prevPost.slug}`}
             className="flex items-center gap-2 text-muted-foreground hover:text-purple-400 transition-colors no-underline"
           >
             <ArrowLeftIcon />
             {prevPost.title}
-          </Link>
+          </a>
         )}
         {nextPost && (
-          <Link
+          <a
+            onClick={(e) => {
+              e.preventDefault();
+              router.push(`/blog/${nextPost.slug}`, {
+                onTransitionReady: slideInOut,
+              });
+            }}
             href={`/blog/${nextPost.slug}`}
             className="flex items-center gap-2 text-muted-foreground hover:text-purple-400 transition-colors ml-auto no-underline"
           >
             {nextPost.title}
             <ArrowRightIcon />
-          </Link>
+          </a>
         )}
       </nav>
     </div>

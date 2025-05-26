@@ -7,17 +7,17 @@
 [X] - Add blog setup
 [X] - Add share option
 [X] - Add animated icon for copy, tick, external link
+[X] - Show recent blog post on Home
+[X] - View Transition on Link
 
 ## Overall
 
-[] - Show recent blog post on Home
 [] - Add a favicon and profile pic
 [] - Replace the <https://falak-gala.vercel.app> with new portfolio
 [] - Test the rate limit on contact form
 [] - Custom not found page and error page
 [] - Custom mouse cusror
 [] - Hover link preview
-[] - View Transition on Link
 [] - Add SEO meta tags
 [] - Add RSS
 
@@ -32,6 +32,7 @@
 [] - Handle `` to highlight text
 [] - Add file name for code blocks
 [] - Handle Link to be opened in new tab
+[] - Add blog of how I added next-view-transition
 
 ## Projects Section
 

@@ -1,10 +1,13 @@
 "use client";
 
 import { format } from "date-fns";
-import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
+import { useTransitionRouter } from "next-view-transitions";
+import { slideInOut } from "@/lib/animation";
 
 export function BlogList({ posts }) {
+  const router = useTransitionRouter();
+
   return (
     <div>
       <AnimatePresence mode="wait">
@@ -18,12 +21,18 @@ export function BlogList({ posts }) {
             {posts.map((post) => {
               return (
                 <article key={post.slug} className="group">
-                  <Link
-                    className="space-y-3 hover:no-underline"
+                  <a
+                    onClick={(e) => {
+                      e.preventDefault();
+                      router.push(`/blog/${post.slug}`, {
+                        onTransitionReady: slideInOut,
+                      });
+                    }}
                     href={`/blog/${post.slug}`}
+                    className="space-y-3 hover:no-underline"
                   >
                     <div className="flex items-center gap-2">
-                      <h2 className="text-lg font-semibold transition-colors group-hover:text-purple-400">
+                      <h2 className="text-lg font-medium transition-colors hover:text-purple-500">
                         {post.title}
                       </h2>
                     </div>
@@ -37,7 +46,7 @@ export function BlogList({ posts }) {
                     <p className="text-muted-foreground text-sm line-clamp-2">
                       {post.description}
                     </p>
-                  </Link>
+                  </a>
                 </article>
               );
             })}

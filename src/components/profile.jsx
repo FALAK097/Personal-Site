@@ -3,10 +3,13 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { useTransitionRouter } from "next-view-transitions";
+import { slideInOut } from "@/lib/animation";
 import { Button } from "./ui/button";
 import { ArrowRightIcon, AtSignIcon } from "./icons";
 
 export function Profile() {
+  const router = useTransitionRouter();
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
@@ -48,19 +51,31 @@ export function Profile() {
 
           <p className="text-sm leading-relaxed break-words sm:text-base md:text-lg text-foreground/70">
             This is my quirky web nook for spilling my{" "}
-            <Link
+            <a
+              onClick={(e) => {
+                e.preventDefault();
+                router.push("/blog", {
+                  onTransitionReady: slideInOut,
+                });
+              }}
               className="text-purple-400 transition-colors hover:underline hover:text-purple-300"
               href="/blog"
             >
               learnings
-            </Link>{" "}
+            </a>{" "}
             and{" "}
-            <Link
+            <a
+              onClick={(e) => {
+                e.preventDefault();
+                router.push("/projects", {
+                  onTransitionReady: slideInOut,
+                });
+              }}
               className="text-purple-400 transition-colors hover:underline hover:text-purple-300"
               href="/projects"
             >
               projects
-            </Link>
+            </a>
             !
           </p>
 
@@ -71,10 +86,18 @@ export function Profile() {
                 className="hover:bg-transparent hover:border-purple-400"
                 asChild
               >
-                <Link href="/hireme">
+                <a
+                  onClick={(e) => {
+                    e.preventDefault();
+                    router.push("/hire-me", {
+                      onTransitionReady: slideInOut,
+                    });
+                  }}
+                  href="/hire-me"
+                >
                   <span className="w-4 h-4 bg-purple-500 rounded-full sm:w-5 sm:h-5 opacity-60 me-2" />
                   Available for Hire
-                </Link>
+                </a>
               </Button>
               <div className="flex items-center gap-3">
                 <span className="text-gray-400">OR</span>
