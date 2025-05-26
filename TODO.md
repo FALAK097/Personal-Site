@@ -24,6 +24,7 @@
 ## About Us Section
 
 [] - Improve the about us section
+[] - Add timeline, education, experience & skills
 
 ## Blogs Section
 
@@ -37,7 +38,7 @@
 ## Projects Section
 
 [] - Improve the UI of the project and add Good mockups
-[] - Add proper skills with their logo
+[] - Add proper skills with their logo with on hover animation
 
 ## Extra Features
 
