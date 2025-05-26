@@ -11,7 +11,7 @@ export function RecentPosts({ posts }) {
   return (
     <div className="space-y-6">
       <div className="flex items-center justify-between">
-        <h2 className="text-md font-semibold">Recent Posts</h2>
+        <h2 className="font-light">I love writing things down</h2>
         <a
           onClick={(e) => {
             e.preventDefault();

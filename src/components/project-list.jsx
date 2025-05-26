@@ -3,94 +3,181 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
 
-import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { GithubIcon, LinkIcon } from "@/components/icons";
+import { SkillLogo } from "./skills-logo";
 
 export function ProjectList({ projects }) {
   return (
-    <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-      {projects.map((project) => (
-        <motion.div
-          key={project.id}
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.3 }}
-          whileHover={{ y: -5, transition: { duration: 0.2 } }}
-        >
-          <Card
-            className="flex flex-col overflow-hidden  shadow-lg hover:shadow-xl transition-shadow duration-300 rounded-xl border border-muted-foreground/20"
-            role="article"
-            aria-labelledby={`project-title-${project.id}`}
+    <div className="space-y-16">
+      {projects.map((project, projectIndex) => {
+        const isEven = projectIndex % 2 === 0;
+        return (
+          <motion.div
+            key={project.id}
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{
+              duration: 0.6,
+              delay: projectIndex * 0.2,
+              ease: "easeOut",
+            }}
+            className="group"
           >
-            <CardContent className="grow p-5">
-              <div className="relative mb-4 aspect-video overflow-hidden rounded-lg">
-                <Image
-                  fill
-                  alt={project.title}
-                  className="object-cover transition-transform duration-300 hover:scale-105"
-                  src={project.imageUrl || "/placeholder.svg"}
-                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                  priority
-                />
-              </div>
-              <h2
-                id={`project-title-${project.id}`}
-                className="text-xl sm:text-2xl font-semibold mb-2 text-gray-900 dark:text-white line-clamp-2"
+            <div
+              className={`flex flex-col-reverse lg:flex-row ${
+                !isEven ? "lg:flex-row-reverse" : ""
+              } gap-10 items-center`}
+            >
+              <motion.div
+                className="flex-1 space-y-6"
+                initial={{ opacity: 0, x: isEven ? -30 : 30 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{
+                  duration: 0.6,
+                  delay: projectIndex * 0.2 + 0.1,
+                }}
               >
-                {project.title}
-              </h2>
-              <p className="text-sm sm:text-base text-gray-600 dark:text-gray-300 mb-4 line-clamp-3">
-                {project.description}
-              </p>
-              <div className="flex flex-wrap gap-2 mb-4">
-                {project.tags.map((tag) => (
-                  <Badge
-                    key={tag}
-                    variant="secondary"
-                    className="text-xs sm:text-sm bg-linear-to-r from-purple-100 to-purple-200 dark:from-purple-900 dark:to-purple-800 text-purple-800 dark:text-purple-100"
+                <div>
+                  <h2
+                    id={`project-title-${project.id}`}
+                    className="text-lg font-medium text-foreground group-hover:text-primary transition-colors duration-300"
                   >
-                    {tag}
-                  </Badge>
-                ))}
-              </div>
-            </CardContent>
-            <CardFooter className="flex flex-col sm:flex-row justify-between items-center p-5 pt-0 gap-3">
-              <Button
-                asChild
-                variant="outline"
-                className="hover:bg-transparent hover:border-purple-500"
-              >
-                <a
-                  href={project.githubUrl}
-                  rel="noopener noreferrer"
-                  target="_blank"
-                  aria-label={`View ${project.title} on GitHub`}
+                    {project.title}
+                  </h2>
+                  <motion.p
+                    className="text-base text-muted-foreground leading-relaxed"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{
+                      duration: 0.6,
+                      delay: projectIndex * 0.2 + 0.2,
+                    }}
+                  >
+                    {project.description}
+                  </motion.p>
+                </div>
+
+                <div className="space-y-3">
+                  <motion.h3
+                    className="text-sm font-light text-muted-foreground uppercase tracking-wider"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{
+                      duration: 0.6,
+                      delay: projectIndex * 0.2 + 0.3,
+                    }}
+                  >
+                    Tech Stack
+                  </motion.h3>
+                  <motion.div
+                    className="flex flex-wrap gap-3"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{
+                      duration: 0.6,
+                      delay: projectIndex * 0.2 + 0.4,
+                    }}
+                  >
+                    {project.tags.map((tag, index) => (
+                      <SkillLogo key={tag} skill={tag} index={index} />
+                    ))}
+                  </motion.div>
+                </div>
+
+                <motion.div
+                  className="flex flex-row gap-4"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{
+                    duration: 0.6,
+                    delay: projectIndex * 0.2 + 0.5,
+                  }}
                 >
-                  <GithubIcon className="h-4 w-4" />
-                  GitHub
-                </a>
-              </Button>
-              <Button
-                asChild
-                variant="outline"
-                className="hover:bg-transparent hover:border-purple-500"
+                  {project.githubUrl && (
+                    <motion.div
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                    >
+                      <Button
+                        asChild
+                        variant="outline"
+                        className="hover:border-primary hover:text-primary transition-all duration-300"
+                      >
+                        <a
+                          href={project.githubUrl}
+                          rel="noopener noreferrer"
+                          target="_blank"
+                          aria-label={`View ${project.title} on GitHub`}
+                        >
+                          <GithubIcon className="h-4 w-4 mr-2" />
+                          GitHub
+                        </a>
+                      </Button>
+                    </motion.div>
+                  )}
+                  {project.deployedUrl && (
+                    <motion.div
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                    >
+                      <Button
+                        asChild
+                        variant="outline"
+                        className="hover:bg-transparent hover:border-purple-500 transition-all duration-300"
+                      >
+                        <a
+                          href={project.deployedUrl}
+                          rel="noopener noreferrer"
+                          target="_blank"
+                          aria-label={`View live demo of ${project.title}`}
+                        >
+                          <LinkIcon className="h-4 w-4 mr-2" />
+                          Live Demo
+                        </a>
+                      </Button>
+                    </motion.div>
+                  )}
+                </motion.div>
+              </motion.div>
+
+              <motion.div
+                className="flex-shrink-0 w-full lg:w-96"
+                initial={{ opacity: 0, x: isEven ? 30 : -30 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{
+                  duration: 0.6,
+                  delay: projectIndex * 0.2 + 0.3,
+                }}
               >
-                <a
-                  href={project.deployedUrl}
-                  rel="noopener noreferrer"
-                  target="_blank"
-                  aria-label={`View live demo of ${project.title}`}
-                >
-                  <LinkIcon className="h-4 w-4" />
-                  Live Demo
-                </a>
-              </Button>
-            </CardFooter>
-          </Card>
-        </motion.div>
-      ))}
+                <div className="relative aspect-video overflow-hidden rounded-xl shadow-2xl border border-muted-foreground/20 group-hover:shadow-3xl transition-all duration-500">
+                  <Image
+                    fill
+                    alt={project.title}
+                    className="object-cover"
+                    src={project.imageUrl}
+                    sizes="(max-width: 1024px) 100vw, 384px"
+                    priority={projectIndex === 0}
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                </div>
+              </motion.div>
+            </div>
+
+            {projectIndex < projects.length - 1 && (
+              <motion.div
+                className="mt-16 h-px bg-gradient-to-r from-transparent via-muted-foreground/30 to-transparent"
+                initial={{ scaleX: 0 }}
+                animate={{ scaleX: 1 }}
+                transition={{
+                  duration: 0.8,
+                  delay: projectIndex * 0.2 + 0.6,
+                }}
+              />
+            )}
+          </motion.div>
+        );
+      })}
     </div>
   );
 }
