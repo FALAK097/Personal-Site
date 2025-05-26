@@ -18,6 +18,7 @@
 [] - Custom not found page and error page
 [] - Custom mouse cusror
 [] - Hover link preview
+[] - Add a wavy or some background to add some effects
 [] - Add SEO meta tags
 [] - Add RSS
 
@@ -42,7 +43,6 @@
 
 ## Extra Features
 
-[] - Add a wavy or some background to add some effects
 [] - Add Spotify to show current playing song
 [] - Add newsletter setup
 [] - Ask AI button to ask anything about me
