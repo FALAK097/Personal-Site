@@ -98,7 +98,7 @@ export function Profile() {
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
-          className={`relative w-24 h-24 sm:w-32 sm:h-32 md:w-48 md:h-48 rounded-full border-2 border-purple-500 overflow-hidden transform transition-all duration-1000 ease-out ${
+          className={`relative w-24 h-24 mt-4 sm:w-32 sm:h-32 md:w-48 md:h-48 rounded-full border-2 border-purple-500 overflow-hidden transform transition-all duration-1000 ease-out ${
             isVisible ? "opacity-100 scale-100" : "opacity-0 scale-95"
           }`}
         >

@@ -14,6 +14,7 @@
 [X] - Improve the about us section
 [X] - Add timeline, education, experience & skills
 [X] - Add a animated button that keeps changing the text to showcase my role
+[X] - Add Spotify to show current playing song
 
 ## Overall
 
@@ -48,6 +49,7 @@
 [] - When hovered over skills logo image is also hovered
 [] - Replace Image to not show the scrollbar
 [] - Add more projects
+[] - Use <https://animated-tabs-one.vercel.app> for animated tabs
 
 ## Hire Me Section
 
@@ -56,7 +58,6 @@
 
 ## Extra Features
 
-[] - Add Spotify to show current playing song
 [] - Add newsletter setup
 [] - Ask AI button to ask anything about me
 [] - Add progress bar on navigation
