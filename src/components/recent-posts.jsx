@@ -10,9 +10,24 @@ export function RecentPosts({ posts }) {
 
   return (
     <div className="space-y-6">
-      <div className="flex items-center justify-between">
-        <h2 className="font-light">I love writing things down</h2>
-        <a
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.6 }}
+        className="flex items-center justify-between"
+      >
+        <motion.h2
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+          className="font-light"
+        >
+          I love writing things down
+        </motion.h2>
+        <motion.a
+          initial={{ opacity: 0, x: -20 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.6, delay: 0.3 }}
           onClick={(e) => {
             e.preventDefault();
             router.push("/blog", {
@@ -23,8 +38,8 @@ export function RecentPosts({ posts }) {
           className="text-sm text-muted-foreground hover:text-purple-400 transition-colors"
         >
           View All
-        </a>
-      </div>
+        </motion.a>
+      </motion.div>
       <AnimatePresence mode="wait">
         <motion.div
           initial={{ opacity: 0, y: 20 }}

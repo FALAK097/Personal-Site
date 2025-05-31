@@ -9,6 +9,8 @@
 [X] - Add animated icon for copy, tick, external link
 [X] - Show recent blog post on Home
 [X] - View Transition on Link
+[X] - Improve the UI of the project and add Good mockups
+[X] - Add proper skills with their logo with on hover animation
 
 ## Overall
 
@@ -18,6 +20,9 @@
 [] - Custom not found page and error page
 [] - Custom mouse cusror
 [] - Hover link preview
+[] - <https://cal.com/falak> add this
+[] - Add a animated button that keeps changing the text to showcase my role
+[] - Add animated profile text & improve UI
 [] - Add a wavy or some background to add some effects
 [] - Add SEO meta tags
 [] - Add RSS
@@ -38,8 +43,7 @@
 
 ## Projects Section
 
-[] - Improve the UI of the project and add Good mockups
-[] - Add proper skills with their logo with on hover animation
+[] - Add video on hover of image
 
 ## Extra Features
 

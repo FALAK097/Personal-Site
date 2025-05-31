@@ -1,8 +1,9 @@
 import { GeistSans } from "geist/font/sans";
-import { ThemeProvider } from "@/components/theme-provider";
+import { ViewTransitions } from "next-view-transitions";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
-import { ViewTransitions } from "next-view-transitions";
+import { ThemeProvider } from "@/components/theme-provider";
+import { ScrollProgress } from "@/components/scroll-progress";
 
 import "@/styles/globals.css";
 import { Toaster } from "@/components/ui/toaster";
@@ -27,6 +28,7 @@ export default function RootLayout({ children }) {
                 {children}
               </div>
             </div>
+            <ScrollProgress />
             <Toaster />
           </ThemeProvider>
           <Analytics />
