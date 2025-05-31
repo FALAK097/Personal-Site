@@ -15,7 +15,7 @@ const jobTitles = [
   "Full Stack Developer",
   "Software Engineer",
   "AI Engineer",
-  "Frontend Developer",
+  "Football Lover",
 ];
 
 export function Profile() {

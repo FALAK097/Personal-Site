@@ -15,3 +15,4 @@ export { CopyIcon } from "./copy";
 export { CheckCheckIcon } from "./check-check";
 export { CursorClickIcon } from "./cursor-click";
 export { HeartIcon } from "./heart";
+export { ChevronRightIcon } from "./chevron-right";

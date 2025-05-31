@@ -41,7 +41,7 @@ const skillLogos = {
   DigitalOcean: { logo: "/skills/digitalocean.svg", name: "DigitalOcean" },
 };
 
-export function SkillLogo({ skill, index }) {
+export const SkillsLogo = ({ skill, index }) => {
   const { theme } = useTheme();
   const skillData = skillLogos[skill];
 
@@ -90,4 +90,4 @@ export function SkillLogo({ skill, index }) {
       </Tooltip>
     </TooltipProvider>
   );
-}
+};

@@ -1,6 +1,6 @@
 import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
-import { AboutContent } from "@/components/about-content";
+import { AboutContent } from "@/components/about/about-content";
 
 export default function AboutPage() {
   return (
@@ -8,15 +8,7 @@ export default function AboutPage() {
       <Navbar />
       <main className="flex-1 container mx-auto px-4 py-8">
         <div className="max-w-4xl mx-auto space-y-8">
-          <div>
-            <h1 className="text-xl font-semibold mb-4">About Me</h1>
-            <p className="text-md text-muted-foreground">
-              I&apos;m a software engineer passionate about building products
-              that make a difference. With a focus on web technologies and user
-              experience, I strive to create efficient, scalable, and
-              maintainable solutions to complex problems.
-            </p>
-          </div>
+          <h1 className="text-xl font-semibold space-y-4">About Me</h1>
           <AboutContent />
         </div>
       </main>

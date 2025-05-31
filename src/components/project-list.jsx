@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 
 import { Button } from "@/components/ui/button";
 import { GithubIcon, LinkIcon } from "@/components/icons";
-import { SkillLogo } from "./skills-logo";
+import { SkillsLogo } from "./skills-logo";
 
 export function ProjectList({ projects }) {
   return (
@@ -80,7 +80,7 @@ export function ProjectList({ projects }) {
                     }}
                   >
                     {project.tags.map((tag, index) => (
-                      <SkillLogo key={tag} skill={tag} index={index} />
+                      <SkillsLogo key={tag} skill={tag} index={index} />
                     ))}
                   </motion.div>
                 </div>

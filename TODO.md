@@ -11,6 +11,8 @@
 [X] - View Transition on Link
 [X] - Improve the UI of the project and add Good mockups
 [X] - Add proper skills with their logo with on hover animation
+[X] - Improve the about us section
+[X] - Add timeline, education, experience & skills
 
 ## Overall
 
@@ -29,8 +31,7 @@
 
 ## About Us Section
 
-[] - Improve the about us section
-[] - Add timeline, education, experience & skills
+[] - Add actual bio, experience & skills data
 
 ## Blogs Section
 
@@ -40,6 +41,7 @@
 [] - Add file name for code blocks
 [] - Handle Link to be opened in new tab
 [] - Add blog of how I added next-view-transition
+[] - Views & Likes
 
 ## Projects Section
 
