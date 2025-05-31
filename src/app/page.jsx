@@ -10,7 +10,14 @@ import { SpotifyNowPlaying } from "@/components/spotify-now-playing";
 export default async function Home() {
   const allPosts = await getAllPosts();
   const recentPosts = allPosts.slice(0, 3);
-  const spotifyData = await getNowPlaying();
+  let spotifyData;
+
+  try {
+    spotifyData = await getNowPlaying();
+  } catch (error) {
+    console.error("Failed to fetch Spotify data:", error);
+    spotifyData = null;
+  }
 
   return (
     <div className="flex flex-col min-h-[calc(100vh-2rem)]">

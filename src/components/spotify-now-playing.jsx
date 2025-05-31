@@ -1,7 +1,7 @@
 "use client";
 
-import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { useEffect, useState } from "react";
+import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import { Disc3, Music } from "lucide-react";
 import {
   Tooltip,
@@ -12,9 +12,49 @@ import {
 
 export const SpotifyNowPlaying = ({ songData }) => {
   const [isHovered, setIsHovered] = useState(false);
+  const [imageError, setImageError] = useState(false);
+  const prefersReducedMotion = useReducedMotion();
   const isPlaying = songData?.isPlaying;
   const hasData = songData && (songData.title || songData.artist);
   const loading = !songData;
+
+  useEffect(() => {
+    setImageError(false);
+  }, [songData?.albumImageUrl]);
+
+  const renderAlbumArt = () => {
+    if (loading) {
+      return (
+        <div className="w-full h-full bg-purple-500/20 flex items-center justify-center">
+          <Disc3 className="w-6 h-6 text-purple-500 animate-spin" />
+        </div>
+      );
+    }
+
+    if (!hasData || !songData.albumImageUrl || imageError) {
+      return (
+        <div className="w-full h-full bg-purple-500/20 flex items-center justify-center">
+          <Music className="w-6 h-6 text-purple-500" />
+        </div>
+      );
+    }
+
+    return (
+      <motion.img
+        src={songData.albumImageUrl}
+        alt={songData.album || "Album Art"}
+        className="w-full h-full object-cover"
+        animate={{ rotate: isPlaying && !prefersReducedMotion ? 360 : 0 }}
+        transition={{
+          duration: 8,
+          repeat:
+            isPlaying && !prefersReducedMotion ? Number.POSITIVE_INFINITY : 0,
+          ease: "linear",
+        }}
+        onError={() => setImageError(true)}
+      />
+    );
+  };
 
   return (
     <TooltipProvider>
@@ -24,8 +64,8 @@ export const SpotifyNowPlaying = ({ songData }) => {
             className="relative group cursor-pointer"
             onHoverStart={() => setIsHovered(true)}
             onHoverEnd={() => setIsHovered(false)}
-            whileHover={{ scale: 1.05 }}
-            transition={{ duration: 0.2 }}
+            whileHover={{ scale: prefersReducedMotion ? 1 : 1.05 }}
+            transition={{ duration: prefersReducedMotion ? 0 : 0.2 }}
           >
             <motion.div
               className="relative w-48 h-16 bg-gradient-to-br from-purple-500/10 to-pink-500/10 backdrop-blur-sm border border-purple-500/20 rounded-xl overflow-hidden shadow-lg"
@@ -35,43 +75,29 @@ export const SpotifyNowPlaying = ({ songData }) => {
                   ? "0 20px 40px rgba(168, 85, 247, 0.4)"
                   : "0 8px 16px rgba(168, 85, 247, 0.2)",
               }}
-              transition={{ duration: 0.3 }}
+              transition={{ duration: prefersReducedMotion ? 0 : 0.3 }}
             >
               <motion.div
                 className="absolute inset-0 bg-gradient-to-r from-purple-500/20 via-pink-500/20 to-purple-500/20"
                 animate={{
-                  x: isPlaying ? ["-100%", "100%"] : "0%",
+                  x:
+                    isPlaying && !prefersReducedMotion
+                      ? ["-100%", "100%"]
+                      : "0%",
                 }}
                 transition={{
                   duration: 3,
-                  repeat: isPlaying ? Number.POSITIVE_INFINITY : 0,
+                  repeat:
+                    isPlaying && !prefersReducedMotion
+                      ? Number.POSITIVE_INFINITY
+                      : 0,
                   ease: "linear",
                 }}
               />
 
               <div className="relative flex items-center h-full p-2 gap-2">
                 <div className="relative w-12 h-12 rounded-lg overflow-hidden flex-shrink-0">
-                  {loading ? (
-                    <div className="w-full h-full bg-purple-500/20 flex items-center justify-center">
-                      <Disc3 className="w-6 h-6 text-purple-500 animate-spin" />
-                    </div>
-                  ) : hasData && songData.albumImageUrl ? (
-                    <motion.img
-                      src={songData.albumImageUrl}
-                      alt={songData.album}
-                      className="w-full h-full object-cover"
-                      animate={{ rotate: isPlaying ? 360 : 0 }}
-                      transition={{
-                        duration: 8,
-                        repeat: isPlaying ? Number.POSITIVE_INFINITY : 0,
-                        ease: "linear",
-                      }}
-                    />
-                  ) : (
-                    <div className="w-full h-full bg-purple-500/20 flex items-center justify-center">
-                      <Music className="w-6 h-6 text-purple-500" />
-                    </div>
-                  )}
+                  {renderAlbumArt()}
                 </div>
 
                 <div className="flex-1 min-w-0">
@@ -87,13 +113,17 @@ export const SpotifyNowPlaying = ({ songData }) => {
                           className="text-xs font-semibold text-foreground whitespace-nowrap"
                           animate={{
                             x:
-                              songData.title && songData.title.length > 20
+                              songData.title &&
+                              songData.title.length > 20 &&
+                              !prefersReducedMotion
                                 ? [0, -100, 0]
                                 : 0,
                           }}
                           transition={{
                             duration: 6,
-                            repeat: Number.POSITIVE_INFINITY,
+                            repeat: prefersReducedMotion
+                              ? 0
+                              : Number.POSITIVE_INFINITY,
                             ease: "linear",
                           }}
                         >
@@ -105,13 +135,17 @@ export const SpotifyNowPlaying = ({ songData }) => {
                           className="text-xs text-foreground/70 whitespace-nowrap"
                           animate={{
                             x:
-                              songData.artist && songData.artist.length > 25
+                              songData.artist &&
+                              songData.artist.length > 25 &&
+                              !prefersReducedMotion
                                 ? [0, -80, 0]
                                 : 0,
                           }}
                           transition={{
                             duration: 5,
-                            repeat: Number.POSITIVE_INFINITY,
+                            repeat: prefersReducedMotion
+                              ? 0
+                              : Number.POSITIVE_INFINITY,
                             ease: "linear",
                             delay: 1,
                           }}
@@ -132,7 +166,9 @@ export const SpotifyNowPlaying = ({ songData }) => {
               </div>
 
               <div className="absolute top-1 right-1">
-                <div className="w-3 h-3 bg-green-500 rounded-full" />
+                {isPlaying && (
+                  <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse" />
+                )}
               </div>
             </motion.div>
           </motion.div>
