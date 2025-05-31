@@ -1,7 +1,7 @@
 import { Footer } from "@/components/footer";
 import { Navbar } from "@/components/navbar";
 import { ProjectList } from "@/components/project-list";
-import { projects } from "@/lib/placeholder-project";
+import { projects } from "@/lib/project-data";
 
 export default function ProjectsPage() {
   return (

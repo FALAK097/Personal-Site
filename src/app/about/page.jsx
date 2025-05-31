@@ -8,7 +8,7 @@ export default function AboutPage() {
       <Navbar />
       <main className="flex-1 container mx-auto px-4 py-8">
         <div className="max-w-4xl mx-auto space-y-8">
-          <h1 className="text-xl font-semibold space-y-4">About Me</h1>
+          <h1 className="text-xl font-semibold">About Me</h1>
           <AboutContent />
         </div>
       </main>

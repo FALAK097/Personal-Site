@@ -13,6 +13,7 @@
 [X] - Add proper skills with their logo with on hover animation
 [X] - Improve the about us section
 [X] - Add timeline, education, experience & skills
+[X] - Add a animated button that keeps changing the text to showcase my role
 
 ## Overall
 
@@ -22,8 +23,6 @@
 [] - Custom not found page and error page
 [] - Custom mouse cusror
 [] - Hover link preview
-[] - <https://cal.com/falak> add this
-[] - Add a animated button that keeps changing the text to showcase my role
 [] - Add animated profile text & improve UI
 [] - Add a wavy or some background to add some effects
 [] - Add SEO meta tags
@@ -46,6 +45,14 @@
 ## Projects Section
 
 [] - Add video on hover of image
+[] - When hovered over skills logo image is also hovered
+[] - Replace Image to not show the scrollbar
+[] - Add more projects
+
+## Hire Me Section
+
+[] - <https://cal.com/falak> add this
+[] - Open to freelance
 
 ## Extra Features
 

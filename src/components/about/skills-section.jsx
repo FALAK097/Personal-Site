@@ -2,14 +2,7 @@ import { forwardRef } from "react";
 import { motion } from "framer-motion";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { SkillsLogo } from "../skills-logo";
-
-const skillCategories = {
-  Frontend: ["JavaScript", "TypeScript", "React.js", "Next.js", "Tailwind"],
-  Backend: ["Node.js", "Python", "FastAPI", "Prisma", "Drizzle"],
-  Database: ["PostgreSQL", "Neon"],
-  DevOps: ["Docker", "DigitalOcean"],
-  Tools: ["Authjs", "OpenAI"],
-};
+import { skillCategories } from "@/lib/about-data";
 
 export const SkillsSection = forwardRef((props, ref) => {
   return (

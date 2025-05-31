@@ -3,24 +3,12 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { z } from "zod";
-
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
 import { sendContactEmail } from "@/actions/send-email";
-
-const formSchema = z.object({
-  name: z.string().min(1, { message: "Please enter your name." }),
-  email: z.string().email({ message: "Please enter a valid email address." }),
-  subject: z.string().min(10, {
-    message: "Subject must be at least 10 characters long.",
-  }),
-  message: z.string().min(32, {
-    message: "Message must be at least 32 characters long.",
-  }),
-});
+import { contactFormSchema } from "@/lib/schema";
 
 export function ContactForm() {
   const [loading, setLoading] = useState(false);
@@ -32,7 +20,7 @@ export function ContactForm() {
     reset,
     formState: { errors },
   } = useForm({
-    resolver: zodResolver(formSchema),
+    resolver: zodResolver(contactFormSchema),
   });
 
   const onSubmit = async (data) => {
