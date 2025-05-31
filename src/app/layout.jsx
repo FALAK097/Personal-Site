@@ -4,6 +4,7 @@ import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { ThemeProvider } from "@/components/theme-provider";
 import { ScrollProgress } from "@/components/scroll-progress";
+import { CircleBackground } from "@/components/circle-background";
 
 import "@/styles/globals.css";
 import { Toaster } from "@/components/ui/toaster";
@@ -23,7 +24,8 @@ export default function RootLayout({ children }) {
             attribute="class"
             enableSystem={true}
           >
-            <div className="min-h-screen p-4 bg-background">
+            <CircleBackground />
+            <div className="min-h-screen p-4 bg-background/50">
               <div className="rounded-lg border-2 border-border min-h-[calc(100vh-2rem)]">
                 {children}
               </div>

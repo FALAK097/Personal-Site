@@ -16,17 +16,20 @@
 [X] - Add a animated button that keeps changing the text to showcase my role
 [X] - Add Spotify to show current playing song
 [X] - Add RSS
+[X] - Add progress bar on navigation
+[X] - Add a wavy or some background to add some effects
+[X] - Add animated profile text & improve UI
+[X] - Custom not found page
+[X] - Custom error page
 
 ## Overall
 
 [] - Add a favicon and profile pic
 [] - Replace the <https://falak-gala.vercel.app> with new portfolio
 [] - Test the rate limit on contact form
-[] - Custom not found page and error page
 [] - Custom mouse cusror
 [] - Hover link preview
-[] - Add animated profile text & improve UI
-[] - Add a wavy or some background to add some effects
+[] - Add gradient
 [] - Add SEO meta tags
 [] - Contribute to <https://github.com/pqoqubbw/icons> with RSS icon
 
@@ -61,7 +64,6 @@
 
 [] - Add newsletter setup
 [] - Ask AI button to ask anything about me
-[] - Add progress bar on navigation
 [] - Improve the style of mail I receive
 [] - Some stats like Most Productive on which day(based on commits, which hour of day, most used language and all)
 [] - Show a indication if I am online or offline based on my activity on vscode or github
