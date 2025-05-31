@@ -10,6 +10,9 @@
 !.yarn/releases
 !.yarn/versions
 
+# rss
+/public/rss.xml
+
 # content layer
 /.contentlayer
 

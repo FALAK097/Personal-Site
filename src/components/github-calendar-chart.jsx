@@ -18,7 +18,7 @@ export const GitHubCalendarChart = () => {
         fontSize={14}
         showWeekdayLabels={false}
         theme={{
-          dark: ["hsl(0, 0%, 20%)", "#9B7EDE", "#a855f7", "#ff66ff", "#6B4EAA"],
+          dark: ["hsl(0, 0%, 20%)", "#9B7EDE", "#a855f7", "#ff66ff", "#6b21a8"],
         }}
         renderBlock={(block, activity) => {
           const date = new Date(activity.date).toLocaleDateString("en-US", {

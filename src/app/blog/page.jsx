@@ -2,9 +2,12 @@ import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
 import { BlogList } from "@/components/blog-list";
 import { getAllPosts } from "@/lib/mdx";
+import { generateRSSFeed } from "@/lib/rss";
 
 export default async function BlogPage() {
   const posts = await getAllPosts();
+
+  generateRSSFeed(posts);
 
   return (
     <div className="flex flex-col min-h-[calc(100vh-2rem)]">

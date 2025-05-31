@@ -3,6 +3,7 @@ import {
   LinkedinIcon,
   TwitterIcon,
   AtSignIcon,
+  RssIcon,
 } from "@/components/icons";
 
 export function SocialLinks() {
@@ -41,6 +42,15 @@ export function SocialLinks() {
         aria-label="LinkedIn"
       >
         <LinkedinIcon />
+      </a>
+      <a
+        className="transition-colors text-foreground/60 hover:text-foreground"
+        href="/rss.xml"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="RSS Feed"
+      >
+        <RssIcon />
       </a>
     </div>
   );

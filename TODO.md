@@ -15,6 +15,7 @@
 [X] - Add timeline, education, experience & skills
 [X] - Add a animated button that keeps changing the text to showcase my role
 [X] - Add Spotify to show current playing song
+[X] - Add RSS
 
 ## Overall
 
@@ -27,7 +28,7 @@
 [] - Add animated profile text & improve UI
 [] - Add a wavy or some background to add some effects
 [] - Add SEO meta tags
-[] - Add RSS
+[] - Contribute to <https://github.com/pqoqubbw/icons> with RSS icon
 
 ## About Us Section
 
