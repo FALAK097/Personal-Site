@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 
 import { Button } from "@/components/ui/button";
 import { GithubIcon, LinkIcon } from "@/components/icons";
-import { SkillsLogo } from "./skills-logo";
+import { SkillsLogo } from "./custom/skills-logo";
 
 export function ProjectList({ projects }) {
   return (

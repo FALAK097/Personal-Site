@@ -4,8 +4,8 @@ import rehypePrettyCode from "rehype-pretty-code";
 import { notFound } from "next/navigation";
 import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
-import { MdxCodeBlock } from "@/components/mdx-code-block";
-import BlogDetail from "@/components/blog-detail";
+import { MdxCodeBlock } from "@/components/blog/mdx-code-block";
+import BlogDetail from "@/components/blog/blog-detail";
 
 export async function generateStaticParams() {
   const posts = await getAllPosts();
@@ -40,7 +40,7 @@ export default async function BlogPost({ params: rawParams }) {
   const prevPost = posts[currentIndex - 1] || null;
 
   return (
-    <div className="flex flex-col min-h-screen bg-background">
+    <div className="flex flex-col min-h-screen">
       <Navbar />
       <BlogDetail post={post} prevPost={prevPost} nextPost={nextPost}>
         <MDXRemote

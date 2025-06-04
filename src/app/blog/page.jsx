@@ -1,6 +1,6 @@
 import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
-import { BlogList } from "@/components/blog-list";
+import { BlogList } from "@/components/blog/blog-list";
 import { getAllPosts } from "@/lib/mdx";
 import { generateRSSFeed } from "@/lib/rss";
 

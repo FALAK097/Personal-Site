@@ -1,7 +1,7 @@
 import { forwardRef } from "react";
 import { motion } from "framer-motion";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { SkillsLogo } from "../skills-logo";
+import { SkillsLogo } from "../custom/skills-logo";
 import { skillCategories } from "@/lib/about-data";
 
 export const SkillsSection = forwardRef((props, ref) => {

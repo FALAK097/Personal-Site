@@ -8,7 +8,7 @@ import {
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
-} from "./ui/tooltip";
+} from "../ui/tooltip";
 
 const skillLogos = {
   JavaScript: { logo: "/skills/javascript.svg", name: "JavaScript" },

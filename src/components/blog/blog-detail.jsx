@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import { ArrowLeftIcon, ArrowRightIcon, UploadIcon } from "@/components/icons";
-import { Button } from "./ui/button";
+import { Button } from "../ui/button";
 import { useTransitionRouter } from "next-view-transitions";
 import { slideInOut } from "@/lib/animation";
 

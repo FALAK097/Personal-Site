@@ -1,7 +1,7 @@
 import { forwardRef } from "react";
 import { motion } from "framer-motion";
 import { Badge } from "@/components/ui/badge";
-import { SkillsLogo } from "@/components/skills-logo";
+import { SkillsLogo } from "@/components/custom/skills-logo";
 import { ChevronRightIcon } from "@/components/icons";
 import { experiences } from "@/lib/about-data";
 

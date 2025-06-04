@@ -8,7 +8,7 @@ import {
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
-} from "./ui/tooltip";
+} from "../ui/tooltip";
 
 export const SpotifyNowPlaying = ({ songData }) => {
   const [isHovered, setIsHovered] = useState(false);

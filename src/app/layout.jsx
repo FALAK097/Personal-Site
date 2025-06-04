@@ -3,8 +3,8 @@ import { ViewTransitions } from "next-view-transitions";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { ThemeProvider } from "@/components/theme-provider";
-import { ScrollProgress } from "@/components/scroll-progress";
-import { CircleBackground } from "@/components/circle-background";
+import { ScrollProgress } from "@/components/custom/scroll-progress";
+import { CircleBackground } from "@/components/custom/circle-background";
 
 import "@/styles/globals.css";
 import { Toaster } from "@/components/ui/toaster";

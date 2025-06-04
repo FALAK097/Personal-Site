@@ -8,8 +8,8 @@ import { useTransitionRouter } from "next-view-transitions";
 import { slideInOut } from "@/lib/animation";
 import { Button } from "./ui/button";
 import { ArrowRightIcon, AtSignIcon } from "./icons";
-import { TextGenerateEffect } from "./text-generate-effect";
-import { SquigglyUnderline } from "./squiggly-underline";
+import { TextGenerateEffect } from "./custom/text-generate-effect";
+import { SquigglyUnderline } from "./custom/squiggly-underline";
 
 const jobTitles = [
   "Full Stack Developer",

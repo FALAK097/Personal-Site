@@ -3,11 +3,11 @@ export const dynamic = "force-dynamic";
 import { Navbar } from "@/components/navbar";
 import { Profile } from "@/components/profile";
 import { Footer } from "@/components/footer";
-import { GitHubCalendarChart } from "@/components/github-calendar-chart";
-import { RecentPosts } from "@/components/recent-posts";
+import { GitHubCalendarChart } from "@/components/custom/github-calendar-chart";
+import { RecentPosts } from "@/components/blog/recent-posts";
 import { getAllPosts } from "@/lib/mdx";
 import { getNowPlaying } from "@/actions/spotify";
-import { SpotifyNowPlaying } from "@/components/spotify-now-playing";
+import { SpotifyNowPlaying } from "@/components/custom/spotify-now-playing";
 
 export default async function Home() {
   const allPosts = await getAllPosts();
