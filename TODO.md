@@ -36,6 +36,7 @@
 [] - Hover link preview
 [] - Add gradient
 [] - Add SEO meta tags
+[] - Make schedule call button mobile responsive 
 [] - Contribute to <https://github.com/pqoqubbw/icons> with RSS icon
 
 ## About Us Section
