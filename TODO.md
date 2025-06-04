@@ -23,6 +23,9 @@
 [X] - Custom error page
 [X] - <https://cal.com/falak> add this
 [X] - Open to freelance
+[X] - Replace Image to not show the scrollbar
+[X] - When hovered over skills logo image is also hovered
+[X] - Add more projects
 
 ## Overall
 
@@ -38,6 +41,7 @@
 ## About Us Section
 
 [] - Add actual bio, experience & skills data
+[] - Use <https://animated-tabs-one.vercel.app> for animated tabs
 
 ## Blogs Section
 
@@ -52,10 +56,6 @@
 ## Projects Section
 
 [] - Add video on hover of image
-[] - When hovered over skills logo image is also hovered
-[] - Replace Image to not show the scrollbar
-[] - Add more projects
-[] - Use <https://animated-tabs-one.vercel.app> for animated tabs
 
 ## Extra Features
 

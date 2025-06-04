@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button";
 import { GithubIcon, LinkIcon } from "@/components/icons";
 import { SkillsLogo } from "./custom/skills-logo";
 
-export function ProjectList({ projects }) {
+export const ProjectList = ({ projects }) => {
   return (
     <div className="space-y-16">
       {projects.map((project, projectIndex) => {
@@ -22,7 +22,6 @@ export function ProjectList({ projects }) {
               delay: projectIndex * 0.2,
               ease: "easeOut",
             }}
-            className="group"
           >
             <div
               className={`flex flex-col-reverse lg:flex-row ${
@@ -60,7 +59,7 @@ export function ProjectList({ projects }) {
 
                 <div className="space-y-3">
                   <motion.h3
-                    className="text-sm font-light text-muted-foreground uppercase tracking-wider"
+                    className="text-sm font-light text-muted-foreground tracking-wider"
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{
@@ -150,7 +149,7 @@ export function ProjectList({ projects }) {
                   delay: projectIndex * 0.2 + 0.3,
                 }}
               >
-                <div className="relative aspect-video overflow-hidden rounded-xl shadow-2xl border border-muted-foreground/20 group-hover:shadow-3xl transition-all duration-500">
+                <div className="group relative aspect-video overflow-hidden rounded-xl shadow-2xl border border-muted-foreground/20 hover:shadow-3xl transition-all duration-500">
                   <Image
                     fill
                     alt={project.title}
@@ -180,4 +179,4 @@ export function ProjectList({ projects }) {
       })}
     </div>
   );
-}
+};

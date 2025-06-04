@@ -1,5 +1,6 @@
 "use client";
 
+import React from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { useTheme } from "next-themes";
@@ -9,6 +10,7 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "../ui/tooltip";
+import { GithubIcon } from "../icons";
 
 const skillLogos = {
   JavaScript: { logo: "/skills/javascript.svg", name: "JavaScript" },
@@ -16,6 +18,13 @@ const skillLogos = {
   Python: { logo: "/skills/python.svg", name: "Python" },
   "React.js": { logo: "/skills/react.svg", name: "React.js" },
   "Node.js": { logo: "/skills/nodejs.svg", name: "Node.js" },
+  "Express.js": {
+    logo: {
+      light: "/skills/expressjs.svg",
+      dark: "/skills/expressjs-light.svg",
+    },
+    name: "Express.js",
+  },
   "Next.js": {
     logo: {
       light: "/skills/nextjs.svg",
@@ -25,8 +34,11 @@ const skillLogos = {
   },
   Tailwind: { logo: "/skills/tailwindcss.svg", name: "Tailwind" },
   Authjs: { logo: "/skills/authjs.svg", name: "Authjs" },
+  Clerk: { logo: "/skills/clerk.jpeg", name: "Clerk" },
   Prisma: { logo: "/skills/prisma.svg", name: "Prisma" },
   Drizzle: { logo: "/skills/drizzle.svg", name: "Drizzle" },
+  Stripe: { logo: "/skills/stripe.jpeg", name: "Stripe" },
+  Gemini: { logo: "/skills/gemini.svg", name: "Gemini" },
   OpenAI: {
     logo: {
       light: "/skills/openai.svg",
@@ -35,10 +47,25 @@ const skillLogos = {
     name: "OpenAI",
   },
   FastAPI: { logo: "/skills/fastapi.svg", name: "FastAPI" },
+  Redis: { logo: "/skills/redis.svg", name: "Redis" },
+  MongoDB: { logo: "/skills/mongodb.svg", name: "MongoDB" },
   PostgreSQL: { logo: "/skills/postgresql.svg", name: "PostgreSQL" },
+  Supabase: { logo: "/skills/supabase.svg", name: "Supabase" },
   Neon: { logo: "/skills/neon.svg", name: "Neon" },
   Docker: { logo: "/skills/docker.svg", name: "Docker" },
   DigitalOcean: { logo: "/skills/digitalocean.svg", name: "DigitalOcean" },
+  Render: { logo: "/skills/render.jpg", name: "Render" },
+  Vercel: {
+    logo: {
+      light: "/skills/vercel.svg",
+      dark: "/skills/vercel-light.svg",
+    },
+    name: "Vercel",
+  },
+  "GitHub API": {
+    logo: <GithubIcon size={24} />,
+    name: "GitHub API",
+  },
 };
 
 export const SkillsLogo = ({ skill, index }) => {
@@ -48,11 +75,13 @@ export const SkillsLogo = ({ skill, index }) => {
   if (!skillData) return null;
 
   const logoSrc =
-    typeof skillData.logo === "string"
+    typeof skillData.logo === "object" && !React.isValidElement(skillData.logo)
+      ? theme === "dark"
+        ? skillData.logo.dark
+        : skillData.logo.light
+      : typeof skillData.logo === "string"
       ? skillData.logo
-      : theme === "dark"
-      ? skillData.logo.dark
-      : skillData.logo.light;
+      : null;
 
   return (
     <TooltipProvider>
@@ -74,13 +103,17 @@ export const SkillsLogo = ({ skill, index }) => {
             className="relative"
           >
             <div className="w-10 h-10 rounded-lg shadow-md flex items-center justify-center border transition-all duration-200 hover:shadow-lg">
-              <Image
-                src={logoSrc || "/prisma.svg"}
-                alt={skillData.name}
-                width={24}
-                height={24}
-                className="object-contain"
-              />
+              {React.isValidElement(skillData.logo) ? (
+                <div className="w-6 h-6">{skillData.logo}</div>
+              ) : (
+                <Image
+                  src={logoSrc}
+                  alt={skillData.name}
+                  width={24}
+                  height={24}
+                  className="object-contain"
+                />
+              )}
             </div>
           </motion.div>
         </TooltipTrigger>
