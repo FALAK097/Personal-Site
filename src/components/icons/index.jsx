@@ -17,3 +17,4 @@ export { CursorClickIcon } from "./cursor-click";
 export { HeartIcon } from "./heart";
 export { ChevronRightIcon } from "./chevron-right";
 export { RssIcon } from "./rss";
+export { CalendarDaysIcon } from "./calendar-days";

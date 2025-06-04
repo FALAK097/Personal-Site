@@ -21,6 +21,8 @@
 [X] - Add animated profile text & improve UI
 [X] - Custom not found page
 [X] - Custom error page
+[X] - <https://cal.com/falak> add this
+[X] - Open to freelance
 
 ## Overall
 
@@ -54,11 +56,6 @@
 [] - Replace Image to not show the scrollbar
 [] - Add more projects
 [] - Use <https://animated-tabs-one.vercel.app> for animated tabs
-
-## Hire Me Section
-
-[] - <https://cal.com/falak> add this
-[] - Open to freelance
 
 ## Extra Features
 

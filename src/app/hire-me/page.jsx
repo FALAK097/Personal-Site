@@ -1,8 +1,8 @@
 import { ContactForm } from "@/components/contact-form";
 import { Footer } from "@/components/footer";
+import { CalendarDaysIcon, TrendingUpIcon } from "@/components/icons";
 import { Navbar } from "@/components/navbar";
 import { Button } from "@/components/ui/button";
-import { TrendingUpIcon } from "@/components/icons/trending-up";
 
 export default function HireMePage() {
   return (
@@ -17,17 +17,35 @@ export default function HireMePage() {
               Feel free to reach out if you&apos;d like to work together or
               simply discuss ideas.
             </p>
-            <Button
-              asChild
-              size="lg"
-              variant="outline"
-              className="hover:bg-transparent hover:border-purple-400"
-            >
-              <a href="/resume.pdf" rel="noopener noreferrer" target="_blank">
-                View Resume
-                <TrendingUpIcon className="ml-2 h-5 w-5" />
-              </a>
-            </Button>
+            <div className="flex gap-4">
+              <Button
+                asChild
+                size="lg"
+                variant="outline"
+                className="hover:bg-transparent hover:border-purple-400"
+              >
+                <a href="/resume.pdf" rel="noopener noreferrer" target="_blank">
+                  View Resume
+                  <TrendingUpIcon className="ml-2 h-5 w-5" />
+                </a>
+              </Button>
+
+              <Button
+                asChild
+                size="lg"
+                variant="outline"
+                className="hover:bg-transparent hover:border-purple-400"
+              >
+                <a
+                  href="https://cal.com/falak"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Schedule a Call
+                  <CalendarDaysIcon className="ml-2 h-5 w-5" />
+                </a>
+              </Button>
+            </div>
           </div>
 
           <div className="grid gap-8 md:grid-cols-[2fr_1fr]">
@@ -35,15 +53,20 @@ export default function HireMePage() {
 
             <div className="space-y-6">
               <div>
-                <h3 className="text-lg font-semibold mb-2">Location</h3>
+                <h3 className="text-md font-medium mb-2">Location</h3>
                 <p className="text-muted-foreground">Mumbai, India</p>
               </div>
 
               <div>
-                <h3 className="text-lg font-semibold mb-2">Availability</h3>
-                <p className="text-muted-foreground">
-                  Open to full-time opportunities and interesting projects
-                </p>
+                <h3 className="text-md font-medium mb-2">Availability</h3>
+                <div className="space-y-2">
+                  <p className="text-muted-foreground">
+                    • Open to full-time opportunities
+                  </p>
+                  <p className="text-muted-foreground">
+                    • Available for freelance projects
+                  </p>
+                </div>
               </div>
             </div>
           </div>
