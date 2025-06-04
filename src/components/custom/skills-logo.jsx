@@ -33,6 +33,8 @@ const skillLogos = {
     name: "Next.js",
   },
   Tailwind: { logo: "/skills/tailwindcss.svg", name: "Tailwind" },
+  Sass: { logo: "/skills/sass.svg", name: "Sass" },
+  Bootstrap: { logo: "/skills/bootstrap.svg", name: "Bootstrap" },
   Authjs: { logo: "/skills/authjs.svg", name: "Authjs" },
   Clerk: { logo: "/skills/clerk.jpeg", name: "Clerk" },
   Prisma: { logo: "/skills/prisma.svg", name: "Prisma" },
@@ -66,6 +68,9 @@ const skillLogos = {
     logo: <GithubIcon size={24} />,
     name: "GitHub API",
   },
+  Git: { logo: "/skills/git.svg", name: "Git" },
+  Warp: { logo: "/skills/warp.svg", name: "Warp" },
+  VsCode: { logo: "/skills/vscode.svg", name: "Vs Code" },
 };
 
 export const SkillsLogo = ({ skill, index }) => {

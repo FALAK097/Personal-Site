@@ -49,9 +49,34 @@ export const education = [
 ];
 
 export const skillCategories = {
-  Frontend: ["JavaScript", "TypeScript", "React.js", "Next.js", "Tailwind"],
-  Backend: ["Node.js", "Python", "FastAPI", "Prisma", "Drizzle"],
-  Database: ["PostgreSQL", "Neon"],
-  DevOps: ["Docker", "DigitalOcean"],
-  Tools: ["Authjs", "OpenAI"],
+  Frontend: [
+    "JavaScript",
+    "TypeScript",
+    "React.js",
+    "Next.js",
+    "Tailwind",
+    "Sass",
+    "Bootstrap",
+  ],
+  Backend: ["Python", "Node.js", "Express.js", "FastAPI"],
+  Database: [
+    "PostgreSQL",
+    "MongoDB",
+    "Redis",
+    "Neon",
+    "Supabase",
+    "Prisma",
+    "Drizzle",
+  ],
+  DevOps: ["Docker", "DigitalOcean", "Vercel", "Render"],
+  Tools: [
+    "OpenAI",
+    "Gemini",
+    "Authjs",
+    "Clerk",
+    "Stripe",
+    "VsCode",
+    "Git",
+    "Warp",
+  ],
 };

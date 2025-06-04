@@ -41,7 +41,6 @@
 ## About Us Section
 
 [] - Add actual bio, experience & skills data
-[] - Use <https://animated-tabs-one.vercel.app> for animated tabs
 
 ## Blogs Section
 
@@ -50,8 +49,13 @@
 [] - Handle `` to highlight text
 [] - Add file name for code blocks
 [] - Handle Link to be opened in new tab
-[] - Add blog of how I added next-view-transition
 [] - Views & Likes
+[] - Blog Idea -
+    1. How I added next-view-transition
+    2. RPA with Selenium
+    3. Prisma Admin for Next.js
+    4. Implementing Gemini Voice Agent with Twilio
+    5. What is Celery, Worker, Flower, Beat & Setup with Redis, FastAPI
 
 ## Projects Section
 
