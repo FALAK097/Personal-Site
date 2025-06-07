@@ -2,7 +2,7 @@ import { forwardRef } from "react";
 import { motion } from "framer-motion";
 import { Badge } from "@/components/ui/badge";
 import { SkillsLogo } from "@/components/custom/skills-logo";
-import { ChevronRightIcon } from "@/components/icons";
+import { FormattedText } from "@/components/custom/formatted-text";
 import { experiences } from "@/lib/about-data";
 
 export const ExperienceSection = forwardRef((props, ref) => {
@@ -51,11 +51,11 @@ export const ExperienceSection = forwardRef((props, ref) => {
               </div>
 
               <div>
-                <ul className="space-y-1 text-sm text-muted-foreground">
+                <ul className="space-y-2 text-sm text-muted-foreground">
                   {job.achievements.map((achievement, i) => (
-                    <li key={i} className="flex items-start">
-                      <ChevronRightIcon />
-                      <span>{achievement}</span>
+                    <li key={i} className="flex items-start gap-2">
+                      <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-purple-500/50 flex-shrink-0" />
+                      <FormattedText text={achievement} />
                     </li>
                   ))}
                 </ul>

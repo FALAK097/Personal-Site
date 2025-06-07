@@ -27,6 +27,7 @@
 [X] - When hovered over skills logo image is also hovered
 [X] - Add more projects
 [X] - Make schedule call button mobile responsive
+[X] - Add actual bio, experience & skills data
 
 ## Overall
 
@@ -38,10 +39,6 @@
 [] - Add gradient
 [] - Add SEO meta tags
 [] - Contribute to <https://github.com/pqoqubbw/icons> with RSS icon
-
-## About Us Section
-
-[] - Add actual bio, experience & skills data
 
 ## Blogs Section
 

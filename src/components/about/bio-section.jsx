@@ -1,5 +1,6 @@
 import { forwardRef } from "react";
 import { motion } from "framer-motion";
+import { FormattedText } from "@/components/custom/formatted-text";
 
 export const BioSection = forwardRef((props, ref) => {
   return (
@@ -14,32 +15,32 @@ export const BioSection = forwardRef((props, ref) => {
     >
       <div className="space-y-4 text-muted-foreground">
         <p>
-          My journey into the world of coding began during my high school years
-          when I first discovered the magic of creating something from nothing
-          but lines of code. What started as curiosity quickly evolved into
-          passion as I spent countless nights exploring different programming
-          languages and building small projects.
+          <FormattedText
+            text={
+              "My journey into coding began back in `2016`, when I was a `14-year-old` 8th grader introduced to Java and C++. Like most students at the time, I didn't really understand what I was doing—I would memorize programs like `Hello World`, `Fibonacci series`, and `Palindrome checkers` just to get through exams. But every time a program ran successfully, it sparked a sense of excitement and curiosity in me. That early spark led me to pursue a Diploma in Computer Engineering, where I finally began to understand how computers and networks actually worked."
+            }
+          />
         </p>
         <p>
-          I remember the excitement of completing my first functional website—a
-          simple blog that barely worked but felt like a monumental achievement.
-          That early success fueled my determination to dive deeper into the
-          vast ocean of software development.
+          <FormattedText
+            text={
+              "In `July 2022`, I took my first real step into web development by building two educational websites using `HTML`, `CSS`, `JavaScript`, and `SCSS`. I even hosted them by dragging and dropping files directly into GitHub—looking back, it’s funny how scrappy that process was, but it marked a turning point in my learning."
+            }
+          />
         </p>
         <p>
-          Throughout my academic years, I balanced formal education with
-          self-directed learning, always staying ahead of the curve by
-          experimenting with emerging technologies. The open-source community
-          became my virtual classroom, where I learned not just how to code, but
-          how to collaborate, receive feedback, and contribute to something
-          larger than myself.
+          <FormattedText
+            text={
+              "Soon after, I landed an internship at a startup in `January 2023`, where I worked for `7 months`. It was my first exposure to real-world software development, and I learned a lot just by observing how actual systems were built and shipped (more on that in the `experience section`). After the internship, I spent the next year alongside college diving deep into self-learning—exploring modern tech stacks, improving my fundamentals, and building projects that helped me grow as a developer."
+            }
+          />
         </p>
         <p>
-          Today, I approach each project with the same enthusiasm I had when
-          writing my first "Hello World" program, combined with years of
-          experience and technical expertise. I believe that great software is
-          born at the intersection of technical excellence and human-centered
-          design—a philosophy that guides my work every day.
+          <FormattedText
+            text={
+              "In `July 2024`, I rejoined the same startup—this time as a `Software Engineer` —leading teams and building production-grade AI products. Despite the progress and experience, I still approach coding with the same enthusiasm I had when I first got curious about `Hello World`. I continue to code almost every day, and building beautiful, meaningful user interfaces has become one of the most fulfilling parts of my journey."
+            }
+          />
         </p>
       </div>
     </motion.section>
