@@ -8,6 +8,7 @@ import { RecentPosts } from "@/components/blog/recent-posts";
 import { getAllPosts } from "@/lib/mdx";
 import { getNowPlaying } from "@/actions/spotify";
 import { SpotifyNowPlaying } from "@/components/custom/spotify-now-playing";
+import { FootballGoalAnimation } from "@/components/custom/football-goal-animation";
 
 export const metadata = {
   title: "Falak's Portfolio",
@@ -40,6 +41,9 @@ export default async function Home() {
           <GitHubCalendarChart />
         </div>
       </main>
+      <div className="mx-auto max-w-4xl container">
+        <FootballGoalAnimation />
+      </div>
       <Footer />
     </div>
   );

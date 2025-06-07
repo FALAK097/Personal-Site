@@ -31,9 +31,11 @@
 [X] - Replace the <https://falak-gala.vercel.app> with new portfolio
 [X] - Add a favicon
 [X] - Add SEO meta tags
+[X] - Add a football and some artifacts on Home page hanging around
 
 ## Overall
 
+[] - Google Report <https://pagespeed.web.dev/analysis/https-falak-gala-vercel-app/684fro2brv>
 [] - Add a profile pic
 [] - Test the rate limit on contact form
 [] - Custom mouse cusror
@@ -70,5 +72,4 @@
 [] - Show a indication if I am online or offline based on my activity on vscode or github
 [] - Add bookmarks section
 [] - Custom Scrollbar
-[] - Add a football and some artifacts on Home page hanging around
 [] - Show country, and hello based on user's location
