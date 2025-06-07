@@ -32,6 +32,7 @@
 [X] - Add a favicon
 [X] - Add SEO meta tags
 [X] - Add a football and some artifacts on Home page hanging around
+[X] - Add bookmarks section
 
 ## Overall
 
@@ -70,6 +71,5 @@
 [] - Improve the style of mail I receive
 [] - Some stats like Most Productive on which day(based on commits, which hour of day, most used language and all)
 [] - Show a indication if I am online or offline based on my activity on vscode or github
-[] - Add bookmarks section
 [] - Custom Scrollbar
 [] - Show country, and hello based on user's location

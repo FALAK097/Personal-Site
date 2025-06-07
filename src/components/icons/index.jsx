@@ -18,3 +18,5 @@ export { HeartIcon } from "./heart";
 export { ChevronRightIcon } from "./chevron-right";
 export { RssIcon } from "./rss";
 export { CalendarDaysIcon } from "./calendar-days";
+export { GridIcon } from "./grid";
+export { ListIcon } from "./list";

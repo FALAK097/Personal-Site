@@ -21,6 +21,7 @@ export function Navbar() {
     { href: "/blog", label: "Blog" },
     { href: "/projects", label: "Projects" },
     { href: "/hire-me", label: "HireMe" },
+    { href: "/bookmarks", label: "Bookmarks" },
   ];
 
   useEffect(() => {
