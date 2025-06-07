@@ -26,6 +26,7 @@
 [X] - Replace Image to not show the scrollbar
 [X] - When hovered over skills logo image is also hovered
 [X] - Add more projects
+[X] - Make schedule call button mobile responsive
 
 ## Overall
 
@@ -36,7 +37,6 @@
 [] - Hover link preview
 [] - Add gradient
 [] - Add SEO meta tags
-[] - Make schedule call button mobile responsive 
 [] - Contribute to <https://github.com/pqoqubbw/icons> with RSS icon
 
 ## About Us Section
@@ -69,5 +69,6 @@
 [] - Improve the style of mail I receive
 [] - Some stats like Most Productive on which day(based on commits, which hour of day, most used language and all)
 [] - Show a indication if I am online or offline based on my activity on vscode or github
+[] - Add bookmarks section
 [] - Add a football and some artifacts on Home page hanging around
 [] - Show country, and hello based on user's location

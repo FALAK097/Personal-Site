@@ -17,7 +17,7 @@ export default function HireMePage() {
               Feel free to reach out if you&apos;d like to work together or
               simply discuss ideas.
             </p>
-            <div className="flex gap-4">
+            <div className="flex flex-col sm:flex-row gap-4">
               <Button
                 asChild
                 size="lg"

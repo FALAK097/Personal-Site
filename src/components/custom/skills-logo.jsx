@@ -34,11 +34,25 @@ const skillLogos = {
   },
   "React Native": { logo: "/skills/react-native.svg", name: "React Native" },
   Expo: { logo: "/skills/expo.svg", name: "Expo" },
+  Shadcn: {
+    logo: {
+      light: "/skills/shadcn-light.svg",
+      dark: "/skills/shadcn.svg",
+    },
+    name: "Shadcn",
+  },
+  Motion: { logo: "/skills/motion.svg", name: "Motion" },
   Tailwind: { logo: "/skills/tailwindcss.svg", name: "Tailwind" },
   Sass: { logo: "/skills/sass.svg", name: "Sass" },
   Bootstrap: { logo: "/skills/bootstrap.svg", name: "Bootstrap" },
   Authjs: { logo: "/skills/authjs.svg", name: "Authjs" },
-  Clerk: { logo: "/skills/clerk.jpeg", name: "Clerk" },
+  Clerk: {
+    logo: {
+      light: "/skills/clerk-light.svg",
+      dark: "/skills/clerk.svg",
+    },
+    name: "Clerk",
+  },
   Prisma: { logo: "/skills/prisma.svg", name: "Prisma" },
   Drizzle: { logo: "/skills/drizzle.svg", name: "Drizzle" },
   Stripe: { logo: "/skills/stripe.jpeg", name: "Stripe" },
@@ -63,18 +77,30 @@ const skillLogos = {
   Render: { logo: "/skills/render.jpg", name: "Render" },
   Vercel: {
     logo: {
-      light: "/skills/vercel.svg",
-      dark: "/skills/vercel-light.svg",
+      light: "/skills/vercel-light.svg",
+      dark: "/skills/vercel.svg",
     },
     name: "Vercel",
   },
   "GitHub API": {
-    logo: <GithubIcon size={24} />,
+    logo: {
+      light: "/skills/github-light.svg",
+      dark: "/skills/github.svg",
+    },
     name: "GitHub API",
   },
   Git: { logo: "/skills/git.svg", name: "Git" },
   Warp: { logo: "/skills/warp.svg", name: "Warp" },
   VsCode: { logo: "/skills/vscode.svg", name: "Vs Code" },
+  Pnpm: {
+    logo: {
+      light: "/skills/pnpm-light.svg",
+      dark: "/skills/pnpm.svg",
+    },
+    name: "Pnpm",
+  },
+  Postman: { logo: "/skills/postman.svg", name: "Postman" },
+  Posthog: { logo: "/skills/posthog.svg", name: "Posthog" },
 };
 
 export const SkillsLogo = ({ skill, index }) => {
