@@ -10,8 +10,11 @@ import "@/styles/globals.css";
 import { Toaster } from "@/components/ui/toaster";
 
 export const metadata = {
-  title: "Personal Portfolio",
-  description: "My spot on the web for writing, projects, and tutorials",
+  title: {
+    default: "Falak Gala's Portfolio",
+    template: "%s | Falak Gala's Portfolio",
+  },
+  description: "My personal space on the web",
 };
 
 export default function RootLayout({ children }) {

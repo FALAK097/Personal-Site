@@ -1,7 +1,13 @@
 import Link from "next/link";
 
-import {Navbar} from "@/components/navbar";
-import {Footer} from "@/components/footer";
+import { Navbar } from "@/components/navbar";
+import { Footer } from "@/components/footer";
+
+export const metadata = {
+  title: "Subscription Successful",
+  description:
+    "Thank you for subscribing to my newsletter! You'll receive updates about new content and projects.",
+};
 
 export default function NewsletterSuccessPage() {
   return (

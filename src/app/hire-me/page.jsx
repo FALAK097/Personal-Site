@@ -4,6 +4,12 @@ import { CalendarDaysIcon, TrendingUpIcon } from "@/components/icons";
 import { Navbar } from "@/components/navbar";
 import { Button } from "@/components/ui/button";
 
+export const metadata = {
+  title: "Hire Me",
+  description:
+    "Interested in working together? Let's discuss how I can help with your next project. Available for full-time and freelance opportunities.",
+};
+
 export default function HireMePage() {
   return (
     <div className="flex flex-col min-h-[calc(100vh-2rem)]">

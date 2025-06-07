@@ -7,6 +7,24 @@ import { Footer } from "@/components/footer";
 import { MdxCodeBlock } from "@/components/blog/mdx-code-block";
 import BlogDetail from "@/components/blog/blog-detail";
 
+export async function generateMetadata({ params }) {
+  const post = await getPostBySlug(params.slug);
+
+  if (!post) {
+    return {
+      title: "Post Not Found",
+      description: "The requested blog post could not be found.",
+    };
+  }
+
+  return {
+    title: `${post.title} | Falak Gala's Blog`,
+    description:
+      post.description ||
+      "Read my thoughts on software development and technology.",
+  };
+}
+
 export async function generateStaticParams() {
   const posts = await getAllPosts();
   return posts.map((post) => ({

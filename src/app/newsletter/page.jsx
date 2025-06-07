@@ -1,5 +1,11 @@
-import {Navbar} from "@/components/navbar";
-import {Footer} from "@/components/footer";
+import { Navbar } from "@/components/navbar";
+import { Footer } from "@/components/footer";
+
+export const metadata = {
+  title: "Newsletter",
+  description:
+    "Subscribe to my newsletter to receive updates about new blog posts, projects, and tech insights directly in your inbox.",
+};
 
 export default function NewsletterPage() {
   return (
@@ -10,14 +16,17 @@ export default function NewsletterPage() {
           <div>
             <h1 className="text-4xl font-bold mb-4">Keep in Touch</h1>
             <p className="text-lg text-muted-foreground">
-              If you&apos;d like to receive blog post updates straight to your inbox, feel free to
-              subscribe to my newsletter 📬
+              If you&apos;d like to receive blog post updates straight to your
+              inbox, feel free to subscribe to my newsletter 📬
             </p>
           </div>
           <div className="max-w-xl">
             <form className="space-y-4">
               <div>
-                <label className="block text-sm font-medium mb-2" htmlFor="email">
+                <label
+                  className="block text-sm font-medium mb-2"
+                  htmlFor="email"
+                >
                   Email Address
                 </label>
                 <input

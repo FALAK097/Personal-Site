@@ -1,5 +1,11 @@
 export const dynamic = "force-dynamic";
 
+export const metadata = {
+  title: "Home",
+  description:
+    "Welcome to my personal portfolio. I'm a developer passionate about building great software and sharing my knowledge through writing.",
+};
+
 import { Navbar } from "@/components/navbar";
 import { Profile } from "@/components/profile";
 import { Footer } from "@/components/footer";

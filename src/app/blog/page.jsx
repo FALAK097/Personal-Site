@@ -4,6 +4,12 @@ import { BlogList } from "@/components/blog/blog-list";
 import { getAllPosts } from "@/lib/mdx";
 import { generateRSSFeed } from "@/lib/rss";
 
+export const metadata = {
+  title: "Blog",
+  description:
+    "Read my thoughts on software development, technology, and personal experiences in the tech industry.",
+};
+
 export default async function BlogPage() {
   const posts = await getAllPosts();
 

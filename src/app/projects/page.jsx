@@ -3,6 +3,12 @@ import { Navbar } from "@/components/navbar";
 import { ProjectList } from "@/components/project-list";
 import { projects } from "@/lib/project-data";
 
+export const metadata = {
+  title: "Projects",
+  description:
+    "Explore my portfolio of projects, including web applications, saas products and personal experiments.",
+};
+
 export default function ProjectsPage() {
   return (
     <div className="flex flex-col min-h-[calc(100vh-2rem)]">

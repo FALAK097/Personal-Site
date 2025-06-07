@@ -1,3 +1,9 @@
+export const metadata = {
+  title: "About Me",
+  description:
+    "Learn more about me, my background, skills, and what drives me as a developer.",
+};
+
 import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
 import { AboutContent } from "@/components/about/about-content";
