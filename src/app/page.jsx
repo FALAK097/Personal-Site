@@ -1,11 +1,5 @@
 export const dynamic = "force-dynamic";
 
-export const metadata = {
-  title: "Home",
-  description:
-    "Welcome to my personal portfolio. I'm a developer passionate about building great software and sharing my knowledge through writing.",
-};
-
 import { Navbar } from "@/components/navbar";
 import { Profile } from "@/components/profile";
 import { Footer } from "@/components/footer";
@@ -14,6 +8,12 @@ import { RecentPosts } from "@/components/blog/recent-posts";
 import { getAllPosts } from "@/lib/mdx";
 import { getNowPlaying } from "@/actions/spotify";
 import { SpotifyNowPlaying } from "@/components/custom/spotify-now-playing";
+
+export const metadata = {
+  title: "Falak's Portfolio",
+  description:
+    "Welcome to my personal portfolio. I'm a developer passionate about building great software and sharing my knowledge through writing.",
+};
 
 export default async function Home() {
   const allPosts = await getAllPosts();
