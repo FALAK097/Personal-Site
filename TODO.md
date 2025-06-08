@@ -34,6 +34,7 @@
 [X] - Add a football and some artifacts on Home page hanging around
 [X] - Add bookmarks section
 [X] - Fix all count of bookmarks
+[X] - Custom Scrollbar
 
 ## Overall
 
@@ -43,6 +44,7 @@
 [] - Custom mouse cusror
 [] - Hover link preview
 [] - Add gradient
+[] - Improve initial load performance
 
 ## Blogs Section
 
@@ -71,5 +73,4 @@
 [] - Improve the style of mail I receive
 [] - Some stats like Most Productive on which day(based on commits, which hour of day, most used language and all)
 [] - Show a indication if I am online or offline based on my activity on vscode or github
-[] - Custom Scrollbar
 [] - Show country, and hello based on user's location
