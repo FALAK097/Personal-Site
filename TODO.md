@@ -33,6 +33,7 @@
 [X] - Add SEO meta tags
 [X] - Add a football and some artifacts on Home page hanging around
 [X] - Add bookmarks section
+[X] - Fix all count of bookmarks
 
 ## Overall
 
@@ -42,7 +43,6 @@
 [] - Custom mouse cusror
 [] - Hover link preview
 [] - Add gradient
-[] - Contribute to <https://github.com/pqoqubbw/icons> with RSS icon
 
 ## Blogs Section
 

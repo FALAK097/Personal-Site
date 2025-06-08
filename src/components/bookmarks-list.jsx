@@ -52,7 +52,7 @@ export const BookmarksList = () => {
                   {tag}
                   {tag === "all" ? (
                     <span className="ml-1 text-xs text-purple-500 font-semibold">
-                      ({filteredBookmarks.length})
+                      ({bookmarks.length})
                     </span>
                   ) : (
                     <span className="ml-1 text-xs text-purple-400 font-medium">
