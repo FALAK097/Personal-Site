@@ -35,13 +35,13 @@
 [X] - Add bookmarks section
 [X] - Fix all count of bookmarks
 [X] - Custom Scrollbar
+[X] - Custom mouse cusror
 
 ## Overall
 
 [] - Google Report <https://pagespeed.web.dev/analysis/https-falak-gala-vercel-app/684fro2brv>
 [] - Add a profile pic
 [] - Test the rate limit on contact form
-[] - Custom mouse cusror
 [] - Hover link preview
 [] - Add gradient
 [] - Improve initial load performance

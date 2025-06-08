@@ -213,6 +213,13 @@ layer(base);
   scrollbar-color: #a855f7 transparent;
 }
 
+/* Show default touch for mobile */
+@media (hover: none) and (pointer: coarse) {
+  * {
+    cursor: auto !important;
+  }
+}
+
 ::view-transition-old(root),
 ::view-transition-new(root) {
   animation: none !important;

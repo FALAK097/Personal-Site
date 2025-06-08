@@ -17,7 +17,7 @@ export const BioSection = forwardRef((props, ref) => {
         <p>
           <FormattedText
             text={
-              "My journey into coding began back in `2016`, when I was a `14-year-old` 8th grader introduced to Java and C++. Like most students at the time, I didn't really understand what I was doing—I would memorize programs like `Hello World`, `Fibonacci series`, and `Palindrome checkers` just to get through exams. But every time a program ran successfully, it sparked a sense of excitement and curiosity in me. That early spark led me to pursue a Diploma in Computer Engineering, where I finally began to understand how computers and networks actually worked."
+              "My journey into coding began back in `2016`, when I was a `14-year-old` introduced to Java and C++. Like most students at the time, I didn't really understand what I was doing—I would memorize programs like `Hello World`, `Fibonacci series`, and `Palindrome checkers` just to get through exams. But every time a program ran successfully, it sparked a sense of excitement and curiosity in me. That early spark led me to pursue a Diploma in Computer Engineering, where I finally began to understand how computers and networks actually worked."
             }
           />
         </p>
