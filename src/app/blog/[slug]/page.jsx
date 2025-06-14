@@ -7,8 +7,10 @@ import { Footer } from "@/components/footer";
 import { MdxCodeBlock } from "@/components/blog/mdx-code-block";
 import BlogDetail from "@/components/blog/blog-detail";
 
-export async function generateMetadata({ params }) {
-  const post = await getPostBySlug(params.slug);
+export async function generateMetadata(context) {
+  const params = await context.params;
+  const slug = params.slug;
+  const post = await getPostBySlug(slug);
 
   if (!post) {
     return {
@@ -32,8 +34,8 @@ export async function generateStaticParams() {
   }));
 }
 
-export default async function BlogPost({ params: rawParams }) {
-  const params = await Promise.resolve(rawParams);
+export default async function BlogPost(context) {
+  const params = await context.params;
   const slug = params.slug;
   const post = await getPostBySlug(slug);
 

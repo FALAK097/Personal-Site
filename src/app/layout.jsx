@@ -6,7 +6,7 @@ import { ThemeProvider } from "@/components/theme-provider";
 import { ScrollProgress } from "@/components/custom/scroll-progress";
 import { CircleBackground } from "@/components/custom/circle-background";
 import { CustomCursor } from "@/components/custom/custom-cursor";
-
+import { AskAIWidget } from "@/components/ai/ask-ai-widget";
 import "@/styles/globals.css";
 import { Toaster } from "@/components/ui/toaster";
 
@@ -40,6 +40,7 @@ export default function RootLayout({ children }) {
             </div>
             <ScrollProgress />
             <Toaster />
+            <AskAIWidget />
           </ThemeProvider>
           <Analytics />
           <SpeedInsights />

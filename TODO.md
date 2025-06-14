@@ -36,6 +36,11 @@
 [X] - Fix all count of bookmarks
 [X] - Custom Scrollbar
 [X] - Custom mouse cusror
+[X] - Add custom animated icons
+[X] - Remove the ENTER on FOOTBALL KICK when on input
+[X] - Smooth scroll when click on down arrow
+[X] - Improve the suggested options, remove icons and improve ui
+[X] - Improve the UI styling (Make it minimal design)
 
 ## Overall
 
@@ -65,6 +70,17 @@
 
 [] - Add video on hover of image
 [] - Add portfolio project
+
+## AI Bot
+
+[] - Add upstash/redis caching for common questions
+[] - Handle out of context questions
+[] - On ESC should close
+[] - CTRL+K to open AI Bot
+[] - On CTRL+ENTER msg should be sent
+[] - Hide suggested options scrollbar
+[] - Add more context for AI to answer
+[] - Add tooltip
 
 ## Extra Features
 
