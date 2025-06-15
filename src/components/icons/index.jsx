@@ -23,3 +23,8 @@ export { GridIcon } from "./grid";
 export { ListIcon } from "./list";
 export { SparklesIcon } from "./sparkles";
 export { SendIcon } from "./send";
+export { SquareIcon } from "./square";
+export { UserIcon } from "./user";
+export { ShipIcon } from "./ship";
+export { CircleHelpIcon } from "./circle-help";
+export { FilePenLineIcon } from "./file-pen-line";

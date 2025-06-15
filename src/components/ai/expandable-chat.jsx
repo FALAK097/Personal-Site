@@ -34,12 +34,23 @@ const ExpandableChat = ({
   size = "md",
   icon,
   children,
+  open: controlledOpen,
+  onOpenChange,
   ...props
 }) => {
-  const [isOpen, setIsOpen] = useState(false);
+  const [internalOpen, setInternalOpen] = useState(false);
   const chatRef = useRef(null);
+  const isControlled = controlledOpen !== undefined;
+  const isOpen = isControlled ? controlledOpen : internalOpen;
 
-  const toggleChat = () => setIsOpen(!isOpen);
+  const toggleChat = () => {
+    const newOpen = !isOpen;
+    if (isControlled && onOpenChange) {
+      onOpenChange(newOpen);
+    } else {
+      setInternalOpen(newOpen);
+    }
+  };
 
   return (
     <div
@@ -109,7 +120,7 @@ const ExpandableChatToggle = ({
     variant="default"
     onClick={toggleChat}
     className={cn(
-      "w-12 h-12 cursor-pointer rounded-full shadow-lg flex items-center justify-center hover:shadow-xl hover:shadow-purple-500/30 transition-all duration-300 bg-transparent hover:bg-transparent text-primary",
+      "w-12 h-12 cursor-pointer rounded-full shadow-lg flex items-center justify-center hover:shadow-xl hover:shadow-purple-500/30 transition-all duration-300 bg-transparent hover:bg-transparent text-primary relative group",
       className
     )}
     {...props}
@@ -119,6 +130,9 @@ const ExpandableChatToggle = ({
     ) : (
       icon || <SparklesIcon className="h-6 w-6" />
     )}
+    <div className="absolute bottom-16 z-50 left-1/2 transform -translate-x-1/2 text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none whitespace-nowrap">
+      {isOpen ? "Close (Esc)" : "Open (⌘K)"}
+    </div>
   </Button>
 );
 

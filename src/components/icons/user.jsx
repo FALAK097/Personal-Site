@@ -4,28 +4,29 @@ import { motion, useAnimation } from "motion/react";
 import { forwardRef, useCallback, useImperativeHandle, useRef } from "react";
 import { cn } from "@/lib/utils";
 
-const pathVariants = {
-  normal: { d: "m19 12-7 7-7-7", translateY: 0 },
+const pathVariant = {
+  normal: { pathLength: 1, opacity: 1, pathOffset: 0 },
   animate: {
-    d: "m19 12-7 7-7-7",
-    translateY: [0, -3, 0],
-    transition: {
-      duration: 0.4,
-    },
+    pathLength: [0, 1],
+    opacity: [0, 1],
+    pathOffset: [1, 0],
   },
 };
 
-const secondPathVariants = {
-  normal: { d: "M12 5v14" },
+const circleVariant = {
+  normal: {
+    pathLength: 1,
+    pathOffset: 0,
+    scale: 1,
+  },
   animate: {
-    d: ["M12 5v14", "M12 5v9", "M12 5v14"],
-    transition: {
-      duration: 0.4,
-    },
+    pathLength: [0, 1],
+    pathOffset: [1, 0],
+    scale: [0.5, 1],
   },
 };
 
-const ArrowDownIcon = forwardRef(
+const UserIcon = forwardRef(
   ({ onMouseEnter, onMouseLeave, className, size = 18, ...props }, ref) => {
     const controls = useAnimation();
     const isControlledRef = useRef(false);
@@ -60,7 +61,6 @@ const ArrowDownIcon = forwardRef(
       },
       [controls, onMouseLeave]
     );
-
     return (
       <div
         className={cn(className)}
@@ -79,14 +79,21 @@ const ArrowDownIcon = forwardRef(
           strokeLinecap="round"
           strokeLinejoin="round"
         >
-          <motion.path
-            d="m19 12-7 7-7-7"
-            variants={pathVariants}
+          <motion.circle
+            cx="12"
+            cy="8"
+            r="5"
             animate={controls}
+            variants={circleVariant}
           />
+
           <motion.path
-            d="M12 5v14"
-            variants={secondPathVariants}
+            d="M20 21a8 8 0 0 0-16 0"
+            variants={pathVariant}
+            transition={{
+              delay: 0.2,
+              duration: 0.4,
+            }}
             animate={controls}
           />
         </svg>
@@ -95,6 +102,6 @@ const ArrowDownIcon = forwardRef(
   }
 );
 
-ArrowDownIcon.displayName = "ArrowDownIcon";
+UserIcon.displayName = "UserIcon";
 
-export { ArrowDownIcon };
+export { UserIcon };

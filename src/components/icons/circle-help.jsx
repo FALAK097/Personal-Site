@@ -4,28 +4,12 @@ import { motion, useAnimation } from "motion/react";
 import { forwardRef, useCallback, useImperativeHandle, useRef } from "react";
 import { cn } from "@/lib/utils";
 
-const pathVariants = {
-  normal: { d: "m19 12-7 7-7-7", translateY: 0 },
-  animate: {
-    d: "m19 12-7 7-7-7",
-    translateY: [0, -3, 0],
-    transition: {
-      duration: 0.4,
-    },
-  },
+const variants = {
+  normal: { rotate: 0 },
+  animate: { rotate: [0, -10, 10, -10, 0] },
 };
 
-const secondPathVariants = {
-  normal: { d: "M12 5v14" },
-  animate: {
-    d: ["M12 5v14", "M12 5v9", "M12 5v14"],
-    transition: {
-      duration: 0.4,
-    },
-  },
-};
-
-const ArrowDownIcon = forwardRef(
+const CircleHelpIcon = forwardRef(
   ({ onMouseEnter, onMouseLeave, className, size = 18, ...props }, ref) => {
     const controls = useAnimation();
     const isControlledRef = useRef(false);
@@ -79,22 +63,24 @@ const ArrowDownIcon = forwardRef(
           strokeLinecap="round"
           strokeLinejoin="round"
         >
-          <motion.path
-            d="m19 12-7 7-7-7"
-            variants={pathVariants}
+          <circle cx="12" cy="12" r="10" />
+          <motion.g
+            variants={variants}
+            transition={{
+              duration: 0.5,
+              ease: "easeInOut",
+            }}
             animate={controls}
-          />
-          <motion.path
-            d="M12 5v14"
-            variants={secondPathVariants}
-            animate={controls}
-          />
+          >
+            <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3" />
+            <path d="M12 17h.01" />
+          </motion.g>
         </svg>
       </div>
     );
   }
 );
 
-ArrowDownIcon.displayName = "ArrowDownIcon";
+CircleHelpIcon.displayName = "CircleHelpIcon";
 
-export { ArrowDownIcon };
+export { CircleHelpIcon };

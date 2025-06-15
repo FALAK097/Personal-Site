@@ -42,6 +42,11 @@
 [X] - Improve the suggested options, remove icons and improve ui
 [X] - Improve the UI styling (Make it minimal design)
 [X] - Add more context for AI to answer
+[X] - Add tooltip
+[X] - On ESC should close
+[X] - CTRL+K to open AI Bot
+[X] - On CTRL+ENTER msg should be sent
+[X] - Add / command options
 
 ## Overall
 
@@ -76,12 +81,9 @@
 
 [] - Add upstash/redis caching for common questions
 [] - Handle out of context questions
-[] - On ESC should close
-[] - CTRL+K to open AI Bot
-[] - On CTRL+ENTER msg should be sent
-[] - Add / command options
 [] - Hide suggested options scrollbar
-[] - Add tooltip
+[] - Convert mdx response to text
+[] - Context of previous conversation
 
 ## Extra Features
 

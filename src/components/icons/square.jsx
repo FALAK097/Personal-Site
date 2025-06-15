@@ -5,27 +5,26 @@ import { forwardRef, useCallback, useImperativeHandle, useRef } from "react";
 import { cn } from "@/lib/utils";
 
 const pathVariants = {
-  normal: { d: "m19 12-7 7-7-7", translateY: 0 },
+  normal: {
+    scale: 1,
+    opacity: 1,
+    pathLength: 1,
+    transition: {
+      duration: 0.3,
+    },
+  },
   animate: {
-    d: "m19 12-7 7-7-7",
-    translateY: [0, -3, 0],
+    scale: [1, 0.95, 1],
+    opacity: [1, 0.7, 1],
+    pathLength: [1, 0.9, 1],
     transition: {
       duration: 0.4,
+      ease: "easeInOut",
     },
   },
 };
 
-const secondPathVariants = {
-  normal: { d: "M12 5v14" },
-  animate: {
-    d: ["M12 5v14", "M12 5v9", "M12 5v14"],
-    transition: {
-      duration: 0.4,
-    },
-  },
-};
-
-const ArrowDownIcon = forwardRef(
+const SquareIcon = forwardRef(
   ({ onMouseEnter, onMouseLeave, className, size = 18, ...props }, ref) => {
     const controls = useAnimation();
     const isControlledRef = useRef(false);
@@ -79,14 +78,15 @@ const ArrowDownIcon = forwardRef(
           strokeLinecap="round"
           strokeLinejoin="round"
         >
-          <motion.path
-            d="m19 12-7 7-7-7"
+          <motion.rect
+            x="3"
+            y="3"
+            width="18"
+            height="18"
+            rx="2"
+            ry="2"
             variants={pathVariants}
-            animate={controls}
-          />
-          <motion.path
-            d="M12 5v14"
-            variants={secondPathVariants}
+            initial="normal"
             animate={controls}
           />
         </svg>
@@ -95,6 +95,6 @@ const ArrowDownIcon = forwardRef(
   }
 );
 
-ArrowDownIcon.displayName = "ArrowDownIcon";
+SquareIcon.displayName = "SquareIcon";
 
-export { ArrowDownIcon };
+export { SquareIcon };
