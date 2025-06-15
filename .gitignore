@@ -16,6 +16,9 @@
 # content layer
 /.contentlayer
 
+# data
+src/data
+
 # testing
 /coverage
 

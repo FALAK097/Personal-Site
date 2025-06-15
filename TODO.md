@@ -41,6 +41,7 @@
 [X] - Smooth scroll when click on down arrow
 [X] - Improve the suggested options, remove icons and improve ui
 [X] - Improve the UI styling (Make it minimal design)
+[X] - Add more context for AI to answer
 
 ## Overall
 
@@ -78,8 +79,8 @@
 [] - On ESC should close
 [] - CTRL+K to open AI Bot
 [] - On CTRL+ENTER msg should be sent
+[] - Add / command options
 [] - Hide suggested options scrollbar
-[] - Add more context for AI to answer
 [] - Add tooltip
 
 ## Extra Features

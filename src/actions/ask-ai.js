@@ -1,17 +1,20 @@
 "use server";
 
 import { OpenAI } from "openai";
-import { aiContext } from "@/lib/ai-context";
+import { generateAIContext } from "@/lib/ai-context";
 
 export async function askFalakAI(question) {
+  const context = await generateAIContext();
+
   const prompt = `
 Context:
-${aiContext}
+${context}
 
 User Question:
 ${question}
 
 Answer:
+Respond casually and directly, like Falak explaining his own work to another dev. Be accurate to the source content, don't make up structures or details. If unsure, say so briefly.
 `;
 
   const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
