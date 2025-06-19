@@ -49,7 +49,7 @@ export const AskAIWidget = () => {
   const [messages, setMessages] = useState([
     {
       id: 1,
-      content: "Hi! I'm Falak's AI Assistant. Ask me anything about him! ✨",
+      content: "Hi! I'm Falak's AI Persona. Ask me anything about him! ✨",
       sender: "ai",
     },
   ]);
@@ -208,6 +208,25 @@ export const AskAIWidget = () => {
     setTimeout(() => inputRef.current?.focus(), 0);
   };
 
+  const linkifyText = (text) => {
+    const urlRegex = /(https?:\/\/[^\s]+)/g;
+    return text.split(urlRegex).map((part, i) =>
+      urlRegex.test(part) ? (
+        <a
+          key={i}
+          href={part}
+          className="underline text-purple-600 hover:text-purple-800"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          {part}
+        </a>
+      ) : (
+        part
+      )
+    );
+  };
+
   return (
     <div className="fixed bottom-4 right-4 z-50">
       <ExpandableChat
@@ -225,8 +244,9 @@ export const AskAIWidget = () => {
               >
                 <ChatBubbleMessage
                   variant={message.sender === "user" ? "sent" : "received"}
+                  className="break-words whitespace-pre-wrap"
                 >
-                  {message.content}
+                  {linkifyText(message.content)}
                 </ChatBubbleMessage>
               </ChatBubble>
             ))}

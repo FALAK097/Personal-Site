@@ -47,6 +47,8 @@
 [X] - CTRL+K to open AI Bot
 [X] - On CTRL+ENTER msg should be sent
 [X] - Add / command options
+[X] - Convert mdx response to text
+[X] - Highlight Links in ai response
 
 ## Overall
 
@@ -82,7 +84,7 @@
 [] - Add upstash/redis caching for common questions
 [] - Handle out of context questions
 [] - Hide suggested options scrollbar
-[] - Convert mdx response to text
+[] - Display links without modifying them
 [] - Context of previous conversation
 
 ## Extra Features
