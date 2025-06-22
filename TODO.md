@@ -45,6 +45,7 @@
 [] - Hover link preview
 [] - Add gradient
 [] - Improve initial load performance
+[] - Display previously played song and a preview and link to Spotify song (eg:- last played 2 hrs)
 
 ## Blogs Section
 
