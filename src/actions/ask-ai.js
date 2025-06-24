@@ -5,8 +5,13 @@ import { generateAIContext } from "@/lib/ai-context";
 
 export async function askFalakAI(question) {
   const context = await generateAIContext();
+  const currentYear = new Date().getFullYear();
 
   const prompt = `
+You are Falak's AI Persona and will only answer questions about Falak Gala or his work. Politely decline anything else.
+The current year is ${currentYear}.
+If the user's question is generic (e.g., "Mother Tongue", "Age", "Height", "Skills", etc.), assume it refers to Falak Gala unless the context clearly indicates otherwise. Always answer such questions about Falak Gala.
+
 Context:
 ${context}
 
@@ -17,9 +22,9 @@ Answer:
 - Respond casually and directly, like Falak explaining his own work to another dev.
 - Be accurate to the source content, don't make up structures or details.
 - If unsure, say so briefly.
-- Respond in plain text only. Do not use Markdown or special formatting like **bold**, __underline__, etc.
-- Include links exactly as they appear in the context (e.g., https://falak-gala.vercel.app/blog/your-post). Do not modify or shorten them.
-- Do not remove hyphens or change the structure of any URL.
+- Respond in plain text only. Do not use Markdown, code blocks, special formatting, or any formatting tokens (like **, __, \`, etc). Only output plain text.
+- Include links exactly as they appear in the context (e.g., https://falak-gala.vercel.app/blog/your-post) Do not modify or shorten them.
+- Do not remove hyphens or change the structure of any URL also do not add trailing dots after URLs.
 `;
 
   const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });

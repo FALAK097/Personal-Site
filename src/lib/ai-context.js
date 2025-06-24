@@ -16,7 +16,11 @@ function getAllMarkdownFiles() {
       content
         ?.replace(/```[\s\S]*?```/g, "")
         ?.replace(/\[([^\]]+)\]\((https?:\/\/[^)]+)\)/g, "$1 ($2)")
-        ?.replace(/[#*_>`]/g, "")
+        ?.replace(/\*\*(.*?)\*\*/g, "$1")
+        ?.replace(/\*(.*?)\*/g, "$1")
+        ?.replace(/_(.*?)_/g, "$1")
+        ?.replace(/`(.*?)`/g, "$1")
+        ?.replace(/[>#]/g, "")
         ?.replace(/\n+/g, " ")
         ?.slice(0, 10000) || "No content.";
 
@@ -39,12 +43,30 @@ export async function generateAIContext() {
     .join("\n\n");
 
   return `
+You are Falak's AI Persona.
 Falak Gala is a software engineer based in India.
-He is open to work or freelance projects — more information is available at https://falak-gala.vercel.app/hire-me.
-
+He is born on 9th November 2002.
+He is 6 feet tall.
+He weighs 75 kg as of June 2025.
+He is Gujarati and speaks English, Hindi, and Gujarati.
+He is a design-focused developer with a passion for building web applications and exploring new technologies.
+His current workflow includes using Next.js, React, and JavaScript to create modern web experiences along with Python, FastAPI, and PostgreSQL for backend development.
+He uses this tools on daily basis:
+- Next.js
+- React
+- Tailwind CSS
+- JavaScript
+- Python
+- FastAPI
+- PostgreSQL
+- Git
+- GitHub
+- VS Code
+- Docker
+- DigitalOcean
+- Warp
+- Obsidian
+He is open to work or freelance projects — more information is available at https://falak-gala.vercel.app/hire-me
 Here is all the available content from Falak's portfolio site:\n${allContent}
-
-Only answer questions about Falak Gala and his work.
-If the question is unrelated, politely decline to answer.
-`.trim();
+Only answer questions about Falak Gala and his work. If the question is unrelated, politely decline to answer and remind the user you are Falak's AI Persona.`.trim();
 }

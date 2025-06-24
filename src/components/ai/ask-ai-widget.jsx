@@ -20,27 +20,31 @@ const slashCommands = [
   {
     command: "/about",
     question: "Tell me about Falak.",
-    description: "Learn about Falak's background and experience",
+    description:
+      "Learn about Falak's background and experience in software development, keep it concise",
   },
   {
     command: "/contact",
     question: "How can I contact Falak?",
-    description: "Get Falak's contact information",
+    description:
+      "Get Falak's contact information including email, social media, cal.com link, and more",
   },
   {
     command: "/projects",
     question: "What projects has Falak worked on?",
-    description: "Explore Falak's portfolio and projects",
+    description:
+      "Explore Falak's portfolio and projects, only project names and links will be provided, go to https://falak-gala.vercel.app/projects to see the project details",
   },
   {
     command: "/blog",
-    question: "Where can I find Falak's blog posts?",
-    description: "Find Falak's latest blog posts and articles",
+    question: "What are Falak's latest blog posts?",
+    description: "Discover Falak's latest articles and insights",
   },
   {
     command: "/help",
     question: "What can I ask you?",
-    description: "Learn what you can ask the AI assistant",
+    description:
+      "Learn what you can ask the AI assistant, provide  a list of commands",
   },
 ];
 
