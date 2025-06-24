@@ -117,15 +117,19 @@ export const AskAIWidget = () => {
     const match = slashCommands.find((cmd) => cmd.command === question);
     if (match) question = match.question;
 
-    setMessages((prev) => [
-      ...prev,
-      { id: prev.length + 1, content: question, sender: "user" },
-    ]);
+    const userMessage = {
+      id: messages.length + 1,
+      content: question,
+      sender: "user",
+    };
+    setMessages((prev) => [...prev, userMessage]);
     setInput("");
+
+    const history = [...messages.slice(1), userMessage];
 
     startTransition(async () => {
       try {
-        const res = await askFalakAI(question);
+        const res = await askFalakAI(question, history);
         if (!res || typeof res !== "string") {
           setMessages((prev) => [
             ...prev,

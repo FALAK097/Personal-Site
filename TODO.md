@@ -50,6 +50,7 @@
 [X] - Convert mdx response to text
 [X] - Highlight Links in ai response
 [X] - Display links without modifying them
+[X] - Context of previous conversation
 
 ## Overall
 
@@ -85,7 +86,6 @@
 [] - Add upstash/redis caching for common questions
 [] - Handle out of context questions
 [] - Hide suggested options scrollbar
-[] - Context of previous conversation
 
 ## Extra Features
 

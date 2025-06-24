@@ -3,9 +3,19 @@
 import { OpenAI } from "openai";
 import { generateAIContext } from "@/lib/ai-context";
 
-export async function askFalakAI(question) {
+export async function askFalakAI(question, history = []) {
   const context = await generateAIContext();
   const currentYear = new Date().getFullYear();
+
+  const limitedHistory = history.slice(-8);
+  const historyText = limitedHistory
+    .map(
+      (msg, idx) =>
+        `${msg.sender === "user" ? "User" : "AI"} Message ${idx + 1}:\n${
+          msg.content
+        }`
+    )
+    .join("\n\n");
 
   const prompt = `
 You are Falak's AI Persona and will only answer questions about Falak Gala or his work. Politely decline anything else.
@@ -14,6 +24,9 @@ If the user's question is generic (e.g., "Mother Tongue", "Age", "Height", "Skil
 
 Context:
 ${context}
+
+Conversation History:
+${historyText}
 
 User Question:
 ${question}
