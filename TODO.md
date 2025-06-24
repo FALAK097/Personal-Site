@@ -62,6 +62,7 @@
 [] - Hover link preview
 [] - Add gradient
 [] - Improve initial load performance
+[] - Display Previously played song and on click it should open song on spotify
 
 ## Blogs Section
 
@@ -91,7 +92,6 @@
 ## Extra Features
 
 [] - Add newsletter setup
-[] - Ask AI button to ask anything about me
 [] - Improve the style of mail I receive
 [] - Some stats like Most Productive on which day(based on commits, which hour of day, most used language and all, total ai chats, total cached msgs)
 [] - Show a indication if I am online or offline based on my activity on vscode or github
