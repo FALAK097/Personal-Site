@@ -12,11 +12,12 @@ function getAllMarkdownFiles() {
     const raw = fs.readFileSync(fullPath, "utf8");
     const { data, content } = matter(raw);
 
-    const cleanedContent =
+    let cleanedContent =
       content
         ?.replace(/```[\s\S]*?```/g, "")
-        ?.replace(/[#*_>`-]/g, "")
-        ?.replace(/\n/g, " ")
+        ?.replace(/\[([^\]]+)\]\((https?:\/\/[^)]+)\)/g, "$1 ($2)")
+        ?.replace(/[#*_>`]/g, "")
+        ?.replace(/\n+/g, " ")
         ?.slice(0, 10000) || "No content.";
 
     return {
