@@ -2,8 +2,24 @@
 
 import { OpenAI } from "openai";
 import { generateAIContext } from "@/lib/ai-context";
+import { Redis } from "@upstash/redis";
+
+const redis = new Redis({
+  url: process.env.UPSTASH_REDIS_REST_URL,
+  token: process.env.UPSTASH_REDIS_REST_TOKEN,
+});
+
+const AI_REPLY_CACHE_PREFIX = "ai:reply:";
+const AI_REPLY_CACHE_TTL_SECONDS = 60 * 60 * 24;
 
 export async function askFalakAI(question, history = []) {
+  const cacheKey = AI_REPLY_CACHE_PREFIX + question.trim().toLowerCase();
+  const cached = await redis.get(cacheKey);
+
+  if (cached) {
+    return cached;
+  }
+
   const context = await generateAIContext();
   const currentYear = new Date().getFullYear();
 
@@ -52,5 +68,6 @@ Answer:
     completion.choices[0].message.content?.trim() ??
     "Sorry, I don't know the answer to that.";
 
+  await redis.set(cacheKey, answer, { ex: AI_REPLY_CACHE_TTL_SECONDS });
   return answer;
 }
