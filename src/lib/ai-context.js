@@ -2,7 +2,7 @@ import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
 
-const DATA_DIR = path.join(process.cwd(), "src/data");
+const DATA_DIR = path.join(process.cwd(), "public/data");
 
 function getAllMarkdownFiles() {
   const files = fs.readdirSync(DATA_DIR).filter((f) => f.endsWith(".md"));
