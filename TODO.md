@@ -62,7 +62,6 @@
 [] - Hover link preview
 [] - Add gradient
 [] - Improve initial load performance
-[] - Display Previously played song and on click it should open song on spotify
 
 ## Blogs Section
 
