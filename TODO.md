@@ -87,6 +87,8 @@
 
 [] - Add rate limiting
 [] - Hide suggested options scrollbar
+[] - Replies with **
+[] - Remove Enter Football Shoot
 
 ## Extra Features
 

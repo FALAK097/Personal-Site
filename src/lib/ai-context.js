@@ -1,41 +1,58 @@
-import fs from "fs";
-import path from "path";
 import matter from "gray-matter";
 
-const DATA_DIR = path.join(process.cwd(), "public/data");
+const BASE_URL = process.env.NEXT_PUBLIC_WEBSITE_URL;
 
-function getAllMarkdownFiles() {
-  const files = fs.readdirSync(DATA_DIR).filter((f) => f.endsWith(".md"));
-
-  return files.map((file) => {
-    const fullPath = path.join(DATA_DIR, file);
-    const raw = fs.readFileSync(fullPath, "utf8");
-    const { data, content } = matter(raw);
-
-    let cleanedContent =
-      content
-        ?.replace(/```[\s\S]*?```/g, "")
-        ?.replace(/\[([^\]]+)\]\((https?:\/\/[^)]+)\)/g, "$1 ($2)")
-        ?.replace(/\*\*(.*?)\*\*/g, "$1")
-        ?.replace(/\*(.*?)\*/g, "$1")
-        ?.replace(/_(.*?)_/g, "$1")
-        ?.replace(/`(.*?)`/g, "$1")
-        ?.replace(/[>#]/g, "")
-        ?.replace(/\n+/g, " ")
-        ?.slice(0, 10000) || "No content.";
-
-    return {
-      title: data.title || file.replace(".md", ""),
-      url: data.url || "",
-      content: cleanedContent,
-    };
-  });
-}
+const FILENAMES = [
+  "falak-gala.vercel.app_.md",
+  "falak-gala.vercel.app_about.md",
+  "falak-gala.vercel.app_blog.md",
+  "falak-gala.vercel.app_blog_how-i-built-nextjs-blog.md",
+  "falak-gala.vercel.app_blog_tracking-unique-visitors.md",
+  "falak-gala.vercel.app_bookmarks.md",
+  "falak-gala.vercel.app_hire-me.md",
+  "falak-gala.vercel.app_projects.md",
+];
 
 export async function generateAIContext() {
-  const markdownFiles = getAllMarkdownFiles();
+  const markdowns = await Promise.all(
+    FILENAMES.map(async (filename) => {
+      try {
+        const res = await fetch(`${BASE_URL}/data/${filename}`);
+        if (!res.ok) {
+          console.error(`❌ Failed to fetch ${filename}:`, res.statusText);
+          return null;
+        }
 
-  const allContent = markdownFiles
+        const raw = await res.text();
+        const { data, content } = matter(raw);
+
+        const cleanedContent =
+          content
+            ?.replace(/```[\s\S]*?```/g, "")
+            ?.replace(/\[([^\]]+)\]\((https?:\/\/[^)]+)\)/g, "$1 ($2)")
+            ?.replace(/\*\*(.*?)\*\*/g, "$1")
+            ?.replace(/\*(.*?)\*/g, "$1")
+            ?.replace(/_(.*?)_/g, "$1")
+            ?.replace(/`(.*?)`/g, "$1")
+            ?.replace(/[>#]/g, "")
+            ?.replace(/\n+/g, " ")
+            ?.slice(0, 10000) || "No content.";
+
+        return {
+          title: data.title || filename.replace(".md", ""),
+          url: data.url || "",
+          content: cleanedContent,
+        };
+      } catch (error) {
+        console.error(`⚠️ Error reading ${filename}:`, error);
+        return null;
+      }
+    })
+  );
+
+  const validEntries = markdowns.filter(Boolean);
+
+  const allContent = validEntries
     .map(
       (entry) =>
         `• ${entry.title}\nContent Excerpt:\n${entry.content}\nURL: ${entry.url}`
@@ -51,7 +68,7 @@ He weighs 75 kg as of June 2025.
 He is Gujarati and speaks English, Hindi, and Gujarati.
 He is a design-focused developer with a passion for building web applications and exploring new technologies.
 His current workflow includes using Next.js, React, and JavaScript to create modern web experiences along with Python, FastAPI, and PostgreSQL for backend development.
-He uses this tools on daily basis:
+He uses these tools on a daily basis:
 - Next.js
 - React
 - Tailwind CSS
@@ -68,5 +85,6 @@ He uses this tools on daily basis:
 - Obsidian
 He is open to work or freelance projects — more information is available at https://falak-gala.vercel.app/hire-me
 Here is all the available content from Falak's portfolio site:\n${allContent}
-Only answer questions about Falak Gala and his work. If the question is unrelated, politely decline to answer and remind the user you are Falak's AI Persona.`.trim();
+Only answer questions about Falak Gala and his work. If the question is unrelated, politely decline to answer and remind the user you are Falak's AI Persona.
+  `.trim();
 }
