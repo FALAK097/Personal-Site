@@ -36,6 +36,23 @@
 [X] - Fix all count of bookmarks
 [X] - Custom Scrollbar
 [X] - Custom mouse cusror
+[X] - Add custom animated icons
+[X] - Remove the ENTER on FOOTBALL KICK when on input
+[X] - Smooth scroll when click on down arrow
+[X] - Improve the suggested options, remove icons and improve ui
+[X] - Improve the UI styling (Make it minimal design)
+[X] - Add more context for AI to answer
+[X] - Add tooltip
+[X] - On ESC should close
+[X] - CTRL+K to open AI Bot
+[X] - On CTRL+ENTER msg should be sent
+[X] - Add / command options
+[X] - Convert mdx response to text
+[X] - Highlight Links in ai response
+[X] - Display links without modifying them
+[X] - Context of previous conversation
+[X] - Add upstash/redis caching for common questions
+[X] - Handle out of context questions
 
 ## Overall
 
@@ -45,7 +62,6 @@
 [] - Hover link preview
 [] - Add gradient
 [] - Improve initial load performance
-[] - Display previously played song and a preview and link to Spotify song (eg:- last played 2 hrs)
 
 ## Blogs Section
 
@@ -67,11 +83,15 @@
 [] - Add video on hover of image
 [] - Add portfolio project
 
+## AI Bot
+
+[] - Add rate limiting
+[] - Hide suggested options scrollbar
+
 ## Extra Features
 
 [] - Add newsletter setup
-[] - Ask AI button to ask anything about me
 [] - Improve the style of mail I receive
-[] - Some stats like Most Productive on which day(based on commits, which hour of day, most used language and all)
+[] - Some stats like Most Productive on which day(based on commits, which hour of day, most used language and all, total ai chats, total cached msgs)
 [] - Show a indication if I am online or offline based on my activity on vscode or github
 [] - Show country, and hello based on user's location

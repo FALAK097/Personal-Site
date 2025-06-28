@@ -66,6 +66,16 @@ export const SpotifyNowPlaying = ({ songData }) => {
             onHoverEnd={() => setIsHovered(false)}
             whileHover={{ scale: prefersReducedMotion ? 1 : 1.05 }}
             transition={{ duration: prefersReducedMotion ? 0 : 0.2 }}
+            onClick={() => {
+              if (songData?.songUrl) {
+                window.open(songData.songUrl, "_blank", "noopener,noreferrer");
+              }
+            }}
+            role={songData?.songUrl ? "button" : undefined}
+            tabIndex={songData?.songUrl ? 0 : undefined}
+            aria-label={
+              songData?.title ? `Open ${songData.title} on Spotify` : undefined
+            }
           >
             <motion.div
               className="relative w-48 h-16 bg-gradient-to-br from-purple-500/10 to-pink-500/10 backdrop-blur-sm border border-purple-500/20 rounded-xl overflow-hidden shadow-lg"
@@ -163,12 +173,6 @@ export const SpotifyNowPlaying = ({ songData }) => {
                     </div>
                   )}
                 </div>
-              </div>
-
-              <div className="absolute top-1 right-1">
-                {isPlaying && (
-                  <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse" />
-                )}
               </div>
             </motion.div>
           </motion.div>

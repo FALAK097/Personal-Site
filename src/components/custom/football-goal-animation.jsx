@@ -62,11 +62,19 @@ export const FootballGoalAnimation = () => {
 
   useEffect(() => {
     const handleKey = (e) => {
-      if (step === "ready" && e.key === "Enter") {
+      const active = document.activeElement;
+      const isTyping =
+        active &&
+        (active.tagName === "INPUT" ||
+          active.tagName === "TEXTAREA" ||
+          active.isContentEditable);
+
+      if (!isTyping && step === "ready" && e.key === "Enter") {
         e.preventDefault();
         handleShoot();
       }
     };
+
     window.addEventListener("keydown", handleKey);
     return () => window.removeEventListener("keydown", handleKey);
   }, [step]);
