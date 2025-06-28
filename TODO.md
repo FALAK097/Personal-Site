@@ -97,3 +97,7 @@
 [] - Some stats like Most Productive on which day(based on commits, which hour of day, most used language and all, total ai chats, total cached msgs)
 [] - Show a indication if I am online or offline based on my activity on vscode or github
 [] - Show country, and hello based on user's location
+[] - Visitor Heatmap
+[] - Productivity Scorecard, Hours coded this week/month of side project commits, Average response time to GitHub issues/comments
+[] - Chart/graph showing tech usage growth or shift over months
+[] - Current GitHub Streak, longest streak, days with most commits

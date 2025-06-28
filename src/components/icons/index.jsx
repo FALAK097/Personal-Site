@@ -28,3 +28,7 @@ export { UserIcon } from "./user";
 export { ShipIcon } from "./ship";
 export { CircleHelpIcon } from "./circle-help";
 export { FilePenLineIcon } from "./file-pen-line";
+export { ClockIcon } from "./clock";
+export { CodeIcon } from "./code";
+export { MessageSquareIcon } from "./message-square";
+export { DatabaseIcon } from "./database";

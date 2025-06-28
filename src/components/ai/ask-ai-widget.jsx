@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState, useTransition } from "react";
-import { askFalakAI } from "@/actions/ask-ai";
+import { askFalakAI, getAIChatStats } from "@/actions/ask-ai";
 import { cn } from "@/lib/utils";
 import {
   ExpandableChat,
@@ -47,6 +47,14 @@ const slashCommands = [
       "Learn what you can ask the AI assistant, provide  a list of commands",
   },
 ];
+
+export function useAIChatStats() {
+  const [stats, setStats] = useState({ totalChats: 0, totalCached: 0 });
+  useEffect(() => {
+    getAIChatStats().then(setStats);
+  }, []);
+  return stats;
+}
 
 export const AskAIWidget = () => {
   const [open, setOpen] = useState(false);

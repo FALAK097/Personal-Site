@@ -11,6 +11,7 @@ const redis = new Redis({
 
 const AI_REPLY_CACHE_PREFIX = "ai:reply:";
 const AI_REPLY_CACHE_TTL_SECONDS = 60 * 60 * 24;
+const AI_CHAT_COUNT_KEY = "ai:chat:count";
 
 export async function askFalakAI(question, history = []) {
   const cacheKey = AI_REPLY_CACHE_PREFIX + question.trim().toLowerCase();
@@ -69,5 +70,13 @@ Answer:
     "Sorry, I don't know the answer to that.";
 
   await redis.set(cacheKey, answer, { ex: AI_REPLY_CACHE_TTL_SECONDS });
+  await redis.incr(AI_CHAT_COUNT_KEY);
   return answer;
+}
+
+export async function getAIChatStats() {
+  const totalChats = (await redis.get(AI_CHAT_COUNT_KEY)) || 0;
+  const keys = await redis.keys(AI_REPLY_CACHE_PREFIX + "*");
+  const totalCached = keys.length;
+  return { totalChats: Number(totalChats), totalCached };
 }
