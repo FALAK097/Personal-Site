@@ -1,5 +1,5 @@
 ---
-url: "https://falak-gala.vercel.app/bookmarks"
+url: "https://falakgala.dev/bookmarks"
 title: "Bookmarks | Falak Gala's Portfolio"
 ---
 
@@ -49,13 +49,13 @@ t-iv.com\\
 \\
 screenshot](https://t-iv.com/?s=09)
 
-[![Falak's Portfolio](https://falak-gala.vercel.app/opengraph-image.png?07c06d8f2c8cab46)\\
+[![Falak's Portfolio](https://falakgala.dev/opengraph-image.png?07c06d8f2c8cab46)\\
 \\
 falak-gala.vercel.app\\
 \\
 **Falak's Portfolio** \\
 \\
-ui](https://falak-gala.vercel.app/)
+ui](https://falakgala.dev/)
 
 [![Pika – Create Screenshots and Mockups](https://cdn.pika.style/og-images/og-pika-api.png)\\
 \\

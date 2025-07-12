@@ -1,9 +1,9 @@
 ---
-url: <https://falak-gala.vercel.app/blog/tracking-unique-visitors>
+url: <https://falakgala.dev/blog/tracking-unique-visitors>
 title: "Building a Unique Visitors Counter with Upstash Redis and Next.js Server Actions | Falak Gala's Blog | Falak Gala's Portfolio"
 ---
 
-[Back to Blog](https://falak-gala.vercel.app/blog)
+[Back to Blog](https://falakgala.dev/blog)
 
 # Building a Unique Visitors Counter with Upstash Redis and Next.js Server Actions
 

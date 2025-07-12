@@ -1,5 +1,5 @@
 ---
-url: "https://falak-gala.vercel.app/projects"
+url: "https://falakgala.dev/projects"
 title: "Projects | Falak Gala's Portfolio"
 ---
 
@@ -13,37 +13,37 @@ AI-powered outbound caller that pre-qualifies leads with life-like conversations
 
 ### Tech Stack
 
-![JavaScript](https://falak-gala.vercel.app/skills/javascript.svg)
+![JavaScript](https://falakgala.dev/skills/javascript.svg)
 
-![React.js](https://falak-gala.vercel.app/skills/react.svg)
+![React.js](https://falakgala.dev/skills/react.svg)
 
-![Next.js](https://falak-gala.vercel.app/skills/nextjs.svg)
+![Next.js](https://falakgala.dev/skills/nextjs.svg)
 
-![Tailwind](https://falak-gala.vercel.app/skills/tailwindcss.svg)
+![Tailwind](https://falakgala.dev/skills/tailwindcss.svg)
 
-![Authjs](https://falak-gala.vercel.app/skills/authjs.svg)
+![Authjs](https://falakgala.dev/skills/authjs.svg)
 
-![Prisma](https://falak-gala.vercel.app/skills/prisma.svg)
+![Prisma](https://falakgala.dev/skills/prisma.svg)
 
-![OpenAI](https://falak-gala.vercel.app/skills/openai.svg)
+![OpenAI](https://falakgala.dev/skills/openai.svg)
 
-![Gemini](https://falak-gala.vercel.app/skills/gemini.svg)
+![Gemini](https://falakgala.dev/skills/gemini.svg)
 
-![Python](https://falak-gala.vercel.app/skills/python.svg)
+![Python](https://falakgala.dev/skills/python.svg)
 
-![FastAPI](https://falak-gala.vercel.app/skills/fastapi.svg)
+![FastAPI](https://falakgala.dev/skills/fastapi.svg)
 
-![PostgreSQL](https://falak-gala.vercel.app/skills/postgresql.svg)
+![PostgreSQL](https://falakgala.dev/skills/postgresql.svg)
 
-![Redis](https://falak-gala.vercel.app/skills/redis.svg)
+![Redis](https://falakgala.dev/skills/redis.svg)
 
-![Docker](https://falak-gala.vercel.app/skills/docker.svg)
+![Docker](https://falakgala.dev/skills/docker.svg)
 
-![DigitalOcean](https://falak-gala.vercel.app/skills/digitalocean.svg)
+![DigitalOcean](https://falakgala.dev/skills/digitalocean.svg)
 
 [Live Demo](https://outcallerai.com/)
 
-![OutCallerAI](https://falak-gala.vercel.app/_next/image?url=%2Fprojects%2Foutcallerai.png&w=3840&q=75)
+![OutCallerAI](https://falakgala.dev/_next/image?url=%2Fprojects%2Foutcallerai.png&w=3840&q=75)
 
 ## OutRiskAI
 
@@ -51,37 +51,37 @@ AI tool to analyze legal risk, summarize contracts, and connect with real lawyer
 
 ### Tech Stack
 
-![JavaScript](https://falak-gala.vercel.app/skills/javascript.svg)
+![JavaScript](https://falakgala.dev/skills/javascript.svg)
 
-![React.js](https://falak-gala.vercel.app/skills/react.svg)
+![React.js](https://falakgala.dev/skills/react.svg)
 
-![Next.js](https://falak-gala.vercel.app/skills/nextjs.svg)
+![Next.js](https://falakgala.dev/skills/nextjs.svg)
 
-![Tailwind](https://falak-gala.vercel.app/skills/tailwindcss.svg)
+![Tailwind](https://falakgala.dev/skills/tailwindcss.svg)
 
-![Authjs](https://falak-gala.vercel.app/skills/authjs.svg)
+![Authjs](https://falakgala.dev/skills/authjs.svg)
 
-![Prisma](https://falak-gala.vercel.app/skills/prisma.svg)
+![Prisma](https://falakgala.dev/skills/prisma.svg)
 
-![OpenAI](https://falak-gala.vercel.app/skills/openai.svg)
+![OpenAI](https://falakgala.dev/skills/openai.svg)
 
-![Gemini](https://falak-gala.vercel.app/skills/gemini.svg)
+![Gemini](https://falakgala.dev/skills/gemini.svg)
 
-![Python](https://falak-gala.vercel.app/skills/python.svg)
+![Python](https://falakgala.dev/skills/python.svg)
 
-![FastAPI](https://falak-gala.vercel.app/skills/fastapi.svg)
+![FastAPI](https://falakgala.dev/skills/fastapi.svg)
 
-![Node.js](https://falak-gala.vercel.app/skills/nodejs.svg)
+![Node.js](https://falakgala.dev/skills/nodejs.svg)
 
-![PostgreSQL](https://falak-gala.vercel.app/skills/postgresql.svg)
+![PostgreSQL](https://falakgala.dev/skills/postgresql.svg)
 
-![Docker](https://falak-gala.vercel.app/skills/docker.svg)
+![Docker](https://falakgala.dev/skills/docker.svg)
 
-![DigitalOcean](https://falak-gala.vercel.app/skills/digitalocean.svg)
+![DigitalOcean](https://falakgala.dev/skills/digitalocean.svg)
 
 [Live Demo](https://outriskai.com/)
 
-![OutRiskAI](https://falak-gala.vercel.app/_next/image?url=%2Fprojects%2Foutriskai.png&w=3840&q=75)
+![OutRiskAI](https://falakgala.dev/_next/image?url=%2Fprojects%2Foutriskai.png&w=3840&q=75)
 
 ## HypeItUp
 
@@ -89,29 +89,29 @@ No-code platform to build waitlists, collect signups, and track analytics in rea
 
 ### Tech Stack
 
-![JavaScript](https://falak-gala.vercel.app/skills/javascript.svg)
+![JavaScript](https://falakgala.dev/skills/javascript.svg)
 
-![React.js](https://falak-gala.vercel.app/skills/react.svg)
+![React.js](https://falakgala.dev/skills/react.svg)
 
-![Next.js](https://falak-gala.vercel.app/skills/nextjs.svg)
+![Next.js](https://falakgala.dev/skills/nextjs.svg)
 
-![Tailwind](https://falak-gala.vercel.app/skills/tailwindcss.svg)
+![Tailwind](https://falakgala.dev/skills/tailwindcss.svg)
 
-![Prisma](https://falak-gala.vercel.app/skills/prisma.svg)
+![Prisma](https://falakgala.dev/skills/prisma.svg)
 
-![PostgreSQL](https://falak-gala.vercel.app/skills/postgresql.svg)
+![PostgreSQL](https://falakgala.dev/skills/postgresql.svg)
 
-![Neon](https://falak-gala.vercel.app/skills/neon.svg)
+![Neon](https://falakgala.dev/skills/neon.svg)
 
-![Docker](https://falak-gala.vercel.app/skills/docker.svg)
+![Docker](https://falakgala.dev/skills/docker.svg)
 
-![Vercel](https://falak-gala.vercel.app/skills/vercel-light.svg)
+![Vercel](https://falakgala.dev/skills/vercel-light.svg)
 
-![Clerk](https://falak-gala.vercel.app/skills/clerk-light.svg)
+![Clerk](https://falakgala.dev/skills/clerk-light.svg)
 
 [Live Demo](https://hypeitup.me/)
 
-![HypeItUp](https://falak-gala.vercel.app/_next/image?url=%2Fprojects%2Fhypeitup.png&w=3840&q=75)
+![HypeItUp](https://falakgala.dev/_next/image?url=%2Fprojects%2Fhypeitup.png&w=3840&q=75)
 
 ## DevFinder
 
@@ -119,25 +119,25 @@ Developer networking platform to connect, collaborate on projects, and share kno
 
 ### Tech Stack
 
-![TypeScript](https://falak-gala.vercel.app/skills/typescript.svg)
+![TypeScript](https://falakgala.dev/skills/typescript.svg)
 
-![React.js](https://falak-gala.vercel.app/skills/react.svg)
+![React.js](https://falakgala.dev/skills/react.svg)
 
-![Next.js](https://falak-gala.vercel.app/skills/nextjs.svg)
+![Next.js](https://falakgala.dev/skills/nextjs.svg)
 
-![Tailwind](https://falak-gala.vercel.app/skills/tailwindcss.svg)
+![Tailwind](https://falakgala.dev/skills/tailwindcss.svg)
 
-![Authjs](https://falak-gala.vercel.app/skills/authjs.svg)
+![Authjs](https://falakgala.dev/skills/authjs.svg)
 
-![Drizzle](https://falak-gala.vercel.app/skills/drizzle.svg)
+![Drizzle](https://falakgala.dev/skills/drizzle.svg)
 
-![PostgreSQL](https://falak-gala.vercel.app/skills/postgresql.svg)
+![PostgreSQL](https://falakgala.dev/skills/postgresql.svg)
 
-![Docker](https://falak-gala.vercel.app/skills/docker.svg)
+![Docker](https://falakgala.dev/skills/docker.svg)
 
 [GitHub](https://github.com/FALAK097/devfinder)
 
-![DevFinder](https://falak-gala.vercel.app/_next/image?url=%2Fprojects%2Fdevfinder.png&w=3840&q=75)
+![DevFinder](https://falakgala.dev/_next/image?url=%2Fprojects%2Fdevfinder.png&w=3840&q=75)
 
 ## Spotify Clone
 
@@ -145,23 +145,23 @@ A full-stack music streaming web app replicating core Spotify features like play
 
 ### Tech Stack
 
-![TypeScript](https://falak-gala.vercel.app/skills/typescript.svg)
+![TypeScript](https://falakgala.dev/skills/typescript.svg)
 
-![React.js](https://falak-gala.vercel.app/skills/react.svg)
+![React.js](https://falakgala.dev/skills/react.svg)
 
-![Next.js](https://falak-gala.vercel.app/skills/nextjs.svg)
+![Next.js](https://falakgala.dev/skills/nextjs.svg)
 
-![Supabase](https://falak-gala.vercel.app/skills/supabase.svg)
+![Supabase](https://falakgala.dev/skills/supabase.svg)
 
-![PostgreSQL](https://falak-gala.vercel.app/skills/postgresql.svg)
+![PostgreSQL](https://falakgala.dev/skills/postgresql.svg)
 
-![Stripe](https://falak-gala.vercel.app/_next/image?url=%2Fskills%2Fstripe.jpeg&w=48&q=75)
+![Stripe](https://falakgala.dev/_next/image?url=%2Fskills%2Fstripe.jpeg&w=48&q=75)
 
-![Vercel](https://falak-gala.vercel.app/skills/vercel-light.svg)
+![Vercel](https://falakgala.dev/skills/vercel-light.svg)
 
 [GitHub](https://github.com/FALAK097/spotify_clone)
 
-![Spotify Clone](https://falak-gala.vercel.app/_next/image?url=%2Fprojects%2Fspotify-clone.png&w=3840&q=75)
+![Spotify Clone](https://falakgala.dev/_next/image?url=%2Fprojects%2Fspotify-clone.png&w=3840&q=75)
 
 ## MERN GitHub Viewer
 
@@ -169,27 +169,27 @@ A GitHub profile viewer built with the MERN stack that displays user info, repos
 
 ### Tech Stack
 
-![JavaScript](https://falak-gala.vercel.app/skills/javascript.svg)
+![JavaScript](https://falakgala.dev/skills/javascript.svg)
 
-![React.js](https://falak-gala.vercel.app/skills/react.svg)
+![React.js](https://falakgala.dev/skills/react.svg)
 
-![Node.js](https://falak-gala.vercel.app/skills/nodejs.svg)
+![Node.js](https://falakgala.dev/skills/nodejs.svg)
 
-![Express.js](https://falak-gala.vercel.app/skills/expressjs.svg)
+![Express.js](https://falakgala.dev/skills/expressjs.svg)
 
-![MongoDB](https://falak-gala.vercel.app/skills/mongodb.svg)
+![MongoDB](https://falakgala.dev/skills/mongodb.svg)
 
-![Tailwind](https://falak-gala.vercel.app/skills/tailwindcss.svg)
+![Tailwind](https://falakgala.dev/skills/tailwindcss.svg)
 
-![GitHub API](https://falak-gala.vercel.app/skills/github-light.svg)
+![GitHub API](https://falakgala.dev/skills/github-light.svg)
 
-![Render](https://falak-gala.vercel.app/_next/image?url=%2Fskills%2Frender.jpg&w=48&q=75)
+![Render](https://falakgala.dev/_next/image?url=%2Fskills%2Frender.jpg&w=48&q=75)
 
 [GitHub](https://github.com/FALAK097/mern-github)
 
 [Live Demo](https://mern-github.onrender.com/)
 
-![MERN GitHub Viewer](https://falak-gala.vercel.app/_next/image?url=%2Fprojects%2Fmern-github.png&w=3840&q=75)
+![MERN GitHub Viewer](https://falakgala.dev/_next/image?url=%2Fprojects%2Fmern-github.png&w=3840&q=75)
 
 ## CodeToImage
 
@@ -197,18 +197,18 @@ Convert code snippets into beautiful images with customizable themes and styles.
 
 ### Tech Stack
 
-![TypeScript](https://falak-gala.vercel.app/skills/typescript.svg)
+![TypeScript](https://falakgala.dev/skills/typescript.svg)
 
-![React.js](https://falak-gala.vercel.app/skills/react.svg)
+![React.js](https://falakgala.dev/skills/react.svg)
 
-![Next.js](https://falak-gala.vercel.app/skills/nextjs.svg)
+![Next.js](https://falakgala.dev/skills/nextjs.svg)
 
-![Tailwind](https://falak-gala.vercel.app/skills/tailwindcss.svg)
+![Tailwind](https://falakgala.dev/skills/tailwindcss.svg)
 
-![Vercel](https://falak-gala.vercel.app/skills/vercel-light.svg)
+![Vercel](https://falakgala.dev/skills/vercel-light.svg)
 
 [GitHub](https://github.com/FALAK097/codetoimg)
 
 [Live Demo](https://codetoimg-seven.vercel.app/)
 
-![CodeToImage](https://falak-gala.vercel.app/_next/image?url=%2Fprojects%2Fcodetoimg.png&w=3840&q=75)
+![CodeToImage](https://falakgala.dev/_next/image?url=%2Fprojects%2Fcodetoimg.png&w=3840&q=75)

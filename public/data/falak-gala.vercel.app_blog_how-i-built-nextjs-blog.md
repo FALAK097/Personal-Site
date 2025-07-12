@@ -1,9 +1,9 @@
 ---
-url: <https://falak-gala.vercel.app/blog/how-i-built-nextjs-blog>
+url: <https://falakgala.dev/blog/how-i-built-nextjs-blog>
 title: "How I Built a Modern Portfolio Blog with Next.js 15 and MDX | Falak Gala's Blog | Falak Gala's Portfolio"
 ---
 
-[Back to Blog](https://falak-gala.vercel.app/blog)
+[Back to Blog](https://falakgala.dev/blog)
 
 # How I Built a Modern Portfolio Blog with Next.js 15 and MDX
 

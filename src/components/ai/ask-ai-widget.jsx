@@ -33,7 +33,7 @@ const slashCommands = [
     command: "/projects",
     question: "What projects has Falak worked on?",
     description:
-      "Explore Falak's portfolio and projects, only project names and links will be provided, go to https://falak-gala.vercel.app/projects to see the project details",
+      "Explore Falak's portfolio and projects, only project names and links will be provided, go to https://falakgala.dev/projects to see the project details",
   },
   {
     command: "/blog",
@@ -66,8 +66,8 @@ export const AskAIWidget = () => {
 
   const matchingCommands = input.startsWith("/")
     ? slashCommands.filter((cmd) =>
-        cmd.command.toLowerCase().startsWith(input.toLowerCase())
-      )
+      cmd.command.toLowerCase().startsWith(input.toLowerCase())
+    )
     : [];
 
   const showSuggestions = messages.length <= 1 && !input.trim();

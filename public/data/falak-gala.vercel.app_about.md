@@ -1,5 +1,5 @@
 ---
-url: "https://falak-gala.vercel.app/about"
+url: "https://falakgala.dev/about"
 title: "About Me | Falak Gala's Portfolio"
 ---
 
@@ -17,47 +17,47 @@ In July 2024, I rejoined the same startup—this time as a Software Engineer —
 
 FrontendBackendDatabaseDevOpsTools
 
-![JavaScript](https://falak-gala.vercel.app/skills/javascript.svg)
+![JavaScript](https://falakgala.dev/skills/javascript.svg)
 
 JavaScript
 
-![TypeScript](https://falak-gala.vercel.app/skills/typescript.svg)
+![TypeScript](https://falakgala.dev/skills/typescript.svg)
 
 TypeScript
 
-![React.js](https://falak-gala.vercel.app/skills/react.svg)
+![React.js](https://falakgala.dev/skills/react.svg)
 
 React.js
 
-![Next.js](https://falak-gala.vercel.app/skills/nextjs.svg)
+![Next.js](https://falakgala.dev/skills/nextjs.svg)
 
 Next.js
 
-![React Native](https://falak-gala.vercel.app/skills/react-native.svg)
+![React Native](https://falakgala.dev/skills/react-native.svg)
 
 React Native
 
-![Expo](https://falak-gala.vercel.app/skills/expo.svg)
+![Expo](https://falakgala.dev/skills/expo.svg)
 
 Expo
 
-![Shadcn](https://falak-gala.vercel.app/skills/shadcn-light.svg)
+![Shadcn](https://falakgala.dev/skills/shadcn-light.svg)
 
 Shadcn
 
-![Motion](https://falak-gala.vercel.app/skills/motion.svg)
+![Motion](https://falakgala.dev/skills/motion.svg)
 
 Motion
 
-![Tailwind](https://falak-gala.vercel.app/skills/tailwindcss.svg)
+![Tailwind](https://falakgala.dev/skills/tailwindcss.svg)
 
 Tailwind
 
-![Sass](https://falak-gala.vercel.app/skills/sass.svg)
+![Sass](https://falakgala.dev/skills/sass.svg)
 
 Sass
 
-![Bootstrap](https://falak-gala.vercel.app/skills/bootstrap.svg)
+![Bootstrap](https://falakgala.dev/skills/bootstrap.svg)
 
 Bootstrap
 
@@ -69,35 +69,35 @@ SSingularitee Technologies Pvt Ltd
 
 July 2024 - Present
 
-![JavaScript](https://falak-gala.vercel.app/skills/javascript.svg)
+![JavaScript](https://falakgala.dev/skills/javascript.svg)
 
-![React.js](https://falak-gala.vercel.app/skills/react.svg)
+![React.js](https://falakgala.dev/skills/react.svg)
 
-![Next.js](https://falak-gala.vercel.app/skills/nextjs.svg)
+![Next.js](https://falakgala.dev/skills/nextjs.svg)
 
-![Tailwind](https://falak-gala.vercel.app/skills/tailwindcss.svg)
+![Tailwind](https://falakgala.dev/skills/tailwindcss.svg)
 
-![Authjs](https://falak-gala.vercel.app/skills/authjs.svg)
+![Authjs](https://falakgala.dev/skills/authjs.svg)
 
-![Prisma](https://falak-gala.vercel.app/skills/prisma.svg)
+![Prisma](https://falakgala.dev/skills/prisma.svg)
 
-![OpenAI](https://falak-gala.vercel.app/skills/openai.svg)
+![OpenAI](https://falakgala.dev/skills/openai.svg)
 
-![Gemini](https://falak-gala.vercel.app/skills/gemini.svg)
+![Gemini](https://falakgala.dev/skills/gemini.svg)
 
-![Python](https://falak-gala.vercel.app/skills/python.svg)
+![Python](https://falakgala.dev/skills/python.svg)
 
-![FastAPI](https://falak-gala.vercel.app/skills/fastapi.svg)
+![FastAPI](https://falakgala.dev/skills/fastapi.svg)
 
-![Node.js](https://falak-gala.vercel.app/skills/nodejs.svg)
+![Node.js](https://falakgala.dev/skills/nodejs.svg)
 
-![PostgreSQL](https://falak-gala.vercel.app/skills/postgresql.svg)
+![PostgreSQL](https://falakgala.dev/skills/postgresql.svg)
 
-![Redis](https://falak-gala.vercel.app/skills/redis.svg)
+![Redis](https://falakgala.dev/skills/redis.svg)
 
-![Docker](https://falak-gala.vercel.app/skills/docker.svg)
+![Docker](https://falakgala.dev/skills/docker.svg)
 
-![DigitalOcean](https://falak-gala.vercel.app/skills/digitalocean.svg)
+![DigitalOcean](https://falakgala.dev/skills/digitalocean.svg)
 
 - Built [OutCallerAI](https://outcallerai.com/) — Led development of an AI-powered _outbound calling platform_ that automates multilingual lead qualification and follow-ups, boosting conversion efficiency.
 - Developed [OutRiskAI](https://outriskai.com/) — Engineered a legal AI assistant that _summarizes contracts_, _highlights risks_, and _connects users with real lawyers_ to streamline contract review workflows.
@@ -113,19 +113,19 @@ SSingularity Technologies
 
 January 2023 - July 2023
 
-![JavaScript](https://falak-gala.vercel.app/skills/javascript.svg)
+![JavaScript](https://falakgala.dev/skills/javascript.svg)
 
-![Laravel](https://falak-gala.vercel.app/skills/laravel.svg)
+![Laravel](https://falakgala.dev/skills/laravel.svg)
 
-![MySQL](https://falak-gala.vercel.app/skills/mysql.svg)
+![MySQL](https://falakgala.dev/skills/mysql.svg)
 
-![Bootstrap](https://falak-gala.vercel.app/skills/bootstrap.svg)
+![Bootstrap](https://falakgala.dev/skills/bootstrap.svg)
 
-![React Native](https://falak-gala.vercel.app/skills/react-native.svg)
+![React Native](https://falakgala.dev/skills/react-native.svg)
 
-![React.js](https://falak-gala.vercel.app/skills/react.svg)
+![React.js](https://falakgala.dev/skills/react.svg)
 
-![Chart.js](https://falak-gala.vercel.app/skills/chartjs.svg)
+![Chart.js](https://falakgala.dev/skills/chartjs.svg)
 
 - Enhanced website responsiveness and performance by optimizing React.js components and implementing adaptive layouts using Bootstrap and Chart.js
 - Developed backend modules and RESTful APIs using Laravel and MySQL, improving data management and performance across multiple applications.

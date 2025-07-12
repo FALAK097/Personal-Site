@@ -1,6 +1,6 @@
 export default function sitemap() {
   const baseUrl =
-    process.env.NEXT_PUBLIC_WEBSITE_URL || "https://falak-gala.vercel.app";
+    process.env.NEXT_PUBLIC_WEBSITE_URL || "https://falakgala.dev";
 
   return [
     {
