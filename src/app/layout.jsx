@@ -16,9 +16,6 @@ export const metadata = {
     template: "%s | Falak Gala's Portfolio",
   },
   description: "My personal space on the web",
-  verification: {
-    google: "fRHY1uuZ4BIZfmz106v_pFVFrDDGhVC7MlL3xweDzV8",
-  },
 };
 
 export default function RootLayout({ children }) {
