@@ -120,7 +120,8 @@ const ExpandableChatToggle = ({
     variant="default"
     onClick={toggleChat}
     className={cn(
-      "w-12 h-12 cursor-pointer rounded-full shadow-lg flex items-center justify-center hover:shadow-xl hover:shadow-purple-500/30 transition-all duration-300 bg-transparent hover:bg-transparent text-primary relative group",
+      "flex w-12 h-12 cursor-pointer rounded-full shadow-lg items-center justify-center hover:shadow-xl hover:shadow-purple-500/30 transition-all duration-300 bg-transparent hover:bg-transparent text-primary relative group",
+      isOpen && "hidden sm:flex",
       className
     )}
     {...props}
