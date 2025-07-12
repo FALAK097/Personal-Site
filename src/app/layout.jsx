@@ -16,10 +16,6 @@ export const metadata = {
     template: "%s | Falak Gala's Portfolio",
   },
   description: "My personal space on the web",
-  verification: {
-    // google: "fRHY1uuZ4BIZfmz106v_pFVFrDDGhVC7MlL3xweDzV8",
-    google: "P_Z6WCTQ7qKdfgS9cGBq0qGuCRAdT-u7iH2LpcSSmt8",
-  },
 };
 
 export default function RootLayout({ children }) {
