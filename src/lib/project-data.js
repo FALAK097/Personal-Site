@@ -49,8 +49,8 @@ export const projects = [
     imageUrl: "/projects/outriskai.png",
   },
   {
-    id: "hypeitup",
-    title: "HypeItUp",
+    id: "waitlyze",
+    title: "Waitlyze",
     description:
       "No-code platform to build waitlists, collect signups, and track analytics in real-time.",
     tags: [
@@ -66,7 +66,8 @@ export const projects = [
       "Clerk",
       // "Uploadthing",
     ],
-    deployedUrl: "https://hypeitup.me",
+    deployedUrl:
+"https://waitlyze.falakgala.dev",
     imageUrl: "/projects/hypeitup.png",
   },
   {
