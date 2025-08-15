@@ -83,7 +83,7 @@ AI tool to analyze legal risk, summarize contracts, and connect with real lawyer
 
 ![OutRiskAI](https://falakgala.dev/_next/image?url=%2Fprojects%2Foutriskai.png&w=3840&q=75)
 
-## HypeItUp
+## Waitlyze
 
 No-code platform to build waitlists, collect signups, and track analytics in real-time.
 
@@ -109,9 +109,9 @@ No-code platform to build waitlists, collect signups, and track analytics in rea
 
 ![Clerk](https://falakgala.dev/skills/clerk-light.svg)
 
-[Live Demo](https://hypeitup.me/)
+[Live Demo](https://waitlyze.falakgala.dev)
 
-![HypeItUp](https://falakgala.dev/_next/image?url=%2Fprojects%2Fhypeitup.png&w=3840&q=75)
+![Waitlyze](https://falakgala.dev/_next/image?url=%2Fprojects%2Fwaitlyze.png&w=3840&q=75)
 
 ## DevFinder
 

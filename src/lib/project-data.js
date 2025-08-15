@@ -67,8 +67,8 @@ export const projects = [
       // "Uploadthing",
     ],
     deployedUrl:
-"https://waitlyze.falakgala.dev",
-    imageUrl: "/projects/hypeitup.png",
+      "https://waitlyze.falakgala.dev",
+    imageUrl: "/projects/waitlyze.png",
   },
   {
     id: "devfinder",
