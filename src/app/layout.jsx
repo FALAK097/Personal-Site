@@ -4,7 +4,6 @@ import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { ThemeProvider } from "@/components/theme-provider";
 import { ScrollProgress } from "@/components/custom/scroll-progress";
-import { CircleBackground } from "@/components/custom/circle-background";
 import { CustomCursor } from "@/components/custom/custom-cursor";
 import { AskAIWidget } from "@/components/ai/ask-ai-widget";
 import "@/styles/globals.css";
@@ -29,7 +28,6 @@ export default function RootLayout({ children }) {
             enableSystem={true}
           >
             <CustomCursor />
-            <CircleBackground />
             <div className="min-h-screen p-4 bg-background/50">
               <div className="rounded-lg border-2 border-border min-h-[calc(100vh-2rem)]">
                 {children}
