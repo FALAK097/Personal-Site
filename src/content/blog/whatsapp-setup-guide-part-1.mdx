@@ -1,0 +1,374 @@
+---
+title: "WhatsApp Cloud API Integration with Next.js - Part 1: Setup & Configuration"
+description: "A complete guide to integrating WhatsApp Business Cloud API with your Next.js application using OAuth. This is the guide I wish existed when I started - Meta's documentation is scattered and incomplete."
+date: "2025-11-23"
+---
+
+I'm not going to lie, integrating the WhatsApp Business Cloud API can be a journey. When I first tackled it, I felt like I was piecing together a puzzle with half the pieces missing. Meta's official documentation is spread across a dozen different pages, and finding a clear, start to finish guide for a modern stack like Next.js was nearly impossible.
+
+That's why I wrote this. This is the guide I wish I had. We'll walk through every single step, from setting up your Meta Business account to handling webhooks, all using Next.js and the robust OAuth method. Let's build something cool.
+
+## Prerequisites
+
+Before we dive in, make sure you have a few things ready:
+
+- A **Next.js 13+** application set up with the App Router.
+- A **Facebook/Meta account** to manage the business side of things.
+- A **business or personal phone number** that you can dedicate to the WhatsApp Business API.
+- A way to expose your local server to the internet. **ngrok** is my go-to for this.
+- A Meta Business Manager account set up and ready to go.
+
+**Our Tech Stack:**
+- Next.js 13+ (App Router)
+- Prisma (for talking to our database, whether it's PostgreSQL, MySQL, etc.)
+- Auth.js (for user session management)
+
+---
+
+## Understanding the WhatsApp Cloud API
+
+### What's the Big Deal with the Cloud API?
+
+The WhatsApp Cloud API is Meta's way of letting us programmatically send and receive WhatsApp messages without hosting the WhatsApp Business API software on our own servers. It's a game changer compared to the old on premise solution.
+
+Here's why I'm a fan:
+- **It's (mostly) free to start:** You only pay for the conversations you initiate, and there's a generous free tier.
+- **Meta handles the hosting:** No need to mess with Docker containers or worry about server uptime. They handle the infrastructure.
+- **It's way easier to set up:** You don't need to go through a Business Solution Provider (BSP) for simple integrations.
+- **Built to scale:** It's designed to handle a massive volume of messages right out of the box.
+
+### OAuth vs. System User Tokens
+
+When it comes to authentication, Meta gives us two main paths. Picking the right one early on will save you a headache later.
+
+**OAuth Flow (What we're using):**
+- **User-Friendly:** Users connect their own WhatsApp Business Account through a standard OAuth screen. It feels professional and secure.
+- **Multi Tenant Ready:** Perfect for SaaS applications where you have multiple customers or organizations connecting their own accounts.
+- **Automatic Token Refresh:** Access tokens expire, but OAuth provides a way to refresh them programmatically. Set it and (mostly) forget it.
+- **Best for:** SaaS products, applications with multiple users/clients.
+
+**System User Token:**
+- **Manual Management:** You generate a token manually from the Meta Business Dashboard.
+- **Single-Tenant Focus:** Works well if you're building an internal tool for just one organization (e.g., your own company).
+- **Manual Refresh Required:** The token will expire, and you'll have to go back to the dashboard to generate a new one. This can be a pain to maintain.
+- **Best for:** Internal tools, single purpose integrations.
+
+**We're going with the OAuth flow in this guide.** It's more scalable and the right choice for building a production-ready application that other people will use.
+
+### Pricing
+
+WhatsApp messages are charged per conversation. Check current pricing:
+- [Official WhatsApp Pricing](https://developers.facebook.com/docs/whatsapp/pricing)
+- **Free tier:** 1,000 conversations/month
+- **Conversations:** 24-hour messaging window after user's last message
+
+---
+
+## Facebook App Creation
+
+### Step 1: Create a New Facebook App
+
+1. Go to [Facebook Developers](https://developers.facebook.com/)
+2. Click **"My Apps"** → **"Create App"**
+
+3. Fill in app details:
+   - **App Name:** "My WhatsApp Integration" (or your app name)
+   - **App Contact Email:** Your email
+   - **UseCase**: Select **Other** option
+   - **Business Account:** Select the business account you created
+
+![App Details Form](/blog/app-details-form.png)
+
+4. Click **"Create App"**
+
+### Step 2: Add WhatsApp Product
+
+1. In your app dashboard, find **"WhatsApp"** in the products list
+2. Click **"Set Up"**
+
+![WhatsApp Product in Dashboard](/blog/whatsapp-setup.png)
+
+3. You'll be redirected to the WhatsApp setup page
+
+### Step 3: Configure App Settings
+
+1. Go to **App Settings** → **Basic**
+2. Note down these values (you'll need them later):
+   - **App ID**
+   - **App Secret** (click "Show" to reveal)
+
+![App ID and Secret](/blog/app-id-secret.png)
+
+3. Add your app domain:
+   - **App Domains:** yourdomain.com
+   - **Privacy Policy URL:** https://yourdomain.com/privacy
+   - **Terms of Service URL:** https://yourdomain.com/terms
+
+4. Save changes
+
+### Step 4: Configure OAuth Settings
+
+1. Go to **App Settings** → **Basic**
+2. Scroll to **"Add Platform"** → Select **"Website"**
+3. Enter your **Site URL:** https://yourdomain.com
+
+![Add Platform](/blog/add-platform.png)
+
+---
+
+## WhatsApp Business Account Setup
+
+### Step 1: Create WhatsApp Business Account
+
+1. In your app dashboard, go to **WhatsApp** → **Getting Started**
+2. Click **"Create a WhatsApp Business Account"**
+3. Select your **Business Portfolio** (or create a new one)
+4. Choose **"Create a new WhatsApp Business Account"**
+5. Enter your **Business Name** and **Category**
+6. Click **"Continue"**
+
+### Step 2: Add Phone Number
+
+You have two options:
+
+#### Option A: Use Your Own Number (Recommended for Production)
+
+1. Click **"Add phone number"**
+2. Enter your business phone number
+3. Select verification method:
+   - **SMS**
+   - **Voice Call**
+4. Enter the 6-digit verification code
+
+**Important:** 
+- Once verified, this number can **only** be used with WhatsApp Business API
+- You **cannot** use the regular WhatsApp app with this number
+- Choose wisely - this is permanent!
+
+#### Option B: Use Meta's Test Number (For Development)
+
+1. Meta provides a test phone number automatically
+2. Find it under **WhatsApp** → **Getting Started** → **Send and receive messages**
+3. Note the **Phone Number ID** and **WABA ID**
+
+Test numbers have limitations:
+- Can only message 5 verified numbers
+- Cannot be used in production
+- Perfect for development and testing
+
+![WhatsApp Business Account](/blog/whatsapp-business-account.png)
+
+### Step 3: Get Your Credentials
+
+You need these values for your application:
+
+1. **Phone Number ID:**
+   - Go to **WhatsApp** → **Quick Start**
+   - Find **"Phone number ID"** under your phone number
+   - Copy this value
+
+2. **WhatsApp Business Account ID (WABA ID):**
+   - Found in the same section
+   - Copy this value
+
+3. **Access Token** (Temporary):
+   - In the same section, you'll see a temporary 24 hour token
+   - This is just for testing - OAuth will generate long-lived tokens
+
+![Access Token](/blog/access-token.png)
+
+#### Refer this docs page for more details on these values: [WhatsApp Cloud API Overview](https://developers.facebook.com/docs/whatsapp/cloud-api/get-started/)
+---
+
+## Webhook Configuration
+
+Webhooks allow your application to receive incoming messages and status updates in real-time.
+
+### Step 1: Understand Webhook Requirements
+
+Meta requires:
+- **HTTPS endpoint** (no HTTP in production)
+- **Publicly accessible URL** (no localhost - use ngrok for dev)
+- **GET endpoint** for webhook verification
+- **POST endpoint** for receiving events
+
+### Step 2: Generate Verify Token
+
+Create a random string for webhook verification:
+
+```bash
+# Generate a random token
+openssl rand -base64 32
+```
+
+Save this as your **VERIFY_TOKEN** - you'll need it in your code and Meta dashboard.
+
+### Step 3: Configure Webhook URL in Meta
+
+1. Go to **WhatsApp** → **Configuration**
+2. Find **"Webhook"** section
+3. Click **"Configure"**
+4. Enter your webhook details:
+   - **Callback URL:** https://yourdomain.com/api/webhooks/whatsapp
+   - **Verify Token:** The token you generated above
+
+![Webhook Configuration Button](/blog/webhook-configuration.png)
+
+5. Create a GET endpoint in your Next.js app to handle verification:
+
+```javascript
+// /api/webhooks/whatsapp/route.js
+import { NextResponse } from 'next/server';
+
+export const GET = (async (req) => {
+	try {
+ 		const url = new URL(req.url);
+ 		const mode = url.searchParams.get("hub.mode");
+ 		const verifyToken = url.searchParams.get("hub.verify_token");
+ 		const challenge = url.searchParams.get("hub.challenge");
+
+ 		if (mode === "subscribe") {
+ 			if (!verifyToken) {
+ 				return NextResponse.json({message: "Unauthorized"}, {status: 401});
+ 			}
+
+ 			if (!process.env.WHATSAPP_VERIFY_TOKEN) {
+ 				return NextResponse.json({message: "WA_VERIFY_TOKEN not configured"}, {status: 500});
+ 			}
+
+ 			if (verifyToken === process.env.WHATSAPP_VERIFY_TOKEN) {
+ 				console.log("Webhook verified successfully");
+ 				return new NextResponse(challenge ?? "", {status: 200});
+ 			}
+ 		}
+
+ 		return NextResponse.json({message: "Verification failed"}, {status: 403});
+ 	} catch (error) {
+ 		console.error("Webhook verification error:", error);
+ 		return NextResponse.json({message: "Internal server error"}, {status: 500});
+ 	}
+});
+```
+
+6. Click **"Verify and Save"**
+
+**Common Error:** If verification fails:
+- Ensure your endpoint is publicly accessible
+- Check that your GET endpoint returns the challenge correctly
+- Verify your token matches exactly
+
+### Step 4: Subscribe to Webhook Fields
+
+After verification, subscribe to these events:
+
+1. Check these boxes:
+   - **messages** (incoming messages)
+
+2. Click **"Subscribe"**
+
+## Testing with Test Numbers
+
+Before going live, test your integration thoroughly.
+
+### Step 1: Add Test Numbers
+
+1. Go to **WhatsApp** → **API Setup**
+2. Find **"To"** section
+3. Click **"Add phone number"**
+4. Enter a phone number you want to test with
+5. You'll receive a verification code via WhatsApp
+6. Enter the code to verify
+
+**Limit:** Test numbers can only message up to **5 verified recipients**
+
+### Step 2: Send Your First Test Message
+
+Meta provides a test curl command:
+
+```bash
+curl -X POST "https://graph.facebook.com/v24.0/YOUR_PHONE_NUMBER_ID/messages" \
+  -H "Authorization: Bearer YOUR_ACCESS_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "messaging_product": "whatsapp",
+    "to": "RECIPIENT_PHONE_NUMBER",
+    "type": "text",
+    "text": {
+      "body": "Hello from WhatsApp Cloud API!"
+    }
+  }'
+```
+
+Replace:
+- `YOUR_PHONE_NUMBER_ID` with your Phone Number ID
+- `YOUR_ACCESS_TOKEN` with the temporary token from Meta
+- `RECIPIENT_PHONE_NUMBER` with a verified test number (format: `1234567890`)
+
+![Test Message Screenshot](/blog/test-message.png)
+
+### Step 3: Verify Webhook Reception
+
+1. Reply to the test message on WhatsApp
+2. Check your webhook endpoint logs
+3. You should see a POST request with the message payload
+
+**Example webhook payload:**
+
+```json
+{
+  "object": "whatsapp_business_account",
+  "entry": [{
+    "changes": [{
+      "value": {
+        "messaging_product": "whatsapp",
+        "metadata": {
+          "phone_number_id": "123456789"
+        },
+        "messages": [{
+          "from": "1234567890",
+          "id": "wamid.xxx",
+          "timestamp": "1234567890",
+          "type": "text",
+          "text": {
+            "body": "Hello back!"
+          }
+        }]
+      }
+    }]
+  }]
+}
+```
+
+---
+
+## Part 1 Complete!
+
+You now have:
+- Meta Business Account created
+- Facebook App with WhatsApp product
+- WhatsApp Business Account with phone number
+- Webhook configured and verified
+- Test numbers added and verified
+
+### What's Next?
+
+In **Part 2**, we'll cover:
+- Setting up OAuth flow in Next.js
+- Database schema for storing tokens
+- Token refresh logic
+- Sending messages
+- Receiving and processing messages
+- Security best practices
+- Production deployment checklist
+
+---
+
+## Useful Resources
+
+- [WhatsApp Cloud API Documentation](https://developers.facebook.com/docs/whatsapp/cloud-api)
+- [WhatsApp Business API Pricing](https://developers.facebook.com/docs/whatsapp/pricing)
+- [Meta Business Manager](https://business.facebook.com/)
+- [Facebook Developer Console](https://developers.facebook.com/)
+- [Webhook Reference](https://developers.facebook.com/docs/whatsapp/cloud-api/webhooks)
+
+**Continue to [Part 2: Implementation →](whatsapp-setup-guide-part-2)**
