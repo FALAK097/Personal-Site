@@ -1,6 +1,6 @@
 ---
 title: "WhatsApp Cloud API Integration with Next.js - Part 1: Setup & Configuration"
-description: "A complete guide to integrating WhatsApp Business Cloud API with your Next.js application using OAuth. This is the guide I wish existed when I started - Meta's documentation is scattered and incomplete."
+description: "A complete guide to integrating WhatsApp Business Cloud API with your Next.js application using OAuth. This is the guide I wish existed when I started, Meta's documentation is scattered and incomplete."
 date: "2025-11-23"
 ---
 
@@ -16,7 +16,6 @@ Before we dive in, make sure you have a few things ready:
 - A **Facebook/Meta account** to manage the business side of things.
 - A **business or personal phone number** that you can dedicate to the WhatsApp Business API.
 - A way to expose your local server to the internet. **ngrok** is my go-to for this.
-- A Meta Business Manager account set up and ready to go.
 
 **Our Tech Stack:**
 - Next.js 13+ (App Router)
@@ -201,7 +200,7 @@ Create a random string for webhook verification:
 openssl rand -base64 32
 ```
 
-Save this as your **VERIFY_TOKEN** - you'll need it in your code and Meta dashboard.
+Save this as your **WHATSAPP_VERIFY_TOKEN** - you'll need it in your code and Meta dashboard.
 
 ### Step 3: Configure Webhook URL in Meta
 
@@ -247,6 +246,20 @@ export const GET = (async (req) => {
  		console.error("Webhook verification error:", error);
  		return NextResponse.json({message: "Internal server error"}, {status: 500});
  	}
+});
+
+export const POST = (async (req) => {
+	try {
+		const body = await req.json();
+		console.log("Incoming webhook payload:", JSON.stringify(body, null, 2));
+
+		// In Part 2, we'll process this payload.
+		// For now, we'll just acknowledge receipt.
+		return NextResponse.json({ status: "success" }, { status: 200 });
+	} catch (error) {
+		console.error("Webhook POST error:", error);
+		return NextResponse.json({ message: "Internal server error" }, { status: 500 });
+	}
 });
 ```
 
@@ -308,9 +321,55 @@ Replace:
 
 ### Step 3: Verify Webhook Reception
 
-1. Reply to the test message on WhatsApp
-2. Check your webhook endpoint logs
-3. You should see a POST request with the message payload
+Once your webhook is verified and subscribed to `messages`, you need to test that you can receive incoming message notifications. With the `POST` handler added to our route, your endpoint is now ready to receive these events.
+
+You can trigger a test in two ways:
+
+**Option A: Reply from WhatsApp (Manual Test)**
+
+1.  Use the `curl` command from the "Send Your First Test Message" step to send a message to your verified test number.
+2.  Open WhatsApp on that phone and reply to the message.
+3.  Check your Next.js application's console logs. You should see the incoming payload logged by our new `POST` handler.
+
+**Option B: Simulate with a `curl` command (Programmatic Test)**
+
+For a faster, more direct test without needing a phone, you can simulate the webhook event that WhatsApp sends. This is perfect for development and automated checks.
+
+Open your terminal and run the following `curl` command. Make sure to replace `https://yourdomain.com` with your public URL (e.g., from ngrok) and update the placeholder IDs.
+
+```bash
+curl -X POST 'https://yourdomain.com/api/webhooks/whatsapp' \
+-H 'Content-Type: application/json' \
+-d '{
+  "object": "whatsapp_business_account",
+  "entry": [{
+    "id": "YOUR_WABA_ID",
+    "changes": [{
+      "value": {
+        "messaging_product": "whatsapp",
+        "metadata": {
+          "display_phone_number": "15550001234",
+          "phone_number_id": "YOUR_PHONE_NUMBER_ID"
+        },
+        "contacts": [{
+          "profile": { "name": "Test User" },
+          "wa_id": "15551234567"
+        }],
+        "messages": [{
+          "from": "15551234567",
+          "id": "wamid.TEST_MESSAGE_ID",
+          "timestamp": "1700000000",
+          "type": "text",
+          "text": { "body": "Hello from a test!" }
+        }]
+      },
+      "field": "messages"
+    }]
+  }]
+}'
+```
+
+After running this, check your server logs. Whichever method you choose, you should see the incoming payload logged to your console.
 
 **Example webhook payload:**
 

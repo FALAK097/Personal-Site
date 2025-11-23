@@ -3,7 +3,7 @@ export const projects = [
     id: "outcallerai",
     title: "OutCallerAI",
     description:
-      "AI-powered outbound caller that pre-qualifies leads with life-like conversations.",
+      "Automate inbound & outbound calls with ultra-realistic AI voices. Scale your outreach across any industry without extra manpower.",
     tags: [
       "JavaScript",
       "React.js",
@@ -49,6 +49,28 @@ export const projects = [
     imageUrl: "/projects/outriskai.png",
   },
   {
+    id: "dms",
+    title: "DMS",
+    description:
+      "Upload, search, and chat with your documents using AI. Automatic OCR, smart search, and seamless cloud syncing.",
+    tags: [
+      "JavaScript",
+      "React.js",
+      "Next.js",
+      "Tailwind",
+      "BetterAuth",
+      "Prisma",
+      "OpenAI",
+      "Gemini",
+      "PostgreSQL",
+      "Vercel",
+      "Neon",
+      "Upstash",
+    ],
+    deployedUrl: "https://dms.falakgala.dev",
+    imageUrl: "/projects/dms.png",
+  },
+  {
     id: "waitlyze",
     title: "Waitlyze",
     description:
@@ -66,8 +88,7 @@ export const projects = [
       "Clerk",
       // "Uploadthing",
     ],
-    deployedUrl:
-      "https://waitlyze.falakgala.dev",
+    deployedUrl: "https://waitlyze.falakgala.dev",
     imageUrl: "/projects/waitlyze.png",
   },
   {

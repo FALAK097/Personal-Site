@@ -47,6 +47,7 @@ const skillLogos = {
   Bootstrap: { logo: "/skills/bootstrap.svg", name: "Bootstrap" },
   "Chart.js": { logo: "/skills/chartjs.svg", name: "Chart.js" },
   Authjs: { logo: "/skills/authjs.svg", name: "Authjs" },
+  BetterAuth: { logo: "/skills/better-auth.svg", name: "BetterAuth" },
   Clerk: {
     logo: {
       light: "/skills/clerk-light.svg",
@@ -73,6 +74,7 @@ const skillLogos = {
   PostgreSQL: { logo: "/skills/postgresql.svg", name: "PostgreSQL" },
   Supabase: { logo: "/skills/supabase.svg", name: "Supabase" },
   Neon: { logo: "/skills/neon.svg", name: "Neon" },
+  Upstash: { logo: "/skills/upstash.svg", name: "Upstash" },
   Docker: { logo: "/skills/docker.svg", name: "Docker" },
   DigitalOcean: { logo: "/skills/digitalocean.svg", name: "DigitalOcean" },
   Render: { logo: "/skills/render.jpg", name: "Render" },
