@@ -1,0 +1,997 @@
+---
+title: "WhatsApp Cloud API Integration with Next.js - Part 2: Implementation"
+description: "Complete implementation guide for OAuth flow, token management, sending/receiving messages, and production deployment."
+date: "2025-11-24"
+---
+
+Welcome back! In [Part 1](whatsapp-setup-guide-part-1), we navigated the maze of Meta's business settings and got our accounts, apps, and webhooks configured. That was the bureaucratic part. Now, we get to the fun stuff: writing the code.
+
+This guide is where the rubber meets the road. We'll set up our database schema, build the entire OAuth flow from scratch in Next.js, handle token refreshes, and finally, send and receive our first messages programmatically. Let's dive in.
+
+---
+
+## Database Schema Setup
+
+We need a place to securely store the OAuth tokens and other account information for each user that connects their WhatsApp account. I'm using Prisma here because it gives us type-safe database access and makes schema management a breeze, but you can adapt this to any ORM or database you're comfortable with.
+
+### Step 1: Install Dependencies
+
+```bash
+pnpm install @prisma/client
+pnpm install -D prisma
+```
+
+### Step 2: Initialize Prisma
+
+```bash
+npx prisma init
+```
+
+### Step 3: Define Schema
+
+Create/update `prisma/schema.prisma`:
+
+```prisma
+// Account model - stores WhatsApp Business Account tokens
+model Account {
+  id                String    @id @default(cuid())
+  userId            String
+  type              String    // "whatsapp"
+  provider          String    // "whatsapp-cloud-api"
+  providerAccountId String    // WABA ID (WhatsApp Business Account ID)
+  
+  // OAuth tokens
+  access_token      String?   @db.Text
+  expires_at        Int?      // Unix timestamp (seconds)
+  refresh_token     String?   @db.Text
+  token_type        String?   // "bearer"
+  scope             String?
+  
+  // WhatsApp specific fields
+  sender_id         String?   // Phone Number ID
+  
+  createdAt         DateTime  @default(now())
+  updatedAt         DateTime  @updatedAt
+
+  user              User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  @@unique([provider, providerAccountId])
+}
+
+// User model (from your existing auth setup)
+model User {
+  id                String    @id @default(cuid())
+  email             String    @unique
+  name              String?
+
+  accounts          Account[]
+  
+  createdAt         DateTime  @default(now())
+  updatedAt         DateTime  @updatedAt
+}
+```
+
+### Step 4: Run Migration
+
+```bash
+npx prisma migrate dev --name add_whatsapp_integration
+npx prisma generate
+```
+
+---
+
+## Environment Variables
+
+Create `.env.local` in your Next.js project:
+
+```bash
+# Database
+DATABASE_URL="postgresql://user:password@localhost:5432/mydb"
+
+# NextAuth (for session management)
+NEXTAUTH_SECRET="your-nextauth-secret-here"
+NEXTAUTH_URL="http://localhost:3000"
+
+# WhatsApp Cloud API
+FACEBOOK_APP_ID="your-facebook-app-id"
+FACEBOOK_APP_SECRET="your-facebook-app-secret"
+WHATSAPP_VERIFY_TOKEN="your-generated-verify-token"
+
+# WhatsApp API URLs
+WHATSAPP_API_URL="https://graph.facebook.com/v24.0"
+```
+
+**Security:** Never commit `.env.local` to git. Add it to `.gitignore`.
+
+---
+
+## OAuth Flow Implementation
+
+### Architecture Overview
+
+Here's a bird's eye view of the flow we're about to build. It's a standard OAuth 2.0 dance, but seeing the steps laid out can help clarify the process:
+
+```
+User clicks "Connect WhatsApp"
+    ↓
+Redirect to Facebook OAuth Portal
+    ↓
+User authenticates and grants permissions to our app
+    ↓
+Facebook redirects back to our app with a temporary authorization `code`
+    ↓
+Our backend exchanges this `code` for a long-lived `access_token`
+    ↓
+We securely store this token in our database, linked to the user's account
+    ↓
+Redirect the user to their dashboard with a success message
+```
+
+### Step 1: Create OAuth Initiation Button
+
+> Below I have used some UI components from [Shadcn UI](https://ui.shadcn.com/) for styling, but feel free to use your own design system.
+
+Create `components/whatsapp-integration.jsx`:
+
+```javascript
+"use client";
+
+import { useState, useEffect } from "react";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { CheckCircle2, XCircle, AlertCircle, RefreshCw } from "lucide-react";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
+import * as api from "@/lib/api";
+
+export default function WhatsAppIntegration() {
+  const [status, setStatus] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [refreshing, setRefreshing] = useState(false);
+
+  useEffect(() => {
+    checkStatus();
+  }, []);
+
+  const checkStatus = async () => {
+    try {
+      const data = await api.checkWhatsAppConnectionStatus();
+      setStatus(data);
+    } catch (error) {
+      console.error("Failed to check WhatsApp status:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleConnect = async () => {
+    try {
+      const result = await api.connectWhatsApp();
+      if (result.authUrl) {
+        // Redirect to Facebook OAuth
+        window.location.href = result.authUrl;
+      }
+    } catch (error) {
+      console.error("Failed to initiate OAuth:", error);
+    }
+  };
+
+  const handleDisconnect = async () => {
+    if (!confirm("Are you sure you want to disconnect WhatsApp?")) return;
+    
+    try {
+      await api.disconnectWhatsApp();
+      await checkStatus();
+    } catch (error) {
+      console.error("Failed to disconnect:", error);
+    }
+  };
+
+  const handleRefresh = async () => {
+    setRefreshing(true);
+    try {
+      await api.refreshWhatsAppToken();
+      await checkStatus();
+    } catch (error) {
+      console.error("Failed to refresh token:", error);
+    } finally {
+      setRefreshing(false);
+    }
+  };
+
+  const getExpiryStatus = () => {
+    if (!status?.connected || !status?.expiresAt) return null;
+    
+    const now = Date.now();
+    const expiryTime = status.expiresAt * 1000;
+    const daysRemaining = Math.floor((expiryTime - now) / (1000 * 60 * 60 * 24));
+    
+    if (expiryTime < now) {
+      return { color: "text-red-600", message: "Token expired", icon: XCircle };
+    } else if (daysRemaining < 7) {
+      return { color: "text-yellow-600", message: `Expires in ${daysRemaining} days`, icon: AlertCircle };
+    } else {
+      return { color: "text-green-600", message: `Expires in ${daysRemaining} days`, icon: CheckCircle2 };
+    }
+  };
+
+  const expiryStatus = getExpiryStatus();
+
+  if (loading) {
+    return <div>Loading WhatsApp status...</div>;
+  }
+
+  return (
+    <Card>
+      <CardHeader>
+        <CardTitle>WhatsApp Business Integration</CardTitle>
+        <CardDescription>
+          Connect your WhatsApp Business Account to send and receive messages
+        </CardDescription>
+      </CardHeader>
+      <CardContent className="space-y-4">
+        {status?.connected ? (
+          <div className="space-y-3">
+            <div className="flex items-center gap-2">
+              <CheckCircle2 className="h-5 w-5 text-green-600" />
+              <span className="font-medium">Connected to WhatsApp Business</span>
+              <TooltipProvider>
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <Button
+                      variant="ghost"
+                      size="icon"
+                      onClick={handleRefresh}
+                      disabled={refreshing}
+                    >
+                      <RefreshCw className={`h-4 w-4 ${refreshing ? "animate-spin" : ""}`} />
+                    </Button>
+                  </TooltipTrigger>
+                  <TooltipContent>
+                    <p>Refresh token</p>
+                  </TooltipContent>
+                </Tooltip>
+              </TooltipProvider>
+            </div>
+            
+            {expiryStatus && (
+              <div className={`flex items-center gap-2 ${expiryStatus.color}`}>
+                <expiryStatus.icon className="h-4 w-4" />
+                <span className="text-sm">{expiryStatus.message}</span>
+              </div>
+            )}
+            
+            <div className="space-y-1 text-sm">
+              <p><strong>Phone Number ID:</strong> {status.senderId}</p>
+              <p><strong>Business Account ID:</strong> {status.wabaId}</p>
+            </div>
+            
+            <Button variant="destructive" onClick={handleDisconnect}>
+              Disconnect WhatsApp
+            </Button>
+          </div>
+        ) : (
+          <div className="space-y-3">
+            <div className="flex items-center gap-2 text-muted-foreground">
+              <XCircle className="h-5 w-5" />
+              <span>Not connected to WhatsApp Business</span>
+            </div>
+            <Button onClick={handleConnect}>
+              Connect WhatsApp Business Account
+            </Button>
+          </div>
+        )}
+      </CardContent>
+    </Card>
+  );
+}
+```
+
+### Step 2: Create API Helper Functions
+
+Create `lib/api.js`:
+
+```javascript
+// A simple helper for making API calls from the client side.
+async function fetchApi(endpoint, options = {}) {
+  const response = await fetch(`/api${endpoint}`, {
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+  if (!response.ok) {
+    const errorData = await response.json();
+    throw new Error(errorData.error || "API request failed");
+  }
+
+  return response.json();
+}
+
+export function checkWhatsAppConnectionStatus() {
+  return fetchApi("/whatsapp/oauth/status");
+}
+
+export function connectWhatsApp() {
+  return fetchApi("/whatsapp/oauth/connect", { method: "POST" });
+}
+
+export function disconnectWhatsApp() {
+  return fetchApi("/whatsapp/oauth/disconnect", { method: "POST" });
+}
+
+export function refreshWhatsAppToken() {
+  return fetchApi("/whatsapp/oauth/refresh", { method: "POST" });
+}
+```
+
+### Step 3: Create OAuth Connect Endpoint
+
+Create `app/api/whatsapp/oauth/connect/route.js`:
+
+```javascript
+import { NextResponse } from "next/server";
+import crypto from "crypto";
+
+export async function POST(req) {
+  try {
+    const appId = process.env.FACEBOOK_APP_ID;
+    const redirectUri = `${process.env.NEXTAUTH_URL}/whatsapp-callback`;
+    
+    // The config_id is required for the OAuth flow.
+    // Find it in your Meta App Dashboard -> WhatsApp -> Getting Started -> Configuration -> Login & Request
+    const configId = process.env.FACEBOOK_CONFIG_ID; 
+    if (!configId) {
+      throw new Error("FACEBOOK_CONFIG_ID is not set in environment variables.");
+    }
+
+    // Use a random state for CSRF protection
+    const state = crypto.randomBytes(16).toString("hex");
+
+    const authUrl = new URL("https://www.facebook.com/v20.0/dialog/oauth");
+    authUrl.searchParams.append("client_id", appId);
+    authUrl.searchParams.append("redirect_uri", redirectUri);
+    authUrl.searchParams.append("response_type", "code");
+    authUrl.searchParams.append("config_id", configId);
+    authUrl.searchParams.append("state", state);
+
+    // In a real app, you would save the 'state' value in the user's session 
+    // or a temporary cookie to verify it on the callback.
+
+    return NextResponse.json({ 
+      success: true, 
+      authUrl: authUrl.toString() 
+    });
+  } catch (error) {
+    console.error("OAuth connect error:", error);
+    return NextResponse.json(
+      { success: false, error: error.message || "Failed to initiate OAuth" },
+      { status: 500 }
+    );
+  }
+}
+```
+
+### Step 4: Create OAuth Callback Page
+
+Create `app/whatsapp-callback/page.jsx`:
+
+```javascript
+"use client";
+
+import { useEffect, useState } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
+
+export default function WhatsAppCallbackPage() {
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const [status, setStatus] = useState("processing");
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const handleCallback = async () => {
+      const code = searchParams.get("code");
+      const errorParam = searchParams.get("error");
+      const errorMessage = searchParams.get("error_description");
+
+      if (errorParam) {
+        setStatus("error");
+        setError(errorMessage || "An unknown error occurred.");
+        setTimeout(() => router.push("/dashboard/settings"), 4000);
+        return;
+      }
+
+      if (!code) {
+        setStatus("error");
+        setError("Authorization code not found.");
+        return;
+      }
+
+      try {
+        const response = await fetch("/api/whatsapp/oauth/callback", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ code }),
+        });
+        
+        const data = await response.json();
+
+        if (data.success) {
+          setStatus("success");
+          // Redirect to a settings or dashboard page after a short delay
+          setTimeout(() => router.push("/dashboard/settings"), 2000);
+        } else {
+          setStatus("error");
+          setError(data.error || "Failed to finalize connection.");
+        }
+      } catch (err) {
+        console.error("Callback API error:", err);
+        setStatus("error");
+        setError("An unexpected error occurred while contacting the server.");
+      }
+    };
+    
+    handleCallback();
+  }, [searchParams, router]);
+
+  return (
+    <div className="flex min-h-screen items-center justify-center">
+      <div className="text-center p-4">
+        {status === "processing" && <p>Connecting to WhatsApp, please wait...</p>}
+        {status === "success" && <p className="text-green-600">✓ Connection successful! Redirecting you now...</p>}
+        {status === "error" && (
+          <div>
+            <p className="text-red-600">✗ Connection Failed</p>
+            {error && <p className="text-sm text-gray-500 mt-2">{error}</p>}
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
+```
+
+### Step 5: Create OAuth Callback API Handler
+
+Create `app/api/whatsapp/oauth/callback/route.js`:
+
+```javascript
+import { NextResponse } from "next/server";
+import { getServerSession } from "next-auth/next";
+import { authOptions } from "@/lib/auth";
+import { db } from "@/lib/db";
+
+export async function POST(req) {
+  try {
+    const session = await getServerSession(authOptions);
+    if (!session?.user?.id) {
+      return NextResponse.json({ success: false, error: "Unauthorized" }, { status: 401 });
+    }
+
+    const { code } = await req.json();
+    if (!code) {
+      return NextResponse.json({ success: false, error: "Authorization code is required" }, { status: 400 });
+    }
+
+    // 1. Exchange the authorization code for a short-lived access token
+    const tokenUrl = new URL("https://graph.facebook.com/v20.0/oauth/access_token");
+    tokenUrl.searchParams.append("client_id", process.env.FACEBOOK_APP_ID);
+    tokenUrl.searchParams.append("client_secret", process.env.FACEBOOK_APP_SECRET);
+    tokenUrl.searchParams.append("redirect_uri", `${process.env.NEXTAUTH_URL}/whatsapp-callback`);
+    tokenUrl.searchParams.append("code", code);
+    
+    const tokenResponse = await fetch(tokenUrl);
+    const tokenData = await tokenResponse.json();
+
+    if (!tokenData.access_token) {
+      console.error("Token exchange failed:", tokenData);
+      throw new Error("Failed to exchange authorization code for an access token.");
+    }
+    
+    // 2. Exchange the short-lived token for a long-lived token (lasts 60 days)
+    const longLivedTokenUrl = new URL("https://graph.facebook.com/v20.0/oauth/access_token");
+    longLivedTokenUrl.searchParams.append("grant_type", "fb_exchange_token");
+    longLivedTokenUrl.searchParams.append("client_id", process.env.FACEBOOK_APP_ID);
+    longLivedTokenUrl.searchParams.append("client_secret", process.env.FACEBOOK_APP_SECRET);
+    longLivedTokenUrl.searchParams.append("fb_exchange_token", tokenData.access_token);
+
+    const longLivedTokenResponse = await fetch(longLivedTokenUrl);
+    const longLivedTokenData = await longLivedTokenResponse.json();
+
+    if (!longLivedTokenData.access_token) {
+      console.error("Long-lived token exchange failed:", longLivedTokenData);
+      throw new Error("Failed to exchange for a long-lived access token.");
+    }
+
+    const accessToken = longLivedTokenData.access_token;
+    const expiresAt = Math.floor(Date.now() / 1000) + longLivedTokenData.expires_in;
+
+    // 3. Get the WhatsApp Business Account (WABA) ID
+    const debugUrl = new URL("https://graph.facebook.com/v20.0/debug_token");
+    debugUrl.searchParams.append("input_token", accessToken);
+    debugUrl.searchParams.append("access_token", accessToken); // Requires the same token
+
+    const wabaResponse = await fetch(debugUrl);
+    const wabaData = await wabaResponse.json();
+    const wabaId = wabaData.data?.granular_scopes?.find(s => s.scope === 'whatsapp_business_management')?.target_ids?.[0];
+
+    if (!wabaId) {
+      console.error("WABA ID extraction failed:", wabaData);
+      throw new Error("Could not extract WABA ID from the token. Ensure 'whatsapp_business_management' permission is granted.");
+    }
+
+    // 4. Get the Phone Number ID associated with the WABA
+    const phoneResponse = await fetch(`https://graph.facebook.com/v20.0/${wabaId}/phone_numbers`, {
+      headers: { Authorization: `Bearer ${accessToken}` },
+    });
+    const phoneData = await phoneResponse.json();
+    const phoneNumberId = phoneData.data?.[0]?.id;
+
+    if (!phoneNumberId) {
+      console.error("Phone number ID fetch failed:", phoneData);
+      throw new Error("Could not find a phone number associated with this account.");
+    }
+
+    // 5. Store the credentials in your database, linked to the user
+    await db.account.upsert({
+      where: {
+        provider_providerAccountId: {
+          provider: "whatsapp-cloud-api",
+          providerAccountId: wabaId,
+        },
+      },
+      update: {
+        access_token: accessToken,
+        expires_at: expiresAt,
+        sender_id: phoneNumberId,
+        userId: session.user.id,
+      },
+      create: {
+        userId: session.user.id,
+        type: "whatsapp",
+        provider: "whatsapp-cloud-api",
+        providerAccountId: wabaId,
+        access_token: accessToken,
+        expires_at: expiresAt,
+        sender_id: phoneNumberId,
+        token_type: "bearer",
+      },
+    });
+
+    return NextResponse.json({ success: true });
+  } catch (error) {
+    console.error("OAuth Callback Error:", error.message);
+    return NextResponse.json(
+      { success: false, error: "Failed to complete the connection. " + error.message },
+      { status: 500 }
+    );
+  }
+}
+```
+
+### Step 6: Create Status Check Endpoint
+
+Create `app/api/whatsapp/oauth/status/route.js`:
+
+```javascript
+import { NextResponse } from "next/server";
+import { getServerSession } from "next-auth/next";
+import { authOptions } from "@/lib/auth";
+import { db } from "@/lib/db";
+
+export async function GET(req) {
+  try {
+    const session = await getServerSession(authOptions);
+    if (!session?.user?.id) {
+      // No active session, so not connected.
+      return NextResponse.json({ connected: false });
+    }
+
+    const account = await db.account.findFirst({
+      where: {
+        userId: session.user.id,
+        provider: "whatsapp-cloud-api",
+      },
+    });
+
+    if (!account?.access_token) {
+      return NextResponse.json({ connected: false });
+    }
+
+    // Return connection status and relevant IDs
+    return NextResponse.json({
+      connected: true,
+      senderId: account.sender_id,
+      wabaId: account.providerAccountId,
+      expiresAt: account.expires_at,
+    });
+  } catch (error)
+  {
+    console.error("Status check error:", error);
+    // On error, safely report as not connected.
+    return NextResponse.json({ connected: false, error: "An error occurred" }, { status: 500 });
+  }
+}
+```
+
+### Step 7: Create Disconnect Endpoint
+
+Create `app/api/whatsapp/oauth/disconnect/route.js`:
+
+```javascript
+import { NextResponse } from "next/server";
+import { getServerSession } from "next-auth/next";
+import { authOptions } from "@/lib/auth";
+import { db } from "@/lib/db";
+
+export async function POST(req) {
+  try {
+    const session = await getServerSession(authOptions);
+    if (!session?.user?.id) {
+      return NextResponse.json({ success: false, error: "Unauthorized" }, { status: 401 });
+    }
+
+    // Delete all WhatsApp accounts associated with this user
+    await db.account.deleteMany({
+      where: {
+        userId: session.user.id,
+        provider: "whatsapp-cloud-api",
+      },
+    });
+
+    return NextResponse.json({ success: true });
+  } catch (error) {
+    console.error("Disconnect error:", error);
+    return NextResponse.json(
+      { success: false, error: "Failed to disconnect WhatsApp account." },
+      { status: 500 }
+    );
+  }
+}
+```
+
+---
+
+## Token Refresh Mechanism
+
+WhatsApp's long-lived tokens expire after 60 days. To maintain a seamless connection, you should refresh the token before it expires. The API allows you to refresh it, effectively extending its life for another 60 days. A good practice is to refresh it when it has less than a week of validity left.
+
+You can set up a scheduled job (e.g., using a cron job or serverless function) to periodically check and refresh tokens nearing expiration. For simplicity, we'll create an endpoint that can be called manually or via a scheduler.
+
+The `whatsapp-integration.jsx` component we built earlier already includes a manual refresh button that calls this endpoint.
+
+### Step 1: Create Refresh Endpoint
+
+Create `app/api/whatsapp/oauth/refresh/route.js`:
+
+```javascript
+import { NextResponse } from "next/server";
+import { getServerSession } from "next-auth/next";
+import { authOptions } from "@/lib/auth";
+import { db } from "@/lib/db";
+
+export async function POST(req) {
+  try {
+    const session = await getServerSession(authOptions);
+    if (!session?.user?.id) {
+      return NextResponse.json({ success: false, error: "Unauthorized" }, { status: 401 });
+    }
+
+    const account = await db.account.findFirst({
+      where: {
+        userId: session.user.id,
+        provider: "whatsapp-cloud-api",
+      },
+    });
+
+    if (!account?.access_token) {
+      return NextResponse.json({ success: false, error: "WhatsApp account not found" }, { status: 404 });
+    }
+
+    // Call Meta's endpoint to get a new long-lived token
+    const refreshUrl = new URL("https://graph.facebook.com/v20.0/oauth/access_token");
+    refreshUrl.searchParams.append("grant_type", "fb_exchange_token");
+    refreshUrl.searchParams.append("client_id", process.env.FACEBOOK_APP_ID);
+    refreshUrl.searchParams.append("client_secret", process.env.FACEBOOK_APP_SECRET);
+    refreshUrl.searchParams.append("fb_exchange_token", account.access_token);
+
+    const refreshResponse = await fetch(refreshUrl);
+    const refreshData = await refreshResponse.json();
+
+    if (!refreshData.access_token) {
+      console.error("Token refresh failed:", refreshData);
+      // This might happen if the token is fully expired or revoked.
+      // The user needs to reconnect from scratch.
+      return NextResponse.json(
+        { success: false, error: "Token refresh failed. Please reconnect your account.", needsReauth: true },
+        { status: 401 }
+      );
+    }
+
+    // Update the token and its new expiry time in your database
+    const newExpiresAt = Math.floor(Date.now() / 1000) + refreshData.expires_in;
+    
+    await db.account.update({
+      where: { id: account.id },
+      data: {
+        access_token: refreshData.access_token,
+        expires_at: newExpiresAt,
+      },
+    });
+
+    return NextResponse.json({ success: true, expiresAt: newExpiresAt });
+  } catch (error) {
+    console.error("Token refresh error:", error);
+    return NextResponse.json(
+      { success: false, error: "An internal error occurred while refreshing the token." },
+      { status: 500 }
+    );
+  }
+}
+```
+
+---
+
+## Sending Messages
+
+### Step 1: Create Send Message Function
+
+Create `lib/whatsapp.js`:
+
+```javascript
+export async function sendWhatsAppMessage({ to, message, token, phoneNumberId }) {
+  const url = `${process.env.WHATSAPP_API_URL}/${phoneNumberId}/messages`;
+  
+  const payload = {
+    messaging_product: "whatsapp",
+    recipient_type: "individual",
+    to: to.replace(/[^0-9]/g, ""), // Sanitize phone number
+    type: "text",
+    text: {
+      preview_url: false,
+      body: message,
+    },
+  };
+
+  const response = await fetch(url, {
+    method: "POST",
+    headers: {
+      "Authorization": `Bearer ${token}`,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(payload),
+  });
+
+  const responseData = await response.json();
+
+  if (!response.ok) {
+    console.error("Failed to send WhatsApp message:", responseData);
+    const errorDetails = responseData.error?.message || JSON.stringify(responseData);
+    throw new Error(`Failed to send WhatsApp message: ${errorDetails}`);
+  }
+
+  return responseData;
+}
+```
+
+### Step 2: Create Send API Endpoint
+
+Create `app/api/whatsapp/send/route.js`:
+
+```javascript
+import { NextResponse } from "next/server";
+import { getServerSession } from "next-auth/next";
+import { authOptions } from "@/lib/auth";
+import { db } from "@/lib/db";
+import { sendWhatsAppMessage } from "@/lib/whatsapp";
+
+export async function POST(req) {
+  try {
+    const session = await getServerSession(authOptions);
+    if (!session?.user?.id) {
+      return NextResponse.json({ success: false, error: "Unauthorized" }, { status: 401 });
+    }
+
+    const { to, message } = await req.json();
+
+    if (!to || !message) {
+      return NextResponse.json(
+        { success: false, error: "Recipient phone number and message are required." },
+        { status: 400 }
+      );
+    }
+
+    // Get the user's WhatsApp account from the database
+    const account = await db.account.findFirst({
+      where: {
+        userId: session.user.id,
+        provider: "whatsapp-cloud-api",
+      },
+    });
+
+    if (!account?.access_token || !account.sender_id) {
+      return NextResponse.json(
+        { success: false, error: "WhatsApp account is not connected." },
+        { status: 400 }
+      );
+    }
+
+    // Proactive check for token expiration
+    const now = Math.floor(Date.now() / 1000);
+    if (account.expires_at && now > account.expires_at) {
+       return NextResponse.json(
+        { success: false, error: "WhatsApp token has expired. Please reconnect." },
+        { status: 401 }
+      );
+    }
+
+    const result = await sendWhatsAppMessage({
+      to,
+      message,
+      token: account.access_token,
+      phoneNumberId: account.sender_id,
+    });
+
+    return NextResponse.json({ success: true, messageId: result.messages[0].id });
+  } catch (error) {
+    console.error("Send message error:", error);
+    return NextResponse.json(
+      { success: false, error: error.message },
+      { status: 500 }
+    );
+  }
+}
+```
+
+---
+
+## Receiving Messages
+
+In Part 1, we created a basic webhook to verify the endpoint. Now, we'll expand the `POST` handler in that same file to process incoming messages securely. This logic is crucial as it's the entry point for all communication from your users.
+
+### Step 1: Update Your Webhook Handler
+
+Modify `app/api/webhooks/whatsapp/route.js` to replace the simple `POST` handler with this more robust version. The `GET` handler for verification remains the same.
+
+```javascript
+// File: /app/api/webhooks/whatsapp/route.js
+import { NextResponse } from "next/server";
+import { db } from "@/lib/db";
+import crypto from "crypto";
+
+// GET handler for webhook verification (from Part 1)
+export async function GET(req) {
+  const { searchParams } = new URL(req.url);
+  const mode = searchParams.get("hub.mode");
+  const token = searchParams.get("hub.verify_token");
+  const challenge = searchParams.get("hub.challenge");
+
+  if (mode === "subscribe" && token === process.env.WHATSAPP_VERIFY_TOKEN) {
+    console.log("Webhook verified successfully!");
+    return new NextResponse(challenge, { status: 200 });
+  } else {
+    console.error("Webhook verification failed.");
+    return NextResponse.json({ error: "Verification failed" }, { status: 403 });
+  }
+}
+
+// POST handler for receiving messages
+export async function POST(req) {
+  const bodyText = await req.text();
+  const signature = req.headers.get("x-hub-signature-256") || "";
+
+  // 1. Validate the webhook signature for security
+  if (!validateWebhookSignature(bodyText, signature)) {
+    console.error("Webhook signature validation failed.");
+    return NextResponse.json({ error: "Invalid signature" }, { status: 401 });
+  }
+
+  try {
+    const body = JSON.parse(bodyText);
+    const entry = body.entry?.[0];
+    const changes = entry?.changes?.[0];
+    const value = changes?.value;
+
+    // Check if it's a message notification
+    if (value?.messages) {
+      const message = value.messages[0];
+      const phoneNumberId = value.metadata.phone_number_id;
+
+      // 2. Find which of your users this message belongs to
+      const account = await db.account.findFirst({
+        where: {
+          sender_id: phoneNumberId,
+          provider: "whatsapp-cloud-api",
+        },
+      });
+
+      if (!account) {
+        // This can happen if a number is associated with your Meta app
+        // but not yet connected by a user in your system.
+        console.warn(`No account found for phone number ID: ${phoneNumberId}`);
+        // Return 200 OK to acknowledge receipt and prevent Meta from retrying.
+        return NextResponse.json({ success: true });
+      }
+
+      // 3. Process the incoming message
+      await processIncomingMessage({
+        userId: account.userId,
+        from: message.from, // The user's WhatsApp number
+        messageId: message.id,
+        timestamp: message.timestamp,
+        type: message.type,
+        text: message.text?.body,
+        // You can expand this to handle images, audio, etc.
+      });
+    }
+
+    // Acknowledge receipt of the webhook
+    return NextResponse.json({ success: true });
+  } catch (error) {
+    console.error("Error processing webhook:", error);
+    // Important: Always return a 200 OK to Meta, even on failure.
+    // Otherwise, they will keep retrying the webhook, which can
+    // cause a flood of requests.
+    return NextResponse.json({ success: true });
+  }
+}
+
+function validateWebhookSignature(body, signature) {
+  const expectedSignature = crypto
+    .createHmac("sha256", process.env.FACEBOOK_APP_SECRET)
+    .update(body)
+    .digest("hex");
+
+  return `sha256=${expectedSignature}` === signature;
+}
+
+async function processIncomingMessage(messageData) {
+  // This is where your business logic lives.
+  console.log("Processing incoming message for user:", messageData.userId);
+  console.log({ messageData });
+
+  // Example Logic:
+  // 1. Save the message to your database.
+  //    await db.message.create({ data: { ... } });
+  //
+  // 2. Check if the user's message is a specific command.
+  //    if (messageData.text.toLowerCase() === 'status') { ... }
+  //
+  // 3. Trigger a response from an AI or a predefined flow.
+  //    const reply = await getAiResponse(messageData.text);
+  //    await sendWhatsAppMessage({ to: messageData.from, message: reply, ... });
+  //
+  // 4. Send the message data to other services in your infrastructure.
+  //    await fetch('https://api.yourother-service.com/new-message', { ... });
+}
+```
+
+---
+
+## You're Done!
+
+You now have a complete WhatsApp Cloud API integration with:
+- OAuth flow for easy connection
+- Automatic token refresh
+- Multi-tenant support
+- Send and receive messages
+
+### Next Steps
+
+- **Extend functionality:** Add support for media messages (images, videos, documents)
+- **Message templates:** Implement WhatsApp message templates for proactive messaging [WhatsApp Templates](https://developers.facebook.com/docs/whatsapp/cloud-api/guides/send-message-templates/)
+- **Flow automation:** Build conversation flows and auto-responses [WhatsApp Flows](https://developers.facebook.com/docs/whatsapp/flows/)
+- **Analytics:** Track conversation metrics and engagement
+- **AI integration:** Connect with OpenAI/Anthropic for intelligent responses
+
+### Useful Resources
+
+- [WhatsApp Cloud API Documentation](https://developers.facebook.com/docs/whatsapp/cloud-api)
+- [WhatsApp Pricing Calculator](https://developers.facebook.com/docs/whatsapp/pricing)
+- [Meta Business Help Center](https://www.facebook.com/business/help)
+- [Meta Developers Community](https://developers.facebook.com/community/)
+
+---
+
+**Questions or Issues?** The Meta documentation can be confusing, don't hesitate to revisit the setup steps or reach out to the developer community for help!

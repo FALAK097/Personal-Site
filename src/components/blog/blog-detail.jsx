@@ -11,8 +11,6 @@ export default function BlogDetail({ post, children, prevPost, nextPost }) {
 
   const handleShare = async () => {
     await navigator.share({
-      title: post.title,
-      text: post.description,
       url: window.location.href,
     });
   };
