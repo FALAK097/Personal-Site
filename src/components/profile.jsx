@@ -98,8 +98,9 @@ export function Profile() {
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
-          className={`relative w-24 h-24 mt-4 sm:w-32 sm:h-32 md:w-48 md:h-48 rounded-full border-2 border-purple-500 overflow-hidden transform transition-all duration-1000 ease-out ${isVisible ? "opacity-100 scale-100" : "opacity-0 scale-95"
-            }`}
+          className={`relative w-24 h-24 mt-4 sm:w-32 sm:h-32 md:w-48 md:h-48 rounded-full border-2 border-purple-500 overflow-hidden transform transition-all duration-1000 ease-out ${
+            isVisible ? "opacity-100 scale-100" : "opacity-0 scale-95"
+          }`}
         >
           <Image
             priority
@@ -153,7 +154,7 @@ export function Profile() {
           </motion.div>
 
           <TextGenerateEffect
-            words="Whipping up clever solutions and wrestling with tricky challenges—because who doesn't love a good tech puzzle?"
+            words="Whipping up clever solutions and wrestling with tricky challenges because who doesn't love a good tech puzzle?"
             className="text-base leading-relaxed break-words sm:text-lg md:text-xl text-foreground/90"
             delay={1.2}
           />

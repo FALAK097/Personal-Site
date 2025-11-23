@@ -77,6 +77,9 @@
     3. Prisma Admin for Next.js
     4. Implementing Gemini Voice Agent with Twilio
     5. What is Celery, Worker, Flower, Beat & Setup with Redis, FastAPI
+    6. How I automated code quality checks on a Next.js & FastApi monorepo
+    7. Github Actions for automated deployment
+    8. Self hosting a TTS model from huggingface (refer to the SelfHost doc)
 
 ## Projects Section
 
