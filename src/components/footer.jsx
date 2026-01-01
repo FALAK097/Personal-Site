@@ -5,6 +5,13 @@ import { uniqueVisitors } from "@/actions/unique-visitors";
 import { SocialLinks } from "@/components/social-links";
 import { HeartIcon } from "@/components/icons";
 
+const timeFormatter = new Intl.DateTimeFormat("en-IN", {
+  hour: "2-digit",
+  minute: "2-digit",
+  hour12: true,
+  timeZone: "Asia/Kolkata",
+});
+
 function generateVisitorId() {
   if (typeof window === "undefined") return null;
   const localStorageKey = "visitorId";
@@ -18,6 +25,7 @@ function generateVisitorId() {
 
 export function Footer() {
   const [uniqueVisitorsCount, setUniqueVisitorsCount] = useState(null);
+  const [mumbaiTime, setMumbaiTime] = useState({ time: "" });
 
   useEffect(() => {
     const visitorId = generateVisitorId();
@@ -39,27 +47,48 @@ export function Footer() {
     fetchUniqueVisitors();
   }, []);
 
+  useEffect(() => {
+    const update = () => {
+      const now = new Date();
+      setMumbaiTime({
+        time: timeFormatter.format(now),
+      });
+    };
+    update();
+    const interval = setInterval(update, 30_000);
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <footer className="border-t border-border">
-      <div className="container mx-auto px-4 py-4 flex flex-col md:flex-row items-center justify-between gap-4 md:gap-0">
-        <div className="text-sm text-foreground/60 flex items-center gap-1">
-          Made with <HeartIcon className="inline-flex w-4 h-4 text-red-500" />{" "}
-          by{" "}
-          <a
-            href="https://github.com/Falak097"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="underline hover:text-foreground"
-          >
-            Falak Gala
-          </a>
-        </div>
+      <div className="container mx-auto px-4 py-4">
+        <div className="flex flex-col items-center gap-4 md:flex-row md:justify-between">
+          {/* Made with love */}
+          <div className="text-sm text-foreground/60 flex items-center gap-1 order-3 md:order-1">
+            Made with <HeartIcon className="inline-flex w-4 h-4 text-red-500" />{" "}
+            by{" "}
+            <a
+              href="https://github.com/Falak097"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="underline hover:text-foreground"
+            >
+              Falak Gala
+            </a>
+          </div>
 
-        <div className="flex flex-col md:flex-row items-center gap-2 md:gap-8">
-          <SocialLinks />
-          <div className="text-sm text-foreground/60">
+          {/* Center section - Time & Social Links */}
+          <div className="flex flex-col items-center gap-3 order-1 md:order-2 md:flex-row md:gap-6">
+            <div className="text-sm text-foreground/60">
+              Mumbai · {mumbaiTime.time}
+            </div>
+            <SocialLinks />
+          </div>
+
+          {/* Visitors count */}
+          <div className="text-sm text-foreground/60 order-2 md:order-3">
             {uniqueVisitorsCount !== null
-              ? `${uniqueVisitorsCount.toLocaleString()} Unique Visitors`
+              ? `${uniqueVisitorsCount.toLocaleString()} Visitors`
               : "Loading visitors..."}
           </div>
         </div>

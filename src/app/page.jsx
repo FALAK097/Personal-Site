@@ -8,6 +8,8 @@ import { RecentPosts } from "@/components/blog/recent-posts";
 import { getAllPosts } from "@/lib/mdx";
 import { getNowPlaying } from "@/actions/spotify";
 import { SpotifyNowPlaying } from "@/components/custom/spotify-now-playing";
+import { RecentProjects } from "@/components/recent-projects";
+import { projects } from "@/lib/project-data";
 import { FootballGoalAnimation } from "@/components/custom/football-goal-animation";
 
 export const metadata = {
@@ -19,6 +21,7 @@ export const metadata = {
 export default async function Home() {
   const allPosts = await getAllPosts();
   const recentPosts = allPosts.slice(0, 3);
+  const recentProjects = projects.slice(0, 5);
   let spotifyData;
 
   try {
@@ -31,12 +34,13 @@ export default async function Home() {
   return (
     <div className="flex flex-col min-h-[calc(100vh-2rem)]">
       <Navbar />
-      <div className="ml-5 mt-5">
+      <div className="container mx-auto px-4 mt-6">
         <SpotifyNowPlaying songData={spotifyData} />
       </div>
       <main className="container flex-1 px-4 py-8 mx-auto">
         <div className="max-w-4xl mx-auto space-y-16">
           <Profile />
+          <RecentProjects projects={recentProjects} />
           <RecentPosts posts={recentPosts} />
           <GitHubCalendarChart />
         </div>

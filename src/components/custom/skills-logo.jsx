@@ -104,6 +104,7 @@ const skillLogos = {
   },
   Postman: { logo: "/skills/postman.svg", name: "Postman" },
   Posthog: { logo: "/skills/posthog.svg", name: "Posthog" },
+  Ghostty: { logo: "/skills/ghostty.svg", name: "Ghostty" },
 };
 
 export const SkillsLogo = ({ skill, index }) => {
