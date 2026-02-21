@@ -119,7 +119,7 @@ export function Profile({ spotifyData }) {
           {/* Header */}
           <div className="flex flex-col items-center md:items-start space-y-1 w-full relative">
             <motion.h1
-              className="text-2xl md:text-3xl font-medium tracking-tight text-foreground flex flex-wrap justify-center md:justify-start"
+              className="text-xl font-balance tracking-tight text-foreground flex flex-wrap justify-center md:justify-start"
               variants={containerVariants}
               initial="hidden"
               animate="visible"
@@ -139,7 +139,7 @@ export function Profile({ spotifyData }) {
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 1.2 }}
-              className="text-lg sm:text-xl md:text-2xl font-medium text-purple-500 mt-2 h-8 flex items-center justify-center md:justify-start"
+              className="text-lg font-medium text-purple-500 mt-2 h-8 flex items-center justify-center md:justify-start"
             >
               <AnimatePresence mode="wait">
                 <motion.span
@@ -200,10 +200,10 @@ export function Profile({ spotifyData }) {
             </motion.p>
             
             <motion.div 
-               initial={{ opacity: 0, y: 10 }}
-               animate={{ opacity: 1, y: 0 }}
-               transition={{ duration: 0.6, delay: 2 }}
-               className="text-sm md:text-base text-foreground/60 flex flex-wrap items-center justify-center md:justify-start gap-1"
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 2 }}
+              className="text-sm md:text-base text-foreground/60 flex flex-wrap items-center justify-center md:justify-start gap-1"
             >
               <span>Outside work, I love watching football</span>
               <span>and listening to</span>
