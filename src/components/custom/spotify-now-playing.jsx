@@ -1,8 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
-import { Disc3, Music } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Disc3Icon, MusicIcon, TrendingUpIcon } from "../icons";
 import {
   Tooltip,
   TooltipContent,
@@ -13,8 +13,9 @@ import {
 export const SpotifyNowPlaying = ({ songData }) => {
   const [isHovered, setIsHovered] = useState(false);
   const [imageError, setImageError] = useState(false);
-  const prefersReducedMotion = useReducedMotion();
+  
   const isPlaying = songData?.isPlaying;
+  const isRecentlyPlayed = songData?.isRecentlyPlayed;
   const hasData = songData && (songData.title || songData.artist);
   const loading = !songData;
 
@@ -22,175 +23,128 @@ export const SpotifyNowPlaying = ({ songData }) => {
     setImageError(false);
   }, [songData?.albumImageUrl]);
 
+  const timeAgo = (date) => {
+    if (!date) return "";
+    const diffInSeconds = Math.floor((new Date() - new Date(date)) / 1000);
+    if (diffInSeconds < 60) return "just now";
+    const diffInMinutes = Math.floor(diffInSeconds / 60);
+    if (diffInMinutes < 60) return `${diffInMinutes} minute${diffInMinutes !== 1 ? 's' : ''} ago`;
+    const diffInHours = Math.floor(diffInMinutes / 60);
+    if (diffInHours < 24) return `${diffInHours} hour${diffInHours !== 1 ? 's' : ''} ago`;
+    const diffInDays = Math.floor(diffInHours / 24);
+    if (diffInDays === 1) return `1 day ago`;
+    return `${diffInDays} days ago`;
+  };
+
   const renderAlbumArt = () => {
     if (loading) {
       return (
-        <div className="w-full h-full bg-purple-500/20 flex items-center justify-center">
-          <Disc3 className="w-6 h-6 text-purple-500 animate-spin" />
+        <div className="w-12 h-12 bg-purple-500/10 flex items-center justify-center rounded-full flex-shrink-0">
+          <Disc3Icon className="w-5 h-5 text-purple-500 animate-spin" />
         </div>
       );
     }
 
     if (!hasData || !songData.albumImageUrl || imageError) {
       return (
-        <div className="w-full h-full bg-purple-500/20 flex items-center justify-center">
-          <Music className="w-6 h-6 text-purple-500" />
+        <div className="w-12 h-12 bg-purple-500/10 flex items-center justify-center rounded-full flex-shrink-0">
+          <MusicIcon className="w-5 h-5 text-purple-500" />
         </div>
       );
     }
 
     return (
-      <motion.img
-        src={songData.albumImageUrl}
-        alt={songData.album || "Album Art"}
-        className="w-full h-full object-cover"
-        animate={{ rotate: isPlaying && !prefersReducedMotion ? 360 : 0 }}
-        transition={{
-          duration: 8,
-          repeat:
-            isPlaying && !prefersReducedMotion ? Number.POSITIVE_INFINITY : 0,
-          ease: "linear",
-        }}
-        onError={() => setImageError(true)}
-      />
+      <div className="relative w-12 h-12 flex-shrink-0 rounded-full shadow-md border border-border/50 bg-background flex items-center justify-center">
+        <img
+          src={songData.albumImageUrl}
+          alt={songData.album || "Album Art"}
+          className={`absolute inset-0 w-full h-full object-cover rounded-full ${isPlaying ? 'animate-[spin_8s_linear_infinite]' : ''}`}
+          onError={() => setImageError(true)}
+        />
+        {/* CD inner hole */}
+        <div className="absolute w-3 h-3 bg-background rounded-full border border-border/50 shadow-inner z-10" />
+        
+        {isPlaying && (
+          <div className="absolute inset-0 rounded-full border border-green-500/30 animate-pulse z-0 pointer-events-none" />
+        )}
+      </div>
     );
   };
 
   return (
-    <TooltipProvider>
-      <Tooltip>
-        <TooltipTrigger>
-          <motion.div
-            className="relative group cursor-pointer"
-            onHoverStart={() => setIsHovered(true)}
-            onHoverEnd={() => setIsHovered(false)}
-            whileHover={{ scale: prefersReducedMotion ? 1 : 1.05 }}
-            transition={{ duration: prefersReducedMotion ? 0 : 0.2 }}
+    <TooltipProvider delayDuration={100} skipDelayDuration={500}>
+      <Tooltip open={isHovered} onOpenChange={setIsHovered}>
+        <TooltipTrigger asChild>
+           <span 
+            className="inline-flex items-center gap-1 cursor-pointer text-purple-500 transition-colors hover:text-purple-400"
             onClick={() => {
               if (songData?.songUrl) {
                 window.open(songData.songUrl, "_blank", "noopener,noreferrer");
               }
             }}
-            role={songData?.songUrl ? "button" : undefined}
-            tabIndex={songData?.songUrl ? 0 : undefined}
-            aria-label={
-              songData?.title ? `Open ${songData.title} on Spotify` : undefined
-            }
           >
-            <motion.div
-              className="relative w-48 h-16 bg-gradient-to-br from-purple-500/10 to-pink-500/10 backdrop-blur-sm border border-purple-500/20 rounded-xl overflow-hidden shadow-lg"
-              style={{ transform: "rotate(10deg)" }}
-              animate={{
-                boxShadow: isHovered
-                  ? "0 20px 40px rgba(168, 85, 247, 0.4)"
-                  : "0 8px 16px rgba(168, 85, 247, 0.2)",
-              }}
-              transition={{ duration: prefersReducedMotion ? 0 : 0.3 }}
-            >
-              <motion.div
-                className="absolute inset-0 bg-gradient-to-r from-purple-500/20 via-pink-500/20 to-purple-500/20"
-                animate={{
-                  x:
-                    isPlaying && !prefersReducedMotion
-                      ? ["-100%", "100%"]
-                      : "0%",
-                }}
-                transition={{
-                  duration: 3,
-                  repeat:
-                    isPlaying && !prefersReducedMotion
-                      ? Number.POSITIVE_INFINITY
-                      : 0,
-                  ease: "linear",
-                }}
-              />
-
-              <div className="relative flex items-center h-full p-2 gap-2">
-                <div className="relative w-12 h-12 rounded-lg overflow-hidden flex-shrink-0">
-                  {renderAlbumArt()}
-                </div>
-
-                <div className="flex-1 min-w-0">
-                  {loading ? (
-                    <div className="space-y-1">
-                      <div className="h-3 bg-purple-500/20 rounded animate-pulse" />
-                      <div className="h-2 bg-purple-500/10 rounded animate-pulse w-3/4" />
-                    </div>
-                  ) : hasData ? (
-                    <div className="space-y-0.5">
-                      <div className="overflow-hidden">
-                        <motion.div
-                          className="text-xs font-semibold text-foreground whitespace-nowrap"
-                          animate={{
-                            x:
-                              songData.title &&
-                              songData.title.length > 20 &&
-                              !prefersReducedMotion
-                                ? [0, -100, 0]
-                                : 0,
-                          }}
-                          transition={{
-                            duration: 6,
-                            repeat: prefersReducedMotion
-                              ? 0
-                              : Number.POSITIVE_INFINITY,
-                            ease: "linear",
-                          }}
-                        >
-                          {songData.title || "Unknown Track"}
-                        </motion.div>
-                      </div>
-                      <div className="overflow-hidden">
-                        <motion.div
-                          className="text-xs text-foreground/70 whitespace-nowrap"
-                          animate={{
-                            x:
-                              songData.artist &&
-                              songData.artist.length > 25 &&
-                              !prefersReducedMotion
-                                ? [0, -80, 0]
-                                : 0,
-                          }}
-                          transition={{
-                            duration: 5,
-                            repeat: prefersReducedMotion
-                              ? 0
-                              : Number.POSITIVE_INFINITY,
-                            ease: "linear",
-                            delay: 1,
-                          }}
-                        >
-                          {songData.artist || "Unknown Artist"}
-                        </motion.div>
-                      </div>
-                    </div>
-                  ) : (
-                    <div className="flex flex-col justify-center h-full">
-                      <div className="text-xs font-medium text-foreground/60">
-                        Not playing
-                      </div>
-                      <div className="text-xs text-foreground/40">Spotify</div>
-                    </div>
-                  )}
-                </div>
-              </div>
-            </motion.div>
-          </motion.div>
+            music {" "}
+            <img 
+              src="/spotify.svg" 
+              alt="Spotify" 
+              className="inline-block relative -top-[1px] w-4 h-4"
+            />
+          </span>
         </TooltipTrigger>
         <AnimatePresence>
           {isHovered && (
             <TooltipContent
-              side="bottom"
-              className="bg-transparent text-purple-500 border-purple-500/30"
+              side="top"
+              sideOffset={8}
+              forceMount
+              className="bg-background/95 backdrop-blur-md border border-border shadow-2xl p-4 rounded-xl z-50 overflow-hidden pointer-events-auto"
+              asChild
             >
-              {hasData ? (
-                <>
-                  <div className="font-medium">Now vibing 🎧 to</div>
-                  <div className="text-purple-300">{songData?.title}</div>
-                </>
-              ) : (
-                <span>404: Probably coding in silence.</span>
-              )}
+              <motion.a
+                href={songData?.songUrl || "#"}
+                target="_blank"
+                rel="noopener noreferrer"
+                initial={{ opacity: 0, y: 10, scale: 0.95 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                exit={{ opacity: 0, y: 10, scale: 0.95 }}
+                transition={{ duration: 0.15, ease: "easeOut" }}
+                className="flex items-center gap-4 min-w-[240px] max-w-[320px] group no-underline text-foreground cursor-pointer"
+              >
+                {renderAlbumArt()}
+                <div className="flex flex-col flex-1 min-w-0 justify-center">
+                  {hasData ? (
+                    <>
+                      <div className="flex items-start justify-between gap-3">
+                        <span className="text-sm font-semibold text-foreground truncate" title={songData.title}>
+                          {songData.title}
+                        </span>
+                        <TrendingUpIcon className="w-3.5 h-3.5 text-muted-foreground group-hover:text-foreground transition-colors mt-0.5 flex-shrink-0" />
+                      </div>
+                      <span className="text-xs text-muted-foreground truncate w-full" title={songData.artist}>
+                        {songData.artist}
+                      </span>
+                      
+                      <div className="w-full h-px bg-border/40 my-2" />
+                      
+                      {isRecentlyPlayed && songData.playedAt && (
+                        <span className="text-[11px] text-muted-foreground/60">
+                          Last played {timeAgo(songData.playedAt)}
+                        </span>
+                      )}
+                      {!isRecentlyPlayed && isPlaying && (
+                        <span className="text-[11px] text-green-600 dark:text-green-500 font-medium flex items-center gap-1.5 uppercase tracking-wider">
+                          <span className="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse flex-shrink-0" />
+                          Now Playing
+                        </span>
+                      )}
+                    </>
+                  ) : (
+                    <span className="text-sm text-muted-foreground">
+                      Not playing anything
+                    </span>
+                  )}
+                </div>
+              </motion.a>
             </TooltipContent>
           )}
         </AnimatePresence>

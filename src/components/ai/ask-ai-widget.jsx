@@ -15,6 +15,8 @@ import { PromptSuggestions } from "./prompt-suggestions";
 import { SlashCommandMenu } from "./slash-command-menu";
 import { SendIcon, SquareIcon } from "../icons";
 import { Button } from "@/components/ui/button";
+import { Streamdown } from "streamdown";
+import "streamdown/styles.css";
 
 const slashCommands = [
   {
@@ -253,8 +255,15 @@ export const AskAIWidget = () => {
                 <ChatBubbleMessage
                   variant={message.sender === "user" ? "sent" : "received"}
                   className="break-words whitespace-pre-wrap"
+                  rawMessage={message.content}
                 >
-                  {linkifyText(message.content)}
+                  {message.sender === "user" ? (
+                    linkifyText(message.content)
+                  ) : (
+                    <div className="prose dark:prose-invert max-w-none text-sm leading-[1.6]">
+                      <Streamdown linkSafety={{ enabled: false }}>{message.content}</Streamdown>
+                    </div>
+                  )}
                 </ChatBubbleMessage>
               </ChatBubble>
             ))}

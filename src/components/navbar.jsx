@@ -3,11 +3,10 @@
 import { useTransitionRouter } from "next-view-transitions";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import { Menu } from "lucide-react";
 
 import { cn } from "@/lib/utils";
 import { ThemeToggle } from "@/components/theme-toggle";
-import { XIcon } from "./icons";
+import { XIcon, MenuIcon } from "./icons";
 import { slideInOut } from "@/lib/animation";
 
 export function Navbar() {
@@ -72,14 +71,14 @@ export function Navbar() {
             ))}
           </div>
           <ThemeToggle />
-          <button
+            <button
             className="md:hidden text-muted-foreground cursor-pointer"
             onClick={() => setIsOpen(!isOpen)}
           >
             {isOpen ? (
               <XIcon className="w-6 h-6" />
             ) : (
-              <Menu className="w-6 h-6" />
+              <MenuIcon className="w-6 h-6 mt-2" />
             )}
           </button>
         </div>

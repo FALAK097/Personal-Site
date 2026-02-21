@@ -20,6 +20,7 @@ export function ChatBubble({ variant = "received", className, children }) {
 export function ChatBubbleMessage({
   variant = "received",
   className,
+  rawMessage,
   children,
 }) {
   return (
@@ -34,9 +35,9 @@ export function ChatBubbleMessage({
     >
       <>
         <div className="pr-8">{children}</div>
-        {variant === "received" && typeof children === "string" && children && (
+        {variant === "received" && (rawMessage || (typeof children === "string" && children)) && (
           <div className="absolute top-2 right-2">
-            <CopyButton text={children} />
+            <CopyButton text={rawMessage || children} />
           </div>
         )}
       </>

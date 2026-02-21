@@ -34,12 +34,9 @@ export default async function Home() {
   return (
     <div className="flex flex-col min-h-[calc(100vh-2rem)]">
       <Navbar />
-      <div className="container mx-auto px-4 mt-6">
-        <SpotifyNowPlaying songData={spotifyData} />
-      </div>
       <main className="container flex-1 px-4 py-8 mx-auto">
         <div className="max-w-4xl mx-auto space-y-16">
-          <Profile />
+          <Profile spotifyData={spotifyData} />
           <RecentProjects projects={recentProjects} />
           <RecentPosts posts={recentPosts} />
           <GitHubCalendarChart />

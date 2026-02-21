@@ -10,6 +10,7 @@ import { Button } from "./ui/button";
 import { ArrowRightIcon, AtSignIcon } from "./icons";
 import { TextGenerateEffect } from "./custom/text-generate-effect";
 import { SquigglyUnderline } from "./custom/squiggly-underline";
+import { SpotifyNowPlaying } from "./custom/spotify-now-playing";
 
 const jobTitles = [
   "Full Stack Developer",
@@ -18,7 +19,7 @@ const jobTitles = [
   "Football Lover",
 ];
 
-export function Profile() {
+export function Profile({ spotifyData }) {
   const router = useTransitionRouter();
   const [isVisible, setIsVisible] = useState(false);
   const [currentTitleIndex, setCurrentTitleIndex] = useState(0);
@@ -192,6 +193,11 @@ export function Profile() {
               projects
             </SquigglyUnderline>
             !
+            <br />
+            <span className="mt-2 inline-block">
+              Outside work, I like to watch football and listen to{" "}
+              <SpotifyNowPlaying songData={spotifyData} />.
+            </span>
           </motion.p>
 
           <motion.div

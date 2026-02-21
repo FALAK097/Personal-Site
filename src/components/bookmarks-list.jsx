@@ -10,9 +10,8 @@ import {
   TooltipContent,
   TooltipProvider,
 } from "./ui/tooltip";
-import { Bookmark } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { GridIcon, ListIcon, TrendingUpIcon } from "./icons";
+import { GridIcon, ListIcon, TrendingUpIcon, BookmarkIcon } from "./icons";
 
 export const BookmarksList = () => {
   const [bookmarks, setBookmarks] = useState([]);
@@ -146,7 +145,7 @@ const MoodboardCard = ({ bookmark }) => {
             />
           ) : (
             <div className="flex h-full items-center justify-center bg-gradient-to-br from-purple-300 to-purple-100 dark:from-purple-800 dark:to-purple-950">
-              <Bookmark
+              <BookmarkIcon
                 size={48}
                 className="text-purple-500 dark:text-purple-300 opacity-50"
               />
@@ -195,7 +194,7 @@ const ListCard = ({ bookmark }) => {
           />
         ) : (
           <div className="w-12 h-12 bg-gradient-to-br from-purple-300 to-purple-100 dark:from-purple-800 dark:to-purple-950 rounded-md flex items-center justify-center">
-            <Bookmark
+            <BookmarkIcon
               size={20}
               className="text-purple-500 dark:text-purple-300 opacity-70"
             />

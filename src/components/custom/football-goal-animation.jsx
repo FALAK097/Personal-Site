@@ -69,7 +69,7 @@ export const FootballGoalAnimation = () => {
           active.tagName === "TEXTAREA" ||
           active.isContentEditable);
 
-      if (!isTyping && step === "ready" && e.key === "Enter") {
+      if (!isTyping && step === "ready" && e.shiftKey && e.key === "Enter") {
         e.preventDefault();
         handleShoot();
       }
@@ -134,7 +134,7 @@ export const FootballGoalAnimation = () => {
       >
         {step === "ready" && (
           <div className="hidden sm:block absolute bottom-[110%] left-1/2 -translate-x-1/2 bg-zinc-900 text-white px-3 py-1 rounded-md text-sm whitespace-nowrap shadow-lg opacity-0 group-hover:opacity-95 group-focus:opacity-95 pointer-events-none transition-opacity duration-200">
-            Press <kbd className="px-1 font-semibold">Enter</kbd> to shoot!
+            Press <kbd className="px-1 font-semibold">Shift + Enter</kbd> to shoot!
           </div>
         )}
         <Image

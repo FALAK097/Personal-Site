@@ -2,13 +2,14 @@
 
 import { useRef, useEffect } from "react";
 import { cn } from "@/lib/utils";
-import { Command, Hash } from "lucide-react";
 import {
   AtSignIcon,
   CircleHelpIcon,
   FilePenLineIcon,
   ShipIcon,
   UserIcon,
+  CommandIcon,
+  HashIcon,
 } from "../icons";
 
 const commandIcons = {
@@ -47,7 +48,7 @@ export function SlashCommandMenu({
     >
       <div className="p-2">
         <div className="flex items-center gap-2 px-2 py-1 text-xs text-muted-foreground border-b border-purple-100 dark:border-purple-800 mb-2">
-          <Command className="h-3 w-3" />
+          <CommandIcon className="h-3 w-3" />
           <span>Quick Commands</span>
         </div>
         {commands.map((cmd, index) => (
@@ -64,7 +65,7 @@ export function SlashCommandMenu({
             )}
           >
             <div className="flex items-center justify-center w-6 h-6 rounded bg-purple-100 dark:bg-purple-800 text-purple-600 dark:text-purple-400">
-              {commandIcons[cmd.command] || <Hash className="h-3 w-3" />}
+              {commandIcons[cmd.command] || <HashIcon className="h-3 w-3" />}
             </div>
             <div className="flex-1 min-w-0">
               <div className="font-medium">{cmd.command}</div>

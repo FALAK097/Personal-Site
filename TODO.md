@@ -53,14 +53,15 @@
 [X] - Context of previous conversation
 [X] - Add upstash/redis caching for common questions
 [X] - Handle out of context questions
+[X] - Replies with **
+[X] - Remove Enter Football Shoot
+[X] - Improve the spotify now playing
 
 ## Overall
 
 [] - Google Report <https://pagespeed.web.dev/analysis/https-falak-gala-vercel-app/684fro2brv>
-[] - Add a profile pic
 [] - Test the rate limit on contact form
 [] - Hover link preview
-[] - Add gradient
 [] - Improve initial load performance
 
 ## Blogs Section
@@ -84,14 +85,11 @@
 ## Projects Section
 
 [] - Add video on hover of image
-[] - Add portfolio project
 
 ## AI Bot
 
 [] - Add rate limiting
 [] - Hide suggested options scrollbar
-[] - Replies with **
-[] - Remove Enter Football Shoot
 
 ## Extra Features
 

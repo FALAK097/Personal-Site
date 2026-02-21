@@ -35,7 +35,7 @@ export default function RootLayout({ children }) {
             </div>
             <ScrollProgress />
             <Toaster />
-            <AskAIWidget />
+            {/* <AskAIWidget /> */}
           </ThemeProvider>
           <Analytics />
           <SpeedInsights />
