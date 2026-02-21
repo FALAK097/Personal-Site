@@ -93,30 +93,33 @@ export function Profile({ spotifyData }) {
   };
 
   return (
-    <div className="flex flex-col items-center max-w-5xl gap-6 px-4 mx-auto mb-12">
-      <div className="flex flex-col items-center w-full gap-6 md:flex-row">
+    <div className="flex flex-col items-center justify-center max-w-4xl gap-8 px-4 mx-auto mt-8 mb-16 md:mt-16 md:mb-24">
+      <div className="flex flex-col items-center w-full gap-8 md:flex-row md:items-start md:gap-12">
+        {/* Avatar */}
         <motion.div
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
-          className={`relative w-24 h-24 mt-4 sm:w-32 sm:h-32 md:w-48 md:h-48 rounded-full border-2 border-purple-500 overflow-hidden transform transition-all duration-1000 ease-out ${
+          className={`relative shrink-0 w-32 h-32 md:w-36 md:h-36 rounded-full ring-2 ring-purple-500/20 ring-offset-4 ring-offset-background overflow-hidden md:mt-1 transform transition-all duration-1000 ease-out shadow-lg ${
             isVisible ? "opacity-100 scale-100" : "opacity-0 scale-95"
           }`}
         >
           <Image
             priority
-            alt="Profile picture"
+            alt="Falak Gala"
             className="object-cover"
             src="/profile.png"
-            width={200}
-            height={200}
+            fill
+            sizes="(max-width: 768px) 128px, 144px"
           />
         </motion.div>
 
-        <div className="flex-1 text-center space-y-3">
-          <div className="flex items-center justify-center gap-2">
+        {/* Content */}
+        <div className="flex flex-col items-center flex-1 text-center md:items-start md:text-left space-y-5">
+          {/* Header */}
+          <div className="flex flex-col items-center md:items-start space-y-1 w-full relative">
             <motion.h1
-              className="text-2xl tracking-tight font-font-medium flex flex-wrap justify-center"
+              className="text-2xl md:text-3xl font-medium tracking-tight text-foreground flex flex-wrap justify-center md:justify-start"
               variants={containerVariants}
               initial="hidden"
               animate="visible"
@@ -126,87 +129,96 @@ export function Profile({ spotifyData }) {
                   key={index}
                   variants={wordVariants}
                   className="inline-block mr-2"
-                  style={{ display: "inline-block", minWidth: "fit-content" }}
                 >
                   {word}
                 </motion.span>
               ))}
             </motion.h1>
+
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 1.2 }}
+              className="text-lg sm:text-xl md:text-2xl font-medium text-purple-500 mt-2 h-8 flex items-center justify-center md:justify-start"
+            >
+              <AnimatePresence mode="wait">
+                <motion.span
+                  key={currentTitleIndex}
+                  variants={titleVariants}
+                  initial="initial"
+                  animate="animate"
+                  exit="exit"
+                  className="inline-block"
+                >
+                  {jobTitles[currentTitleIndex]}
+                </motion.span>
+              </AnimatePresence>
+            </motion.div>
           </div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 1.5 }}
-            className="text-lg sm:text-xl md:text-2xl font-medium text-purple-500 min-h-[2rem] flex items-center justify-center"
-          >
-            <AnimatePresence mode="wait">
-              <motion.span
-                key={currentTitleIndex}
-                variants={titleVariants}
-                initial="initial"
-                animate="animate"
-                exit="exit"
-                className="inline-block"
+          {/* Intro Text */}
+          <div className="space-y-4 w-full">
+            <TextGenerateEffect
+              words="Whipping up clever solutions and wrestling with tricky challenges because who doesn't love a good tech puzzle?"
+              className="text-base md:text-lg leading-relaxed text-foreground/80 md:text-left"
+              delay={1}
+            />
+
+            <motion.p
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 1.8 }}
+              className="text-base leading-relaxed text-foreground/70"
+            >
+              This is my quirky web nook for spilling my{" "}
+              <SquigglyUnderline
+                onClick={(e) => {
+                  e.preventDefault();
+                  router.push("/blog", {
+                    onTransitionReady: slideInOut,
+                  });
+                }}
+                className="font-medium text-purple-500 transition-colors hover:text-purple-400"
+                href="/blog"
               >
-                {jobTitles[currentTitleIndex]}
-              </motion.span>
-            </AnimatePresence>
-          </motion.div>
-
-          <TextGenerateEffect
-            words="Whipping up clever solutions and wrestling with tricky challenges because who doesn't love a good tech puzzle?"
-            className="text-base leading-relaxed break-words sm:text-lg md:text-xl text-foreground/90"
-            delay={1.2}
-          />
-
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 2.2 }}
-            className="text-sm leading-relaxed break-words sm:text-base md:text-lg text-foreground/70"
-          >
-            This is my quirky web nook for spilling my{" "}
-            <SquigglyUnderline
-              onClick={(e) => {
-                e.preventDefault();
-                router.push("/blog", {
-                  onTransitionReady: slideInOut,
-                });
-              }}
-              className="text-purple-500 transition-colors hover:text-purple-400"
-              href="/blog"
+                learnings
+              </SquigglyUnderline>{" "}
+              and{" "}
+              <SquigglyUnderline
+                onClick={(e) => {
+                  e.preventDefault();
+                  router.push("/projects", {
+                    onTransitionReady: slideInOut,
+                  });
+                }}
+                className="font-medium text-purple-500 transition-colors hover:text-purple-400"
+                href="/projects"
+              >
+                projects
+              </SquigglyUnderline>
+              .
+            </motion.p>
+            
+            <motion.div 
+               initial={{ opacity: 0, y: 10 }}
+               animate={{ opacity: 1, y: 0 }}
+               transition={{ duration: 0.6, delay: 2 }}
+               className="text-sm md:text-base text-foreground/60 flex flex-wrap items-center justify-center md:justify-start gap-1"
             >
-              learnings
-            </SquigglyUnderline>{" "}
-            and{" "}
-            <SquigglyUnderline
-              onClick={(e) => {
-                e.preventDefault();
-                router.push("/projects", {
-                  onTransitionReady: slideInOut,
-                });
-              }}
-              className="text-purple-500 transition-colors hover:text-purple-400"
-              href="/projects"
-            >
-              projects
-            </SquigglyUnderline>
-            !
-            <br />
-            <span className="mt-2 inline-block">
-              Outside work, I like to watch football and listen to{" "}
-              <SpotifyNowPlaying songData={spotifyData} />.
-            </span>
-          </motion.p>
+              <span>Outside work, I love watching football</span>
+              <span>and listening to</span>
+              <SpotifyNowPlaying songData={spotifyData} />
+            </motion.div>
+          </div>
 
+          {/* CTA Buttons */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 2.6 }}
-            className="flex flex-col items-center gap-3 mt-4"
+            className="flex flex-col items-center gap-3 mt-4 md:items-start w-full pt-2"
           >
-            <div className="flex flex-col items-center gap-3 sm:flex-row sm:items-center sm:justify-center sm:gap-3">
+            <div className="flex flex-col items-center gap-3 sm:flex-row sm:items-center sm:justify-center md:justify-start sm:gap-3">
               <Button
                 variant="outline"
                 className="hover:bg-transparent hover:border-purple-400"
@@ -225,31 +237,28 @@ export function Profile({ spotifyData }) {
                   Available for Hire
                 </a>
               </Button>
-              <div className="flex items-center gap-3">
-                <span className="text-gray-400">OR</span>
-                <div className="relative group">
-                  <Button
-                    variant="outline"
-                    className="hover:bg-transparent hover:border-purple-400"
-                    asChild
-                  >
-                    <Link href="mailto:falakgala09@gmail.com">
-                      <AtSignIcon
-                        className="-ms-1 opacity-60"
-                        size={16}
-                        aria-hidden="true"
-                      />
-                      Email Me
-                      <ArrowRightIcon
-                        className="-me-1 opacity-60 transition-transform group-hover:translate-x-0.5"
-                        size={16}
-                        aria-hidden="true"
-                      />
-                    </Link>
-                  </Button>
-                  <div className="absolute hidden px-2 py-1 mt-2 text-xs text-purple-500 transform -translate-x-1/2 bg-background rounded-lg shadow-lg sm:text-sm left-1/2 top-full group-hover:block">
-                    falakgala09@gmail.com
-                  </div>
+              <div className="relative group">
+                <Button
+                  variant="outline"
+                  className="hover:bg-transparent hover:border-purple-400"
+                  asChild
+                >
+                  <Link href="mailto:falakgala09@gmail.com">
+                    <AtSignIcon
+                      className="-ms-1 opacity-60"
+                      size={16}
+                      aria-hidden="true"
+                    />
+                    Let's Talk
+                    <ArrowRightIcon
+                      className="-me-1 opacity-60 transition-transform group-hover:translate-x-0.5"
+                      size={16}
+                      aria-hidden="true"
+                    />
+                  </Link>
+                </Button>
+                <div className="absolute hidden px-2 py-1 mt-2 text-xs text-purple-500 transform -translate-x-1/2 bg-background rounded-lg shadow-lg sm:text-sm left-1/2 top-full group-hover:block z-10">
+                  falakgala09@gmail.com
                 </div>
               </div>
             </div>

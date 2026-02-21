@@ -91,6 +91,16 @@ export const projects = [
     deployedUrl: "https://waitlyze.falakgala.dev",
     imageUrl: "/projects/waitlyze.png",
   },
+    {
+    id: "typesteps",
+    title: "TypeSteps",
+    description: "A minimalist macOS app that passively tracks your daily typing activity and shows insights across days, weeks, and months.",
+    tags: [
+      "Swift",
+    ],
+    githubUrl: "https://github.com/FALAK097/typesteps",
+    imageUrl: "/projects/typesteps.png",
+  },
   {
     id: "devfinder",
     title: "DevFinder",

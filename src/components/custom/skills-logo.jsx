@@ -10,7 +10,6 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "../ui/tooltip";
-import { GithubIcon } from "../icons";
 
 const skillLogos = {
   JavaScript: { logo: "/skills/javascript.svg", name: "JavaScript" },
@@ -34,6 +33,7 @@ const skillLogos = {
   },
   "React Native": { logo: "/skills/react-native.svg", name: "React Native" },
   Expo: { logo: "/skills/expo.svg", name: "Expo" },
+  Swift: { logo: "/skills/swift.svg", name: "Swift" },
   Shadcn: {
     logo: {
       light: "/skills/shadcn-light.svg",
