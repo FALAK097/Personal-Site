@@ -1,6 +1,6 @@
 import { ContactForm } from "@/components/contact-form";
 import { Footer } from "@/components/footer";
-import { CalendarDaysIcon, TrendingUpIcon } from "@/components/icons";
+import { CalendarDaysIcon, TrendingUpIcon, CheckCheckIcon } from "@/components/icons";
 import { Navbar } from "@/components/navbar";
 import { Button } from "@/components/ui/button";
 
@@ -59,19 +59,58 @@ export default function HireMePage() {
 
             <div className="space-y-6">
               <div>
-                <h3 className="text-md font-medium mb-2">Location</h3>
-                <p className="text-muted-foreground">Mumbai, India</p>
+                <h3 className="text-md font-medium mb-3">What I Can Do For You</h3>
+                <div className="space-y-3 text-sm">
+                  <div className="flex items-start gap-2">
+                    <CheckCheckIcon className="w-4 h-4 text-clay-500 mt-0.5 flex-shrink-0" />
+                    <span className="text-muted-foreground">
+                      Full-Stack Web App Development (React, Next.js, Node, Python)
+                    </span>
+                  </div>
+                  <div className="flex items-start gap-2">
+                    <CheckCheckIcon className="w-4 h-4 text-clay-500 mt-0.5 flex-shrink-0" />
+                    <span className="text-muted-foreground">
+                      Mobile App Development (React Native, Expo)
+                    </span>
+                  </div>
+                  <div className="flex items-start gap-2">
+                    <CheckCheckIcon className="w-4 h-4 text-clay-500 mt-0.5 flex-shrink-0" />
+                    <span className="text-muted-foreground">
+                      AI Integrations & LLM Wrappers
+                    </span>
+                  </div>
+                  <div className="flex items-start gap-2">
+                    <CheckCheckIcon className="w-4 h-4 text-clay-500 mt-0.5 flex-shrink-0" />
+                    <span className="text-muted-foreground">
+                      Frontend Design
+                    </span>
+                  </div>
+                </div>
               </div>
 
               <div>
-                <h3 className="text-md font-medium mb-2">Availability</h3>
-                <div className="space-y-2">
-                  <p className="text-muted-foreground">
-                    • Open to full-time opportunities
-                  </p>
-                  <p className="text-muted-foreground">
-                    • Available for freelance projects
-                  </p>
+                <h3 className="text-md font-medium mb-3">Location</h3>
+                <div className="flex items-center gap-2 text-sm">
+                  <span className="w-1.5 h-1.5 rounded-full bg-clay-500 flex-shrink-0" />
+                  <p className="text-muted-foreground">Mumbai, India (Remote)</p>
+                </div>
+              </div>
+
+              <div>
+                <h3 className="text-md font-medium mb-3">Availability</h3>
+                <div className="space-y-3 text-sm">
+                  <div className="flex items-center gap-2">
+                    <span className="w-1.5 h-1.5 rounded-full bg-clay-500 flex-shrink-0" />
+                    <p className="text-muted-foreground">
+                      Open to full-time opportunities
+                    </p>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <span className="w-1.5 h-1.5 rounded-full bg-clay-500 flex-shrink-0" />
+                    <p className="text-muted-foreground">
+                      Available for freelance projects
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
