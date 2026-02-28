@@ -34,7 +34,7 @@ function MessageDisplay() {
         <div className="text-2xl sm:text-3xl md:text-[35px] font-semibold text-foreground mb-2 sm:mb-4 text-center">
           Page Not Found
         </div>
-        <div className="text-5xl sm:text-6xl md:text-[80px] font-bold text-purple-500 mb-4 sm:mb-6">
+        <div className="text-5xl sm:text-6xl md:text-[80px] font-bold text-clay-500 mb-4 sm:mb-6">
           404
         </div>
         <div className="text-sm sm:text-base md:text-[15px] text-center text-muted-foreground mb-8 max-w-md">
@@ -43,7 +43,7 @@ function MessageDisplay() {
         </div>
         <Link
           href="/"
-          className="w-full sm:w-auto group bg-purple-500 text-white hover:bg-purple-600 transition-all duration-300 px-6 py-3 rounded-lg font-medium flex items-center justify-center gap-2 hover:scale-105"
+          className="w-full sm:w-auto group bg-clay-500 text-white hover:bg-clay-600 transition-all duration-300 px-6 py-3 rounded-lg font-medium flex items-center justify-center gap-2 hover:scale-105"
         >
           <svg
             className="w-5 h-5 transition-transform group-hover:-translate-x-1"
@@ -107,7 +107,7 @@ function CharactersAnimation() {
       stick.style.position = "absolute";
       stick.style.width = "40px";
       stick.style.height = "40px";
-      stick.style.backgroundColor = "var(--purple-500)";
+      stick.style.backgroundColor = "var(--clay-500)";
       stick.style.borderRadius = "50%";
 
       if (figure.top) stick.style.top = figure.top;

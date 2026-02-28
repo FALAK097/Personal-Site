@@ -49,7 +49,7 @@ export function RecentProjects({ projects }) {
             });
           }}
           href="/projects"
-          className="text-sm text-muted-foreground hover:text-purple-400 transition-colors"
+          className="text-sm text-muted-foreground hover:text-clay-400 transition-colors"
         >
           View All
         </motion.a>

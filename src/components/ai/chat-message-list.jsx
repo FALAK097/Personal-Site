@@ -39,7 +39,7 @@ const ChatMessageList = React.forwardRef(
             onClick={handleScrollToBottom}
             size="icon"
             variant="outline"
-            className="absolute bottom-2 left-1/2 transform -translate-x-1/2 inline-flex rounded-full shadow-md border-purple-200 dark:border-purple-700 hover:bg-purple-50 dark:hover:bg-purple-900 cursor-pointer"
+            className="absolute bottom-2 left-1/2 transform -translate-x-1/2 inline-flex rounded-full shadow-md border-clay-200 dark:border-clay-700 hover:bg-clay-50 dark:hover:bg-clay-900 cursor-pointer"
             aria-label="Scroll to bottom"
           >
             <ArrowDownIcon className="h-4 w-4 text-primary" />

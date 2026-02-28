@@ -32,7 +32,7 @@ export function BlogList({ posts }) {
                     className="space-y-3 hover:no-underline"
                   >
                     <div className="flex items-center gap-2">
-                      <h2 className="text-lg font-medium transition-colors hover:text-purple-500">
+                      <h2 className="text-lg font-medium transition-colors hover:text-clay-500">
                         {post.title}
                       </h2>
                     </div>

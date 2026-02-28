@@ -152,7 +152,7 @@ export const FootballGoalAnimation = () => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 10 }}
             transition={{ delay: 0.3, duration: 0.5 }}
-            className="absolute right-[100px] top-[70%] -translate-y-1/2 text-[22px] font-semibold text-purple-600 z-30"
+            className="absolute right-[100px] top-[70%] -translate-y-1/2 text-[22px] font-semibold text-clay-600 z-30"
           >
             Hala Madrid 🤍💜
           </motion.div>

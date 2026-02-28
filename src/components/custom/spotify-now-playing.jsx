@@ -39,16 +39,16 @@ export const SpotifyNowPlaying = ({ songData }) => {
   const renderAlbumArt = () => {
     if (loading) {
       return (
-        <div className="w-12 h-12 bg-purple-500/10 flex items-center justify-center rounded-full flex-shrink-0">
-          <Disc3Icon className="w-5 h-5 text-purple-500 animate-spin" />
+        <div className="w-12 h-12 bg-clay-500/10 flex items-center justify-center rounded-full flex-shrink-0">
+          <Disc3Icon className="w-5 h-5 text-clay-500 animate-spin" />
         </div>
       );
     }
 
     if (!hasData || !songData.albumImageUrl || imageError) {
       return (
-        <div className="w-12 h-12 bg-purple-500/10 flex items-center justify-center rounded-full flex-shrink-0">
-          <MusicIcon className="w-5 h-5 text-purple-500" />
+        <div className="w-12 h-12 bg-clay-500/10 flex items-center justify-center rounded-full flex-shrink-0">
+          <MusicIcon className="w-5 h-5 text-clay-500" />
         </div>
       );
     }
@@ -76,7 +76,7 @@ export const SpotifyNowPlaying = ({ songData }) => {
       <Tooltip open={isHovered} onOpenChange={setIsHovered}>
         <TooltipTrigger asChild>
            <span 
-            className="inline-flex items-center gap-1 cursor-pointer text-purple-500 transition-colors hover:text-purple-400"
+            className="inline-flex items-center gap-1 cursor-pointer text-clay-500 transition-colors hover:text-clay-400"
             onClick={() => {
               if (songData?.songUrl) {
                 window.open(songData.songUrl, "_blank", "noopener,noreferrer");

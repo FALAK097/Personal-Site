@@ -28,8 +28,8 @@ export function ChatBubbleMessage({
       className={cn(
         "rounded-2xl p-3 max-w-[80%] shadow-sm group relative",
         variant === "sent"
-          ? "bg-gradient-to-r from-purple-600 to-violet-600 text-white"
-          : "border border-purple-100 dark:border-purple-800",
+          ? "bg-gradient-to-r from-clay-600 to-violet-600 text-white"
+          : "border border-clay-100 dark:border-clay-800",
         className
       )}
     >

@@ -18,7 +18,7 @@ export const ExperienceSection = forwardRef((props, ref) => {
     >
       <h2 className="text-lg font-medium">Experience</h2>
 
-      <div className="space-y-12">
+      <div className="space-y-12 border-l border-border/50 pl-6 relative ml-2">
         {experiences.map((job, index) => (
           <motion.div
             key={index}
@@ -28,14 +28,15 @@ export const ExperienceSection = forwardRef((props, ref) => {
             transition={{ duration: 0.5, delay: index * 0.2 }}
             className="relative"
           >
-            <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-2 mb-2">
+            <span className="absolute -left-[33px] top-1.5 w-4 h-4 rounded-full bg-background border-2 border-clay-500 shadow-sm" />
+            <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-2 mb-4">
               <div className="flex-1">
                 <h3 className="text-md font-medium">{job.title}</h3>
                 <p className="text-muted-foreground text-md">{job.company}</p>
               </div>
               <Badge
                 variant="secondary"
-                className="self-start w-fit px-3 py-1 bg-purple-500/10 text-purple-600 border-purple-200 dark:border-purple-800 dark:text-purple-400"
+                className="self-start w-fit px-3 py-1 bg-clay-500/10 text-clay-600 border-clay-200 dark:border-clay-800 dark:text-clay-400"
               >
                 {job.duration}
               </Badge>
@@ -54,7 +55,7 @@ export const ExperienceSection = forwardRef((props, ref) => {
                 <ul className="space-y-2 text-sm text-muted-foreground">
                   {job.achievements.map((achievement, i) => (
                     <li key={i} className="flex items-start gap-2">
-                      <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-purple-500/50 flex-shrink-0" />
+                      <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-clay-500/50 flex-shrink-0" />
                       <FormattedText text={achievement} />
                     </li>
                   ))}

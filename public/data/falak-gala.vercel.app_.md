@@ -1,6 +1,6 @@
 ---
 url: <https://falakgala.dev/>
-title: "Falak's Portfolio"
+title: "Falak Gala"
 ---
 
 # HeyI'mFalak Gala

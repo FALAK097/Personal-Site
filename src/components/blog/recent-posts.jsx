@@ -35,7 +35,7 @@ export function RecentPosts({ posts }) {
             });
           }}
           href="/blog"
-          className="text-sm text-muted-foreground hover:text-purple-400 transition-colors"
+          className="text-sm text-muted-foreground hover:text-clay-400 transition-colors"
         >
           View All
         </motion.a>
@@ -67,7 +67,7 @@ export function RecentPosts({ posts }) {
                   href={`/blog/${post.slug}`}
                 >
                   <div className="flex items-center gap-2">
-                    <h3 className="text-lg font-medium transition-colors hover:text-purple-500">
+                    <h3 className="text-lg font-medium transition-colors hover:text-clay-500">
                       {post.title}
                     </h3>
                   </div>

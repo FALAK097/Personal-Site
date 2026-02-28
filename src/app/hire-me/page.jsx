@@ -28,7 +28,7 @@ export default function HireMePage() {
                 asChild
                 size="lg"
                 variant="outline"
-                className="hover:bg-transparent hover:border-purple-400"
+                className="hover:bg-transparent hover:border-clay-400"
               >
                 <a href="/resume.pdf" rel="noopener noreferrer" target="_blank">
                   View Resume
@@ -40,7 +40,7 @@ export default function HireMePage() {
                 asChild
                 size="lg"
                 variant="outline"
-                className="hover:bg-transparent hover:border-purple-400"
+                className="hover:bg-transparent hover:border-clay-400"
               >
                 <a
                   href="https://cal.com/falak"

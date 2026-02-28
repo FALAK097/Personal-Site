@@ -100,7 +100,7 @@ export function Profile({ spotifyData }) {
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
-          className={`relative shrink-0 w-32 h-32 md:w-36 md:h-36 rounded-full ring-2 ring-purple-500/20 ring-offset-4 ring-offset-background overflow-hidden md:mt-1 transform transition-all duration-1000 ease-out shadow-lg ${
+          className={`relative shrink-0 w-32 h-32 md:w-36 md:h-36 rounded-full ring-2 ring-clay-500/20 ring-offset-4 ring-offset-background overflow-hidden md:mt-1 transform transition-all duration-1000 ease-out shadow-lg ${
             isVisible ? "opacity-100 scale-100" : "opacity-0 scale-95"
           }`}
         >
@@ -139,7 +139,7 @@ export function Profile({ spotifyData }) {
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 1.2 }}
-              className="text-lg font-medium text-purple-500 mt-2 h-8 flex items-center justify-center md:justify-start"
+              className="text-lg font-medium text-clay-500 mt-2 h-8 flex items-center justify-center md:justify-start"
             >
               <AnimatePresence mode="wait">
                 <motion.span
@@ -178,7 +178,7 @@ export function Profile({ spotifyData }) {
                     onTransitionReady: slideInOut,
                   });
                 }}
-                className="font-medium text-purple-500 transition-colors hover:text-purple-400"
+                className="font-medium text-clay-500 transition-colors hover:text-clay-400"
                 href="/blog"
               >
                 learnings
@@ -191,7 +191,7 @@ export function Profile({ spotifyData }) {
                     onTransitionReady: slideInOut,
                   });
                 }}
-                className="font-medium text-purple-500 transition-colors hover:text-purple-400"
+                className="font-medium text-clay-500 transition-colors hover:text-clay-400"
                 href="/projects"
               >
                 projects
@@ -221,7 +221,7 @@ export function Profile({ spotifyData }) {
             <div className="flex flex-col items-center gap-3 sm:flex-row sm:items-center sm:justify-center md:justify-start sm:gap-3">
               <Button
                 variant="outline"
-                className="hover:bg-transparent hover:border-purple-400"
+                className="hover:bg-transparent hover:border-clay-400"
                 asChild
               >
                 <a
@@ -233,19 +233,19 @@ export function Profile({ spotifyData }) {
                   }}
                   href="/hire-me"
                 >
-                  <span className="w-4 h-4 bg-purple-500 rounded-full sm:w-5 sm:h-5 opacity-60 me-2" />
+                  <span className="w-4 h-4 bg-gradient-to-br from-clay-300 via-clay-500 to-clay-700 rounded-full sm:w-5 sm:h-5 me-2 shadow-[0_0_8px_rgba(161,93,58,0.5)]" />
                   Available for Hire
                 </a>
               </Button>
               <div className="relative group">
                 <Button
                   variant="outline"
-                  className="hover:bg-transparent hover:border-purple-400"
+                  className="hover:bg-transparent hover:border-clay-400"
                   asChild
                 >
                   <Link href="mailto:falakgala09@gmail.com">
                     <AtSignIcon
-                      className="-ms-1 opacity-60"
+                      className="-ms-1 text-clay-500"
                       size={16}
                       aria-hidden="true"
                     />
@@ -257,7 +257,7 @@ export function Profile({ spotifyData }) {
                     />
                   </Link>
                 </Button>
-                <div className="absolute hidden px-2 py-1 mt-2 text-xs text-purple-500 transform -translate-x-1/2 bg-background rounded-lg shadow-lg sm:text-sm left-1/2 top-full group-hover:block z-10">
+                <div className="absolute hidden px-2 py-1 mt-2 text-xs text-clay-500 transform -translate-x-1/2 bg-background rounded-lg shadow-lg sm:text-sm left-1/2 top-full group-hover:block z-10">
                   falakgala09@gmail.com
                 </div>
               </div>

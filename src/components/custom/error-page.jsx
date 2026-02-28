@@ -20,10 +20,10 @@ export const ErrorPage = ({ error, reset }) => {
           }`}
         >
           <div className="relative w-48 h-48 md:w-64 md:h-64 mb-6 md:mb-8">
-            <div className="absolute inset-0 bg-purple-500/20 rounded-full animate-pulse [animation-duration:2s]" />
-            <div className="absolute inset-4 bg-purple-500/30 rounded-full animate-pulse [animation-duration:2s] [animation-delay:0.2s]" />
-            <div className="absolute inset-8 bg-purple-500/40 rounded-full animate-pulse [animation-duration:2s] [animation-delay:0.4s]" />
-            <div className="absolute inset-12 bg-purple-500 rounded-full flex items-center justify-center">
+            <div className="absolute inset-0 bg-clay-500/20 rounded-full animate-pulse [animation-duration:2s]" />
+            <div className="absolute inset-4 bg-clay-500/30 rounded-full animate-pulse [animation-duration:2s] [animation-delay:0.2s]" />
+            <div className="absolute inset-8 bg-clay-500/40 rounded-full animate-pulse [animation-duration:2s] [animation-delay:0.4s]" />
+            <div className="absolute inset-12 bg-clay-500 rounded-full flex items-center justify-center">
               <svg
                 className="w-12 h-12 md:w-16 md:h-16 text-white"
                 fill="none"
@@ -51,7 +51,7 @@ export const ErrorPage = ({ error, reset }) => {
           <div className="flex flex-col sm:flex-row gap-3 w-full sm:w-auto px-6">
             <button
               onClick={reset}
-              className="w-full sm:w-auto group bg-purple-500 text-white hover:bg-purple-600 transition-all duration-300 px-6 py-3 rounded-lg font-medium flex items-center justify-center gap-2 hover:scale-105"
+              className="w-full sm:w-auto group bg-clay-500 text-white hover:bg-clay-600 transition-all duration-300 px-6 py-3 rounded-lg font-medium flex items-center justify-center gap-2 hover:scale-105"
             >
               <svg
                 className="w-5 h-5 transition-transform group-hover:rotate-180"
@@ -70,7 +70,7 @@ export const ErrorPage = ({ error, reset }) => {
             </button>
             <Link
               href="/"
-              className="w-full sm:w-auto group bg-purple-500 text-white hover:bg-purple-600 transition-all duration-300 px-6 py-3 rounded-lg font-medium flex items-center justify-center gap-2 hover:scale-105"
+              className="w-full sm:w-auto group bg-clay-500 text-white hover:bg-clay-600 transition-all duration-300 px-6 py-3 rounded-lg font-medium flex items-center justify-center gap-2 hover:scale-105"
             >
               <svg
                 className="w-5 h-5 transition-transform group-hover:-translate-x-1"

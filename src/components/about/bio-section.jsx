@@ -11,9 +11,9 @@ export const BioSection = forwardRef((props, ref) => {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.6 }}
-      className="space-y-4"
+      className="space-y-6 text-lg leading-relaxed text-muted-foreground/90 font-light"
     >
-      <div className="space-y-4 text-muted-foreground">
+      <div className="space-y-6">
         <p>
           <FormattedText
             text={

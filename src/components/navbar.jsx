@@ -39,10 +39,10 @@ export function Navbar() {
           }}
           href="/"
           className={cn(
-            "text-xl font-semibold tracking-tight text-primary hover:scale-105 transition-transform doto-font"
+            "text-2xl font-bold tracking-tighter text-primary hover:scale-105 transition-transform"
           )}
         >
-          Falak
+          Falak<span className="text-clay-500">.</span>
         </a>
         <div className="flex items-center gap-4">
           <div className="items-center hidden gap-6 md:flex">
@@ -59,7 +59,7 @@ export function Navbar() {
                 className={cn(
                   "relative text-sm text-foreground/60 hover:text-foreground transition-colors",
                   "after:absolute after:left-0 after:right-0 after:-bottom-1",
-                  "after:h-[2px] after:bg-[#a855f7]",
+                  "after:h-[2px] after:bg-[#a15d3a]",
                   "after:scale-x-0 hover:after:scale-x-100",
                   "after:transition-transform after:duration-300",
                   pathname === href && "text-foreground after:scale-x-100",

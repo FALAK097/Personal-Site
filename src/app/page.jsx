@@ -13,7 +13,7 @@ import { projects } from "@/lib/project-data";
 import { FootballGoalAnimation } from "@/components/custom/football-goal-animation";
 
 export const metadata = {
-  title: "Falak's Portfolio",
+  title: "Falak Gala",
   description:
     "Welcome to my personal portfolio. I'm a developer passionate about building great software and sharing my knowledge through writing.",
 };

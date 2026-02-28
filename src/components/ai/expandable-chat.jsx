@@ -74,7 +74,7 @@ const ExpandableChat = ({
         <Button
           variant="ghost"
           size="icon"
-          className="absolute top-2 right-2 sm:hidden hover:bg-purple-100 dark:hover:bg-purple-900"
+          className="absolute top-2 right-2 sm:hidden hover:bg-clay-100 dark:hover:bg-clay-900"
           onClick={toggleChat}
         >
           <XIcon className="h-4 w-4" />
@@ -94,7 +94,7 @@ ExpandableChat.displayName = "ExpandableChat";
 const ExpandableChatBody = ({ className, ...props }) => (
   <div
     className={cn(
-      "flex-grow overflow-y-auto bg-gradient-to-b from-purple-50/30 to-white dark:from-purple-950/30 dark:to-background",
+      "flex-grow overflow-y-auto bg-gradient-to-b from-clay-50/30 to-white dark:from-clay-950/30 dark:to-background",
       className
     )}
     {...props}
@@ -120,7 +120,7 @@ const ExpandableChatToggle = ({
     variant="default"
     onClick={toggleChat}
     className={cn(
-      "flex w-12 h-12 cursor-pointer rounded-full shadow-lg items-center justify-center hover:shadow-xl hover:shadow-purple-500/30 transition-all duration-300 bg-transparent hover:bg-transparent text-primary relative group",
+      "flex w-12 h-12 cursor-pointer rounded-full shadow-lg items-center justify-center hover:shadow-xl hover:shadow-clay-500/30 transition-all duration-300 bg-transparent hover:bg-transparent text-primary relative group",
       isOpen && "hidden sm:flex",
       className
     )}

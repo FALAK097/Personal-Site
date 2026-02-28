@@ -225,7 +225,7 @@ export const AskAIWidget = () => {
         <a
           key={i}
           href={part}
-          className="underline text-purple-600 hover:text-purple-800"
+          className="underline text-clay-600 hover:text-clay-800"
           target="_blank"
           rel="noopener noreferrer"
         >
@@ -278,7 +278,7 @@ export const AskAIWidget = () => {
           <div className="relative">
             <form
               onSubmit={handleSubmit}
-              className="relative rounded-xl border border-purple-200 dark:border-purple-400 focus-within:ring-2 focus-within:ring-purple-500 focus-within:border-transparent p-1 shadow-sm"
+              className="relative rounded-xl border border-clay-200 dark:border-clay-400 focus-within:ring-2 focus-within:ring-clay-500 focus-within:border-transparent p-1 shadow-sm"
             >
               <SlashCommandMenu
                 commands={matchingCommands}
@@ -318,7 +318,7 @@ export const AskAIWidget = () => {
                     size="sm"
                     disabled={!input.trim() || isPending}
                     className={cn(
-                      "gap-1.5 bg-gradient-to-r from-purple-600 to-violet-600 hover:from-purple-700 hover:to-violet-700 text-white shadow-md hover:shadow-lg transition-all duration-200 cursor-pointer",
+                      "gap-1.5 bg-gradient-to-r from-clay-600 to-violet-600 hover:from-clay-700 hover:to-violet-700 text-white shadow-md hover:shadow-lg transition-all duration-200 cursor-pointer",
                       isPending && "opacity-50 cursor-not-allowed"
                     )}
                   >
@@ -332,7 +332,7 @@ export const AskAIWidget = () => {
             <div className="flex items-center justify-between mt-2 px-1">
               <div className="text-xs text-muted-foreground">
                 Try typing{" "}
-                <code className="bg-purple-100 dark:bg-purple-900 px-1 rounded">
+                <code className="bg-clay-100 dark:bg-clay-900 px-1 rounded">
                   /
                 </code>{" "}
                 for quick commands

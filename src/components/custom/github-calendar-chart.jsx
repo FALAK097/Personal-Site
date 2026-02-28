@@ -32,8 +32,8 @@ export const GitHubCalendarChart = () => {
           showWeekdayLabels={false}
           colorScheme={resolvedTheme === "dark" ? "dark" : "light"}
           theme={{
-            light: ["#f3e8ff", "#d8b4fe", "#a855f7", "#9333ea", "#6b21a8"],
-            dark: ["#2d1b4e", "#582a9d", "#7c3aed", "#9333ea", "#c084fc"],
+            light: ["#f4ece8", "#d6bba8", "#a15d3a", "#8c4c2d", "#5e3321"],
+            dark: ["#2a160e", "#5e3321", "#8c4c2d", "#a15d3a", "#c49981"],
           }}
         renderBlock={(block, activity) => {
           const date = new Date(activity.date).toLocaleDateString("en-US", {

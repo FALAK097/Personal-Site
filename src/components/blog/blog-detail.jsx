@@ -26,7 +26,7 @@ export default function BlogDetail({ post, children, prevPost, nextPost }) {
             });
           }}
           href="/blog"
-          className="flex items-center gap-2 text-muted-foreground hover:text-purple-400 transition-colors"
+          className="flex items-center gap-2 text-muted-foreground hover:text-clay-400 transition-colors"
         >
           <ArrowLeftIcon /> Back to Blog
         </a>
@@ -60,7 +60,7 @@ export default function BlogDetail({ post, children, prevPost, nextPost }) {
             onClick={handleShare}
             variant="outline"
             size="sm"
-            className="cursor-pointer bg-transparent border-none text-purple-400 hover:bg-transparent hover:text-purple-400"
+            className="cursor-pointer bg-transparent border-none text-clay-400 hover:bg-transparent hover:text-clay-400"
           >
             <UploadIcon />
           </Button>
@@ -76,7 +76,7 @@ export default function BlogDetail({ post, children, prevPost, nextPost }) {
               });
             }}
             href={`/blog/${prevPost.slug}`}
-            className="flex items-center gap-2 text-muted-foreground hover:text-purple-400 transition-colors no-underline"
+            className="flex items-center gap-2 text-muted-foreground hover:text-clay-400 transition-colors no-underline"
           >
             <ArrowLeftIcon />
             {prevPost.title}
@@ -91,7 +91,7 @@ export default function BlogDetail({ post, children, prevPost, nextPost }) {
               });
             }}
             href={`/blog/${nextPost.slug}`}
-            className="flex items-center gap-2 text-muted-foreground hover:text-purple-400 transition-colors ml-auto no-underline"
+            className="flex items-center gap-2 text-muted-foreground hover:text-clay-400 transition-colors ml-auto no-underline"
           >
             {nextPost.title}
             <ArrowRightIcon />

@@ -49,11 +49,11 @@ t-iv.com\\
 \\
 screenshot](https://t-iv.com/?s=09)
 
-[![Falak's Portfolio](https://falakgala.dev/opengraph-image.png?07c06d8f2c8cab46)\\
+[![Falak Gala](https://falakgala.dev/opengraph-image.png)\\
 \\
 falak-gala.vercel.app\\
 \\
-**Falak's Portfolio** \\
+**Falak Gala** \\
 \\
 ui](https://falakgala.dev/)
 

@@ -46,7 +46,7 @@ export const MdxCodeBlock = ({ children, ...props }) => {
               aria-label="Copy code"
             >
               {copied ? (
-                <CheckCheckIcon className="w-4 h-4 text-purple-500" />
+                <CheckCheckIcon className="w-4 h-4 text-clay-500" />
               ) : (
                 <CopyIcon className="w-4 h-4 text-muted-foreground" />
               )}

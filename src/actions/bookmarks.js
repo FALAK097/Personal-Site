@@ -3,23 +3,35 @@
 export async function getBookmarks() {
   const token = process.env.RAINDROP_API_TOKEN;
   const collectionId = process.env.RAINDROP_COLLECTION_ID;
+  let allItems = [];
+  let page = 0;
+  let hasMore = true;
 
-  const res = await fetch(
-    `https://api.raindrop.io/rest/v1/raindrops/${collectionId}`,
-    {
-      method: "GET",
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-      cache: "no-store",
+  while (hasMore) {
+    const res = await fetch(
+      `https://api.raindrop.io/rest/v1/raindrops/${collectionId}?perpage=50&page=${page}`,
+      {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+        cache: "no-store",
+      }
+    );
+
+    if (!res.ok) throw new Error("Failed to fetch bookmarks");
+
+    const data = await res.json();
+    allItems = [...allItems, ...data.items];
+
+    if (data.items.length < 50) {
+      hasMore = false;
+    } else {
+      page++;
     }
-  );
+  }
 
-  if (!res.ok) throw new Error("Failed to fetch bookmarks");
-
-  const data = await res.json();
-
-  return data.items.map((item) => ({
+  return allItems.map((item) => ({
     id: item._id,
     title: item.title,
     link: item.link,

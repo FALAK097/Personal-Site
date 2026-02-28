@@ -46,15 +46,15 @@ export const BookmarksList = () => {
                 <TabsTrigger
                   key={tag}
                   value={tag}
-                  className="px-3 py-1.5 data-[state=active]:bg-white data-[state=active]:border-b-purple-400 data-[state=active]:text-purple-800 dark:data-[state=active]:bg-black dark:data-[state=active]:text-white dark:data-[state=active]:border-b-purple-400"
+                  className="px-3 py-1.5 data-[state=active]:bg-white data-[state=active]:border-b-clay-400 data-[state=active]:text-clay-800 dark:data-[state=active]:bg-black dark:data-[state=active]:text-white dark:data-[state=active]:border-b-clay-400"
                 >
                   {tag}
                   {tag === "all" ? (
-                    <span className="ml-1 text-xs text-purple-500 font-semibold">
+                    <span className="ml-1 text-xs text-clay-500 font-semibold">
                       ({bookmarks.length})
                     </span>
                   ) : (
-                    <span className="ml-1 text-xs text-purple-400 font-medium">
+                    <span className="ml-1 text-xs text-clay-400 font-medium">
                       ({bookmarks.filter((b) => b.tags?.includes(tag)).length})
                     </span>
                   )}
@@ -71,7 +71,7 @@ export const BookmarksList = () => {
                     className={cn(
                       "p-2 rounded-md",
                       viewMode === "moodboard"
-                        ? "bg-purple-800 text-purple-200"
+                        ? "bg-clay-800 text-clay-200"
                         : "text-gray-500"
                     )}
                     aria-label="Moodboard"
@@ -88,7 +88,7 @@ export const BookmarksList = () => {
                     className={cn(
                       "p-2 rounded-md",
                       viewMode === "list"
-                        ? "bg-purple-800 text-purple-200"
+                        ? "bg-clay-800 text-clay-200"
                         : "text-gray-500"
                     )}
                     aria-label="List"
@@ -136,7 +136,7 @@ const MoodboardCard = ({ bookmark }) => {
         rel="noopener noreferrer"
         className="block h-full"
       >
-        <div className="relative aspect-video w-full overflow-hidden bg-purple-100 dark:bg-purple-900">
+        <div className="relative aspect-video w-full overflow-hidden bg-clay-100 dark:bg-clay-900">
           {bookmark.cover ? (
             <img
               src={bookmark.cover || "/placeholder.svg"}
@@ -144,10 +144,10 @@ const MoodboardCard = ({ bookmark }) => {
               className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
             />
           ) : (
-            <div className="flex h-full items-center justify-center bg-gradient-to-br from-purple-300 to-purple-100 dark:from-purple-800 dark:to-purple-950">
+            <div className="flex h-full items-center justify-center bg-gradient-to-br from-clay-300 to-clay-100 dark:from-clay-800 dark:to-clay-950">
               <BookmarkIcon
                 size={48}
-                className="text-purple-500 dark:text-purple-300 opacity-50"
+                className="text-clay-500 dark:text-clay-300 opacity-50"
               />
             </div>
           )}
@@ -162,7 +162,7 @@ const MoodboardCard = ({ bookmark }) => {
           </div>
         </div>
         <div className="p-3">
-          <h3 className="font-medium text-primary hover:text-purple-600 line-clamp-2 text-sm leading-tight">
+          <h3 className="font-medium text-primary hover:text-clay-600 line-clamp-2 text-sm leading-tight">
             {bookmark.title}
           </h3>
           <div className="mt-2 flex flex-wrap gap-1">
@@ -170,7 +170,7 @@ const MoodboardCard = ({ bookmark }) => {
               bookmark.tags.slice(0, 2).map((tag) => (
                 <span
                   key={tag}
-                  className="px-2 py-0.5 text-xs rounded-full bg-purple-100 dark:bg-purple-800 text-purple-700 dark:text-purple-200"
+                  className="px-2 py-0.5 text-xs rounded-full bg-clay-100 dark:bg-clay-800 text-clay-700 dark:text-clay-200"
                 >
                   {tag}
                 </span>
@@ -184,19 +184,19 @@ const MoodboardCard = ({ bookmark }) => {
 
 const ListCard = ({ bookmark }) => {
   return (
-    <div className="group flex items-start gap-3 p-3 rounded-lg hover:bg-purple-50 dark:hover:bg-purple-900/20 transition-colors duration-200 border-b border-purple-100 dark:border-purple-800/50 last:border-b-0">
+    <div className="group flex items-start gap-3 p-3 rounded-lg hover:bg-clay-50 dark:hover:bg-clay-900/20 transition-colors duration-200 border-b border-clay-100 dark:border-clay-800/50 last:border-b-0">
       <div className="flex-shrink-0">
         {bookmark.cover ? (
           <img
             src={bookmark.cover || "/placeholder.svg"}
             alt={bookmark.title}
-            className="w-12 h-12 object-cover rounded-md shadow-sm border border-purple-200 dark:border-purple-700"
+            className="w-12 h-12 object-cover rounded-md shadow-sm border border-clay-200 dark:border-clay-700"
           />
         ) : (
-          <div className="w-12 h-12 bg-gradient-to-br from-purple-300 to-purple-100 dark:from-purple-800 dark:to-purple-950 rounded-md flex items-center justify-center">
+          <div className="w-12 h-12 bg-gradient-to-br from-clay-300 to-clay-100 dark:from-clay-800 dark:to-clay-950 rounded-md flex items-center justify-center">
             <BookmarkIcon
               size={20}
-              className="text-purple-500 dark:text-purple-300 opacity-70"
+              className="text-clay-500 dark:text-clay-300 opacity-70"
             />
           </div>
         )}
@@ -209,14 +209,14 @@ const ListCard = ({ bookmark }) => {
               href={bookmark.link}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-base font-medium text-primary hover:text-purple-600 transition-colors duration-200 line-clamp-1 block"
+              className="text-base font-medium text-primary hover:text-clay-600 transition-colors duration-200 line-clamp-1 block"
             >
               {bookmark.title}
             </a>
 
             <div className="flex items-center gap-2 mt-1">
               {bookmark.tags && bookmark.tags.length > 0 && (
-                <span className="text-xs text-purple-600 dark:text-purple-400 font-medium">
+                <span className="text-xs text-clay-600 dark:text-clay-400 font-medium">
                   #{bookmark.tags[0]}
                 </span>
               )}

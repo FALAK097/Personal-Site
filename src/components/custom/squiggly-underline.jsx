@@ -21,7 +21,7 @@ export const SquigglyUnderline = ({ children, className, onClick, href }) => {
           stroke="currentColor"
           strokeWidth="1.5"
           fill="none"
-          className="text-purple-400"
+          className="text-clay-400"
           initial={{ pathLength: 0 }}
           animate={{ pathLength: 1 }}
           transition={{ duration: 0.8, delay: 2.4, ease: "easeInOut" }}

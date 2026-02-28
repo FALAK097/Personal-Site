@@ -1,8 +1,10 @@
-import { GeistSans } from "geist/font/sans";
+import { Outfit } from "next/font/google";
 import { ViewTransitions } from "next-view-transitions";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { ThemeProvider } from "@/components/theme-provider";
+
+const outfit = Outfit({ subsets: ["latin"] });
 import { ScrollProgress } from "@/components/custom/scroll-progress";
 import { CustomCursor } from "@/components/custom/custom-cursor";
 import { AskAIWidget } from "@/components/ai/ask-ai-widget";
@@ -20,7 +22,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <ViewTransitions>
-      <html suppressHydrationWarning lang="en" className={GeistSans.className}>
+      <html suppressHydrationWarning lang="en" className={outfit.className}>
         <body suppressHydrationWarning>
           <ThemeProvider
             disableTransitionOnChange

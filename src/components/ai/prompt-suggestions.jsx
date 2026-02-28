@@ -21,7 +21,7 @@ export function PromptSuggestions({
           variant="outline"
           size="sm"
           onClick={() => onSuggestionClick(suggestion)}
-          className="flex items-center gap-2 whitespace-nowrap rounded-full hover:bg-transparent border-purple-200 dark:border-purple-700 text-primary transition-all duration-200 shadow-sm hover:shadow-md cursor-pointer"
+          className="flex items-center gap-2 whitespace-nowrap rounded-full hover:bg-transparent border-clay-200 dark:border-clay-700 text-primary transition-all duration-200 shadow-sm hover:shadow-md cursor-pointer"
         >
           <span className="text-xs">{suggestion.text}</span>
         </Button>

@@ -123,7 +123,7 @@ export const ProjectList = ({ projects }) => {
                       <Button
                         asChild
                         variant="outline"
-                        className="hover:bg-transparent hover:border-purple-500 transition-all duration-300"
+                        className="hover:bg-transparent hover:border-clay-500 transition-all duration-300"
                       >
                         <a
                           href={project.deployedUrl}

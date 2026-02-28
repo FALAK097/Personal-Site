@@ -24,7 +24,7 @@ export const CopyButton = ({ text, className }) => {
       size="icon"
       onClick={handleCopy}
       className={cn(
-        "h-6 w-6 opacity-0 group-hover:opacity-100 transition-opacity duration-200 hover:bg-purple-100 dark:hover:bg-purple-900 cursor-pointer",
+        "h-6 w-6 opacity-0 group-hover:opacity-100 transition-opacity duration-200 hover:bg-clay-100 dark:hover:bg-clay-900 cursor-pointer",
         copied && "opacity-100",
         className
       )}
@@ -33,7 +33,7 @@ export const CopyButton = ({ text, className }) => {
       {copied ? (
         <CheckCheckIcon className="h-3 w-3 text-green-600" />
       ) : (
-        <CopyIcon className="h-3 w-3 text-purple-600 dark:text-purple-400" />
+        <CopyIcon className="h-3 w-3 text-clay-600 dark:text-clay-400" />
       )}
     </Button>
   );

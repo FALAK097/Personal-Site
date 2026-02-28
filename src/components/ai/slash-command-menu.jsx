@@ -42,12 +42,12 @@ export function SlashCommandMenu({
   return (
     <div
       className={cn(
-        "absolute bottom-full left-0 right-0 mb-2 border border-purple-200 dark:border-purple-700 rounded-lg shadow-xl backdrop-blur-sm max-h-60 overflow-auto z-[60] animate-in slide-in-from-bottom-2 fade-in-0 duration-200",
+        "absolute bottom-full left-0 right-0 mb-2 border border-clay-200 dark:border-clay-700 rounded-lg shadow-xl backdrop-blur-sm max-h-60 overflow-auto z-[60] animate-in slide-in-from-bottom-2 fade-in-0 duration-200",
         className
       )}
     >
       <div className="p-2">
-        <div className="flex items-center gap-2 px-2 py-1 text-xs text-muted-foreground border-b border-purple-100 dark:border-purple-800 mb-2">
+        <div className="flex items-center gap-2 px-2 py-1 text-xs text-muted-foreground border-b border-clay-100 dark:border-clay-800 mb-2">
           <CommandIcon className="h-3 w-3" />
           <span>Quick Commands</span>
         </div>
@@ -60,11 +60,11 @@ export function SlashCommandMenu({
             className={cn(
               "flex items-center gap-3 w-full text-left px-3 py-2 rounded-md transition-all duration-150 text-sm",
               index === selectedIndex
-                ? "bg-gradient-to-r from-purple-100 to-violet-100 dark:from-purple-900 dark:to-violet-900 text-purple-700 dark:text-purple-300"
-                : "hover:bg-purple-50 dark:hover:bg-purple-950 text-gray-700 dark:text-gray-300"
+                ? "bg-gradient-to-r from-clay-100 to-violet-100 dark:from-clay-900 dark:to-violet-900 text-clay-700 dark:text-clay-300"
+                : "hover:bg-clay-50 dark:hover:bg-clay-950 text-gray-700 dark:text-gray-300"
             )}
           >
-            <div className="flex items-center justify-center w-6 h-6 rounded bg-purple-100 dark:bg-purple-800 text-purple-600 dark:text-purple-400">
+            <div className="flex items-center justify-center w-6 h-6 rounded bg-clay-100 dark:bg-clay-800 text-clay-600 dark:text-clay-400">
               {commandIcons[cmd.command] || <HashIcon className="h-3 w-3" />}
             </div>
             <div className="flex-1 min-w-0">
@@ -74,7 +74,7 @@ export function SlashCommandMenu({
               </div>
             </div>
             {index === selectedIndex && (
-              <div className="text-xs text-purple-600 dark:text-purple-400 font-medium">
+              <div className="text-xs text-clay-600 dark:text-clay-400 font-medium">
                 ↵
               </div>
             )}

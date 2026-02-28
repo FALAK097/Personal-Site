@@ -12,7 +12,7 @@ export const FormattedText = ({ text }) => {
               href={url}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-purple-500 hover:text-purple-600 underline"
+              className="text-clay-500 hover:text-clay-600 underline"
             >
               {label}
             </a>
@@ -21,7 +21,7 @@ export const FormattedText = ({ text }) => {
         if (segment.match(/^`.*?`$/)) {
           const content = segment.slice(1, -1);
           return (
-            <span key={index} className="text-purple-600 dark:text-purple-400">
+            <span key={index} className="text-clay-600 dark:text-clay-400">
               {content}
             </span>
           );

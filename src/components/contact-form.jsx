@@ -60,7 +60,7 @@ export function ContactForm() {
             placeholder="Enter your name"
           />
           {errors.name && (
-            <p className="text-sm text-purple-500">{errors.name.message}</p>
+            <p className="text-sm text-clay-500">{errors.name.message}</p>
           )}
         </div>
         <div>
@@ -72,7 +72,7 @@ export function ContactForm() {
             placeholder="Enter your email"
           />
           {errors.email && (
-            <p className="text-sm text-purple-500">{errors.email.message}</p>
+            <p className="text-sm text-clay-500">{errors.email.message}</p>
           )}
         </div>
       </div>
@@ -85,7 +85,7 @@ export function ContactForm() {
           placeholder="Enter the subject"
         />
         {errors.subject && (
-          <p className="text-sm text-purple-500">{errors.subject.message}</p>
+          <p className="text-sm text-clay-500">{errors.subject.message}</p>
         )}
       </div>
       <div>
@@ -97,14 +97,14 @@ export function ContactForm() {
           placeholder="Enter your message"
         />
         {errors.message && (
-          <p className="text-sm text-purple-500">{errors.message.message}</p>
+          <p className="text-sm text-clay-500">{errors.message.message}</p>
         )}
       </div>
       <Button
         type="submit"
         variant="outline"
         disabled={loading}
-        className="hover:bg-transparent hover:border-purple-400"
+        className="hover:bg-transparent hover:border-clay-400"
       >
         {loading ? "Sending..." : "Send Message"}
       </Button>

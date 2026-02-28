@@ -48,7 +48,7 @@ export const CustomCursor = () => {
       {circles.map((circle) => (
         <div
           key={circle.id}
-          className="fixed top-0 left-0 rounded-full border border-purple-500 pointer-events-none z-[9998]"
+          className="fixed top-0 left-0 rounded-full border border-clay-500 pointer-events-none z-[9998]"
           style={{
             transform: `translate(${circle.x - circle.size / 2}px, ${
               circle.y - circle.size / 2
