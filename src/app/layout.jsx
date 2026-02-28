@@ -15,6 +15,7 @@ import "@/styles/globals.css";
 import { Toaster } from "@/components/ui/toaster";
 
 export const metadata = {
+  metadataBase: new URL("https://falakgala.dev"),
   title: {
     default: "Falak Gala's Portfolio",
     template: "%s | Falak Gala's Portfolio",
