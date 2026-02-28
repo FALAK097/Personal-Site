@@ -39,7 +39,7 @@ export function Navbar() {
           }}
           href="/"
           className={cn(
-            "text-2xl font-bold tracking-tighter text-primary hover:scale-105 transition-transform"
+            "text-2xl font-bold tracking-tighter text-primary hover:opacity-80 transition-opacity"
           )}
         >
           Falak<span className="text-clay-500">.</span>

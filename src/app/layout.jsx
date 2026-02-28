@@ -4,7 +4,10 @@ import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { ThemeProvider } from "@/components/theme-provider";
 
-const outfit = Outfit({ subsets: ["latin"] });
+const outfit = Outfit({ 
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700", "800", "900"]
+});
 import { ScrollProgress } from "@/components/custom/scroll-progress";
 import { CustomCursor } from "@/components/custom/custom-cursor";
 import { AskAIWidget } from "@/components/ai/ask-ai-widget";
