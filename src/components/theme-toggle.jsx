@@ -14,6 +14,11 @@ export function ThemeToggle() {
 
     setIsTransitioning(true);
 
+    // Play sound effect
+    const soundFile = theme === "light" ? "/sounds/switch-off.mp3" : "/sounds/switch-on.mp3";
+    const audio = new Audio(soundFile);
+    audio.play().catch(err => console.error("Failed to play theme sound:", err));
+
     const overlay = document.createElement("div");
     overlay.className =
       "fixed inset-0 z-50 transition-opacity duration-500 ease-in-out opacity-0 pointer-events-none bg-background";

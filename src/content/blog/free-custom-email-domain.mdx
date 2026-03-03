@@ -1,0 +1,146 @@
+---
+title: "How to Get a Free Custom Email for Your Domain (hi@yourdomain.com)"
+description: "A complete walkthrough on setting up a professional custom email address like hi@yourdomain.com that forwards to your Gmail for free, using Cloudflare and your domain registrar."
+date: "2026-03-03"
+---
+
+So you've got a personal domain for your portfolio, something like **yourname.dev**, and you want a professional email to go with it. Something like **hi@yourname.dev** that you can put on your resume and use for cold outreach to clients and hiring managers.
+
+This is exactly what I set up for **hi@falakgala.dev**, and in this post I'll walk you through the entire process step by step. The best part? It's completely free.
+
+## What We're Building
+
+By the end of this guide you'll have:
+
+- A custom email like **hi@yourdomain.com** that receives mail
+- All incoming emails forwarded directly to your personal Gmail
+- The ability to **send** emails from your custom address inside Gmail
+- Your portfolio site completely unaffected
+
+## Prerequisites
+
+- A domain you own (purchased on GoDaddy, Namecheap, Cloudflare, etc.)
+- A Gmail account you want to use as your personal inbox
+- A free Cloudflare account ([cloudflare.com](https://cloudflare.com))
+
+## Understanding How This Works
+
+Before jumping in, it helps to understand the three things involved:
+
+1. **Domain Registrar** - where you *bought* the domain (e.g. GoDaddy, Namecheap)
+2. **Nameservers** - who *manages* your DNS records (we'll move this to Cloudflare)
+3. **Hosting** - where your website *lives* (Vercel, stays untouched)
+
+Right now your setup is probably:
+
+```
+Registrar (e.g. GoDaddy) -> Nameservers -> Hosting (Vercel)
+```
+
+After this guide it'll be:
+
+```
+Registrar (e.g. GoDaddy) -> Cloudflare nameservers -> Hosting (unchanged)
+```
+
+Your domain stays with your registrar. Your site stays on Vercel. Only the DNS manager changes to Cloudflare, which is what gives us free email routing.
+
+## Step 1 - Add Your Domain to Cloudflare
+
+1. Sign up or log in at [cloudflare.com](https://cloudflare.com)
+2. Click **Add a Site** - enter your domain - select the **Free plan**
+3. Cloudflare will scan your existing DNS records
+
+This is the critical part. Cloudflare may import old A records from your registrar instead of your actual hosting records. You need to fix this before proceeding.
+
+**Delete** any A records pointing to your registrar's IP addresses.
+
+Then **Add** these two records manually:
+
+```
+Type    Name    Content                 Proxy Status
+CNAME   @       cname.vercel-dns.com    DNS only (grey cloud)
+CNAME   www     cname.vercel-dns.com    DNS only (grey cloud)
+```
+
+Make sure proxy status is **DNS only (grey cloud)**, not orange/proxied, otherwise your Vercel site may break.
+
+Keep any existing CAA or TXT records as they are.
+
+Once your records look correct, click **Continue to activation**. Cloudflare will show you **2 nameservers**, copy these, you'll need them in the next step.
+
+## Step 2 - Update Nameservers on Your Registrar
+
+1. Log into your domain registrar (GoDaddy, Namecheap, etc.) - find your domain - go to DNS settings
+2. Click the **Nameservers** tab
+3. Click **Change Nameservers** - select **I'll use my own nameservers**
+4. Replace the existing nameservers with the 2 Cloudflare ones (e.g. **example.ns.cloudflare.com** and **example.ns.cloudflare.com**)
+5. Save
+
+Propagation usually takes 5-30 minutes. Cloudflare will email you once it's active. Your site stays live throughout this process.
+
+## Step 3 - Set Up Cloudflare Email Routing
+
+Once Cloudflare confirms your domain is active:
+
+1. In your Cloudflare dashboard - select your domain - go to **Email - Email Routing**
+2. Click **Get Started**
+3. Cloudflare will show you the MX and TXT records it needs to add
+
+4. Click **Add records and Enable** - Cloudflare adds them automatically
+
+Now add your forwarding rule:
+
+1. Go to **Routing Rules** tab - click **+ Create Address (Onboard Domain)**
+2. Custom address: **hi** (this becomes **hi@yourdomain.com**)
+3. Action: Send to an email - enter your Gmail address
+4. Save
+
+Cloudflare sends a verification email to your Gmail, click confirm and you're done. Emails sent to **hi@yourdomain.com** now land in your Gmail.
+
+## Step 4 - Send From Your Custom Email in Gmail
+
+Receiving is set up, now let's make Gmail send *from* your custom address too.
+
+### First, generate a Gmail App Password
+
+You need this because Google does not allow plain passwords for SMTP.
+
+1. Make sure **2-Step Verification** is enabled on your Google account
+2. Go to [myaccount.google.com/apppasswords](https://myaccount.google.com/apppasswords)
+3. App name: type anything like **Custom Email** - click **Create**
+4. Copy the **16-character password** shown, you only see it once
+
+### Add the custom email to Gmail
+
+1. Open Gmail - click the **gear icon** - **See all settings**
+2. Go to **Accounts and Import** tab
+3. Under **"Send mail as"** - click **Add another email address**
+4. Name: **Your Name** | Email: **hi@yourdomain.com** | uncheck "Treat as alias" - Next
+
+5. Fill in the SMTP details:
+   - SMTP Server: ***smtp.gmail.com***
+   - Port: ***587***
+   - Username: ***yourname@gmail.com***
+   - Password: the 16-character App Password
+   - TLS selected
+
+6. Click **Add Account**
+7. A verification code is sent to **hi@yourdomain.com**, it lands in your Gmail - enter the code
+
+### Make it your default sender
+
+Back in **Settings - Accounts and Import - Send mail as**, click **make default** next to your custom address.
+
+Now every email you compose will automatically send from **hi@yourdomain.com**.
+
+## You are Done!
+
+Here is what you now have:
+
+- **hi@yourdomain.com** receives emails, forwarded to your Gmail
+- Gmail sends emails from **hi@yourdomain.com** when you compose new messages
+- Total cost: **$0**
+
+Put that custom email on your resume, portfolio, and LinkedIn. It is a small thing that makes a big difference in how seriously people take your outreach, especially when cold emailing hiring managers and clients.
+

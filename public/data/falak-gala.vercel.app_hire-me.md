@@ -7,7 +7,7 @@ title: "Hire Me | Falak Gala's Portfolio"
 
 I'm always interested in hearing about new opportunities. Feel free to reach out if you'd like to work together or simply discuss ideas.
 
-[View Resume](https://falakgala.dev/resume.pdf) [Schedule a Call](https://cal.com/falak) [GitHub](https://github.com/Falak097) [Twitter/X](https://x.com/FalakGala097) [LinkedIn](https://linkedin.com/in/falak-gala) [Email] (falakgala09@gmail.com)
+[View Resume](https://falakgala.dev/resume.pdf) [Schedule a Call](https://cal.com/falak) [GitHub](https://github.com/Falak097) [Twitter/X](https://x.com/FalakGala097) [LinkedIn](https://linkedin.com/in/falak-gala) [Email] (hi@falakgala.dev)
 
 Name
 

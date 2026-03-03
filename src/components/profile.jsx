@@ -243,7 +243,7 @@ export function Profile({ spotifyData }) {
                   className="hover:bg-transparent hover:border-clay-400"
                   asChild
                 >
-                  <Link href="mailto:falakgala09@gmail.com">
+                  <Link href="mailto:hi@falakgala.dev">
                     <AtSignIcon
                       className="-ms-1 text-clay-500"
                       size={16}
@@ -258,7 +258,7 @@ export function Profile({ spotifyData }) {
                   </Link>
                 </Button>
                 <div className="absolute hidden px-2 py-1 mt-2 text-xs text-clay-500 transform -translate-x-1/2 bg-background rounded-lg shadow-lg sm:text-sm left-1/2 top-full group-hover:block z-10">
-                  falakgala09@gmail.com
+                  hi@falakgala.dev
                 </div>
               </div>
             </div>

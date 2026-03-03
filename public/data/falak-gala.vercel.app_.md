@@ -15,9 +15,9 @@ This is my quirky web nook for spilling my [learnings](https://falakgala.dev/blo
 
 OR
 
-[Email Me](mailto:falakgala09@gmail.com)
+[Email Me](mailto:hi@falakgala.dev)
 
-falakgala09@gmail.com
+hi@falakgala.dev
 
 ## I love writing things down
 
