@@ -45,43 +45,25 @@ AI-powered outbound caller that pre-qualifies leads with life-like conversations
 
 ![OutCallerAI](https://falakgala.dev/_next/image?url=%2Fprojects%2Foutcallerai.png&w=3840&q=75)
 
-## OutRiskAI
+## Glyph
 
-AI tool to analyze legal risk, summarize contracts, and connect with real lawyers.
+Local-first markdown editor and reader for macOS and Windows. Read local notes, edit markdown quickly, and keep everything on disk.
 
 ### Tech Stack
 
-![JavaScript](https://falakgala.dev/skills/javascript.svg)
+![TypeScript](https://falakgala.dev/skills/typescript.svg)
 
 ![React.js](https://falakgala.dev/skills/react.svg)
 
-![Next.js](https://falakgala.dev/skills/nextjs.svg)
+![Node.js](https://falakgala.dev/skills/nodejs.svg)
 
 ![Tailwind](https://falakgala.dev/skills/tailwindcss.svg)
 
-![Authjs](https://falakgala.dev/skills/authjs.svg)
+![Vercel](https://falakgala.dev/skills/vercel-light.svg)
 
-![Prisma](https://falakgala.dev/skills/prisma.svg)
+[GitHub](https://github.com/FALAK097/glyph)
 
-![OpenAI](https://falakgala.dev/skills/openai.svg)
-
-![Gemini](https://falakgala.dev/skills/gemini.svg)
-
-![Python](https://falakgala.dev/skills/python.svg)
-
-![FastAPI](https://falakgala.dev/skills/fastapi.svg)
-
-![Node.js](https://falakgala.dev/skills/nodejs.svg)
-
-![PostgreSQL](https://falakgala.dev/skills/postgresql.svg)
-
-![Docker](https://falakgala.dev/skills/docker.svg)
-
-![DigitalOcean](https://falakgala.dev/skills/digitalocean.svg)
-
-[Live Demo](https://outriskai.com/)
-
-![OutRiskAI](https://falakgala.dev/_next/image?url=%2Fprojects%2Foutriskai.png&w=3840&q=75)
+[Live Demo](https://glyph.falakgala.dev/)
 
 ## Waitlyze
 
@@ -112,6 +94,52 @@ No-code platform to build waitlists, collect signups, and track analytics in rea
 [Live Demo](https://waitlyze.falakgala.dev)
 
 ![Waitlyze](https://falakgala.dev/_next/image?url=%2Fprojects%2Fwaitlyze.png&w=3840&q=75)
+
+## DMS
+
+Upload, search, and chat with your documents using AI. Automatic OCR, smart search, and seamless cloud syncing.
+
+### Tech Stack
+
+![JavaScript](https://falakgala.dev/skills/javascript.svg)
+
+![React.js](https://falakgala.dev/skills/react.svg)
+
+![Next.js](https://falakgala.dev/skills/nextjs.svg)
+
+![Tailwind](https://falakgala.dev/skills/tailwindcss.svg)
+
+![BetterAuth](https://falakgala.dev/skills/better-auth.svg)
+
+![Prisma](https://falakgala.dev/skills/prisma.svg)
+
+![OpenAI](https://falakgala.dev/skills/openai.svg)
+
+![Gemini](https://falakgala.dev/skills/gemini.svg)
+
+![PostgreSQL](https://falakgala.dev/skills/postgresql.svg)
+
+![Vercel](https://falakgala.dev/skills/vercel-light.svg)
+
+![Neon](https://falakgala.dev/skills/neon.svg)
+
+![Upstash](https://falakgala.dev/skills/upstash.svg)
+
+[Live Demo](https://dms.falakgala.dev/)
+
+![DMS](https://falakgala.dev/_next/image?url=%2Fprojects%2Fdms.png&w=3840&q=75)
+
+## TypeSteps
+
+A minimalist macOS app that passively tracks your daily typing activity and shows insights across days, weeks, and months.
+
+### Tech Stack
+
+![Swift](https://falakgala.dev/skills/swift.svg)
+
+[GitHub](https://github.com/FALAK097/typesteps)
+
+![TypeSteps](https://falakgala.dev/_next/image?url=%2Fprojects%2Ftypesteps.png&w=3840&q=75)
 
 ## DevFinder
 

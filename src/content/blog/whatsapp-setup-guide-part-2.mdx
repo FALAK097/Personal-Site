@@ -111,7 +111,7 @@ WHATSAPP_API_URL="https://graph.facebook.com/v24.0"
 
 Here's a bird's eye view of the flow we're about to build. It's a standard OAuth 2.0 dance, but seeing the steps laid out can help clarify the process:
 
-```
+```plaintext
 User clicks "Connect WhatsApp"
     ↓
 Redirect to Facebook OAuth Portal
@@ -972,6 +972,7 @@ async function processIncomingMessage(messageData) {
 ## You're Done!
 
 You now have a complete WhatsApp Cloud API integration with:
+
 - OAuth flow for easy connection
 - Automatic token refresh
 - Multi-tenant support

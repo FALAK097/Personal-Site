@@ -14,6 +14,7 @@ import {
 const skillLogos = {
   JavaScript: { logo: "/skills/javascript.svg", name: "JavaScript" },
   TypeScript: { logo: "/skills/typescript.svg", name: "TypeScript" },
+  Electron: {logo: "/skills/electron.svg", name: "Electron"},
   Python: { logo: "/skills/python.svg", name: "Python" },
   "React.js": { logo: "/skills/react.svg", name: "React.js" },
   "Node.js": { logo: "/skills/nodejs.svg", name: "Node.js" },

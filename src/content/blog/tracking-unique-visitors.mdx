@@ -24,6 +24,7 @@ npm install @upstash/redis zod
 ```
 
 ### Architecture Overview
+
 The system has three main pieces:
 
 1. Redis Set – stores unique visitor IDs
@@ -31,13 +32,16 @@ The system has three main pieces:
 3. Client Component – displays the visitor count in the UI
 
 ### Setting Up Upstash Redis
+
 Sign up at Upstash and create a Redis database and add the following variables to your **.env**:
+
 ```env
 UPSTASH_REDIS_REST_URL=your-redis-url
 UPSTASH_REDIS_REST_TOKEN=your-redis-token
 ```
 
 ### Server Action Logic
+
 This function tracks visitors by storing a **visitorId** in a Redis Set and caching the count for performance.
 
 ```javascript
@@ -101,6 +105,7 @@ function generateVisitorId() {
 ```
 
 ### Displaying the Visitor Count
+
 Here is the important logic to call the server action and show the count:
 
 ```javascript
@@ -132,17 +137,20 @@ export function MyComponent() {
 ```
 
 ### Performance Considerations
+
 1. Caching with Redis: results are stored for 60 seconds to reduce read operations
 2. Visitor ID with localStorage: prevents double-counting repeat visits
 3. Redis Sets: efficient structure for tracking uniqueness
 
 ### Privacy Considerations
+
 1. No personal identifiers are stored
 2. Random UUIDs are used for anonymity
 3. No tracking scripts, cookies, or analytics SDKs
 
 ### Conclusion
+
 With just a few simple components, you can add a lightweight, privacy-conscious visitor counter to your Next.js site. This method is scalable, free under Upstash’s generous limits, and doesn’t compromise user privacy.
 
-[View Source](https://github.com/Falak097/Personal-Site)
+[View Source](https://github.com/Falak097/Personal-Site)\
 Feel free to adapt this solution for your own projects, and let me know if you have any questions or need further assistance!

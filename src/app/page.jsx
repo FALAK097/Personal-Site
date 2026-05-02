@@ -6,11 +6,11 @@ import { Footer } from "@/components/footer";
 import { GitHubCalendarChart } from "@/components/custom/github-calendar-chart";
 import { RecentPosts } from "@/components/blog/recent-posts";
 import { getAllPosts } from "@/lib/mdx";
-import { getNowPlaying } from "@/actions/spotify";
-import { SpotifyNowPlaying } from "@/components/custom/spotify-now-playing";
+// import { getNowPlaying } from "@/actions/spotify";
+// import { SpotifyNowPlaying } from "@/components/custom/spotify-now-playing";
 import { RecentProjects } from "@/components/recent-projects";
 import { projects } from "@/lib/project-data";
-import { FootballGoalAnimation } from "@/components/custom/football-goal-animation";
+// import { FootballGoalAnimation } from "@/components/custom/football-goal-animation";
 
 export const metadata = {
   title: "Falak Gala",
@@ -36,15 +36,16 @@ export default async function Home() {
       <Navbar />
       <main className="container flex-1 px-4 py-8 mx-auto">
         <div className="max-w-4xl mx-auto space-y-16">
-          <Profile spotifyData={spotifyData} />
+          {/* <Profile spotifyData={spotifyData} /> */}
+          <Profile />
           <RecentProjects projects={recentProjects} />
           <RecentPosts posts={recentPosts} />
           <GitHubCalendarChart />
         </div>
       </main>
-      <div className="mx-auto max-w-4xl container">
+      {/* <div className="mx-auto max-w-4xl container">
         <FootballGoalAnimation />
-      </div>
+      </div> */}
       <Footer />
     </div>
   );

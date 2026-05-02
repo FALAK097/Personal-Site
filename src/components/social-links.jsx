@@ -11,7 +11,7 @@ export function SocialLinks() {
     <div className="flex items-center gap-4">
       <a
         className="transition-colors text-foreground/60 hover:text-foreground"
-        href="mailto:falakgala09@gmail.com"
+        href="mailto:hi@falakgala.dev"
         aria-label="Email"
       >
         <AtSignIcon />

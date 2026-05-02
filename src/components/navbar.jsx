@@ -29,60 +29,62 @@ export function Navbar() {
 
   return (
     <header className="sticky top-0 z-50 border-b border-border bg-background/80 backdrop-blur-lg">
-      <nav className="container flex items-center justify-between h-16 px-4 mx-auto">
-        <a
-          onClick={(e) => {
-            e.preventDefault();
-            router.push("/", {
-              onTransitionReady: slideInOut,
-            });
-          }}
-          href="/"
-          className={cn(
-            "text-2xl font-bold tracking-tighter text-primary hover:opacity-80 transition-opacity"
-          )}
-        >
-          Falak<span className="text-clay-500">.</span>
-        </a>
-        <div className="flex items-center gap-4">
-          <div className="items-center hidden gap-6 md:flex">
-            {links.map(({ href, label }, index) => (
-              <a
-                onClick={(e) => {
-                  e.preventDefault();
-                  router.push(href, {
-                    onTransitionReady: slideInOut,
-                  });
-                }}
-                key={href}
-                href={href}
-                className={cn(
-                  "relative text-sm text-foreground/60 hover:text-foreground transition-colors",
-                  "after:absolute after:left-0 after:right-0 after:-bottom-1",
-                  "after:h-[2px] after:bg-[#a15d3a]",
-                  "after:scale-x-0 hover:after:scale-x-100",
-                  "after:transition-transform after:duration-300",
-                  pathname === href && "text-foreground after:scale-x-100",
-                  mounted && `animate-fade-in animate-delay-${index * 100}`
-                )}
-              >
-                {label}
-              </a>
-            ))}
-          </div>
-          <ThemeToggle />
-            <button
-            className="md:hidden text-muted-foreground cursor-pointer"
-            onClick={() => setIsOpen(!isOpen)}
-          >
-            {isOpen ? (
-              <XIcon className="w-6 h-6" />
-            ) : (
-              <MenuIcon className="w-6 h-6 mt-2" />
+      <div className="container mx-auto px-4">
+        <nav className="max-w-4xl flex items-center justify-between h-16 mx-auto">
+          <a
+            onClick={(e) => {
+              e.preventDefault();
+              router.push("/", {
+                onTransitionReady: slideInOut,
+              });
+            }}
+            href="/"
+            className={cn(
+              "text-2xl font-bold tracking-tighter text-primary hover:opacity-80 transition-opacity"
             )}
-          </button>
-        </div>
-      </nav>
+          >
+            Falak<span className="text-clay-500">.</span>
+          </a>
+          <div className="flex items-center gap-4">
+            <div className="items-center hidden gap-6 md:flex">
+              {links.map(({ href, label }, index) => (
+                <a
+                  onClick={(e) => {
+                    e.preventDefault();
+                    router.push(href, {
+                      onTransitionReady: slideInOut,
+                    });
+                  }}
+                  key={href}
+                  href={href}
+                  className={cn(
+                    "relative text-sm text-foreground/60 hover:text-foreground transition-colors",
+                    "after:absolute after:left-0 after:right-0 after:-bottom-1",
+                    "after:h-[2px] after:bg-[#a15d3a]",
+                    "after:scale-x-0 hover:after:scale-x-100",
+                    "after:transition-transform after:duration-300",
+                    pathname === href && "text-foreground after:scale-x-100",
+                    mounted && `animate-fade-in animate-delay-${index * 100}`
+                  )}
+                >
+                  {label}
+                </a>
+              ))}
+            </div>
+            <ThemeToggle />
+              <button
+              className="md:hidden text-muted-foreground cursor-pointer"
+              onClick={() => setIsOpen(!isOpen)}
+            >
+              {isOpen ? (
+                <XIcon className="w-6 h-6" />
+              ) : (
+                <MenuIcon className="w-6 h-6 mt-2" />
+              )}
+            </button>
+          </div>
+        </nav>
+      </div>
 
       {isOpen && (
         <div className="flex flex-col gap-3 px-4 pb-4 md:hidden animate-slide-down">

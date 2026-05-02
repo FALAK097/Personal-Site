@@ -84,7 +84,7 @@ export function RecentProjects({ projects }) {
 
               <div className="relative h-full flex flex-col">
                 {/* Project Image */}
-                <div className="relative overflow-hidden h-32 md:h-40">
+                <div className="relative overflow-hidden h-32 md:h-40 border-b border-border/50 bg-muted/20">
                   <Image
                     src={project.imageUrl}
                     alt={project.title}
@@ -93,7 +93,7 @@ export function RecentProjects({ projects }) {
                     sizes="(max-width: 768px) 100vw, 50vw"
                     priority={index === 0}
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-card via-card/60 to-transparent" />
+
                 </div>
 
                 {/* Content */}

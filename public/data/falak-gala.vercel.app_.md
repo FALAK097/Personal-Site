@@ -3,19 +3,17 @@ url: <https://falakgala.dev/>
 title: "Falak Gala"
 ---
 
-# HeyI'mFalak Gala
+# Hey I'm Falak Gala
 
-Full Stack Developer
+Software Engineer
 
-Whipping up clever solutions and wrestling with tricky challenges — because who doesn't love a good tech puzzle?
+I build straightforward web products and AI tools.
 
-This is my quirky web nook for spilling my [learnings](https://falakgala.dev/blog) and [projects](https://falakgala.dev/projects)!
+I focus on software that is clear to use, practical to ship, and easy to maintain. This portfolio collects the work I'm most proud of, the things I write about, and the best ways to reach me.
 
-[Available for Hire](https://falakgala.dev/hire-me)
+[Available for Work](https://falakgala.dev/hire-me)
 
-OR
-
-[Email Me](mailto:hi@falakgala.dev)
+[Let's Talk](mailto:hi@falakgala.dev)
 
 hi@falakgala.dev
 

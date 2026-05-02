@@ -21,8 +21,7 @@ export const experiences = [
       "DigitalOcean",
     ],
     achievements: [
-      "Built [OutCallerAI](https://outcallerai.com) — Led development of an AI-powered _outbound calling platform_ that automates multilingual lead qualification and follow-ups, boosting conversion efficiency.",
-      "Developed [OutRiskAI](https://outriskai.com) — Engineered a legal AI assistant that _summarizes contracts_, _highlights risks_, and _connects users with real lawyers_ to streamline contract review workflows.",
+      "Leading the development of [OutCallerAI](https://outcallerai.com) — AI-powered outbound & inbound calling platform that automates multilingual lead qualification and follow-ups, boosting conversion efficiency.",
       "Built a live energy monitoring and analytics system using `Next.js`, `WebSockets` and `InfluxDB` to display real-time and historical data, implemented `GitHub Actions` for `CI/CD`.",
       "_RPA for Healthcare_ - Automated data workflows across 7+ healthcare platforms using `Selenium` and `FastAPI`, leading a team of 5 developers to reduce manual input for nurses and doctors.",
       "Integrated `WhatsApp Business` and `Gmail APIs` to enable seamless _calendar bookings_ and _multi-channel communication_ within [OutCallerAI](https://outcallerai.com)",

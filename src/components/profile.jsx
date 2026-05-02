@@ -10,7 +10,7 @@ import { Button } from "./ui/button";
 import { ArrowRightIcon, AtSignIcon } from "./icons";
 import { TextGenerateEffect } from "./custom/text-generate-effect";
 import { SquigglyUnderline } from "./custom/squiggly-underline";
-import { SpotifyNowPlaying } from "./custom/spotify-now-playing";
+// import { SpotifyNowPlaying } from "./custom/spotify-now-playing";
 
 const jobTitles = [
   "Full Stack Developer",
@@ -96,7 +96,7 @@ export function Profile({ spotifyData }) {
     <div className="flex flex-col items-center justify-center max-w-4xl gap-8 px-4 mx-auto mt-8 mb-16 md:mt-16 md:mb-24">
       <div className="flex flex-col items-center w-full gap-8 md:flex-row md:items-start md:gap-12">
         {/* Avatar */}
-        <motion.div
+        {/* <motion.div
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
@@ -112,7 +112,7 @@ export function Profile({ spotifyData }) {
             fill
             sizes="(max-width: 768px) 128px, 144px"
           />
-        </motion.div>
+        </motion.div> */}
 
         {/* Content */}
         <div className="flex flex-col items-center flex-1 text-center md:items-start md:text-left space-y-5">
@@ -205,9 +205,9 @@ export function Profile({ spotifyData }) {
               transition={{ duration: 0.6, delay: 2 }}
               className="text-sm md:text-base text-foreground/60 flex flex-wrap items-center justify-center md:justify-start gap-1"
             >
-              <span>Outside work, I love watching football</span>
-              <span>and listening to</span>
-              <SpotifyNowPlaying songData={spotifyData} />
+              <span>Outside work, I love watching football.</span>
+              {/* <span>and listening to</span> */}
+              {/* <SpotifyNowPlaying songData={spotifyData} /> */}
             </motion.div>
           </div>
 
